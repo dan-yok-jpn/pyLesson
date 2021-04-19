@@ -1,0 +1,14 @@
+{
+    "terminal.integrated.env.windows": {
+        "PATH": "${env:PATH};_PYTHONHOME_;_PYTHONHOME_\Scripts"
+    },
+    "python.pythonPath": "_PYTHONHOME_\python.exe",
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "terminal.integrated.automationShell.windows": "C:\WINDOWS\System32\cmd.exe",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
+}
