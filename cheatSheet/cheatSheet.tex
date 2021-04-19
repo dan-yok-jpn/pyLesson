@@ -1,0 +1,2316 @@
+
+% https://qiita.com/1429takahiro/items/710a877b1afb1626334f
+
+\documentclass{jsarticle}
+
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\usepackage{ascmac}
+\usepackage{listings,jlisting}
+\lstset{
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+% commentstyle={\smallitshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+% frame={tb},
+  frame=single,
+  breaklines=true,
+  columns=[l]{fullflexible},
+  tabsize=4,
+% numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=0zw,
+% numberstyle={\scriptsize},
+% stepnumber=1,
+% numbersep=1zw,
+  lineskip=-0.5ex
+}
+
+\renewcommand{\familydefault}{\ttdefault}
+
+\begin{document}
+
+\begin{center}
+ \texttt{\LARGE Python3チートシート}\footnote{\url{https://qiita.com/1429takahiro/items/710a877b1afb1626334f}を元に組版}
+\end{center}
+
+\bigskip
+\tableofcontents
+\bigskip
+
+% \hypertarget{RenewalGlobalHeader-react-component-edcd75b5-70d0-4a4a-b1e3-28a9d3760e62}{}{}
+
+%ログイン中のQiita Team
+
+%ログイン中のチームがありません
+
+%\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+%\href{https://teams-center.qiita.com/find_team}{{}}
+
+%Qiita Team にログイン
+
+%コミュニティ
+
+%\href{/organizations}{Organization}\href{/advent-calendar}{アドベントカレンダー}\href{https://qiitadon.com/}{Qiitadon
+%(β)}
+
+%サービス
+
+%\href{https://jobs.qiita.com/?utm_source=qiita\&utm_medium=referral\&utm_content=header}{Qiita
+%Jobs}\href{https://zine.qiita.com/?utm_source=qiita\&utm_medium=referral\&utm_content=header}{Qiita
+%Zine}\href{https://blog.qiita.com/?utm_source=qiita\&utm_medium=referral\&utm_content=header}{Qiita
+%Blog}
+
+%{}
+
+%{}
+
+%\href{/signup?redirect_to=\%2F1429takahiro\%2Fitems\%2F710a877b1afb1626334f}{ユーザー登録}\href{/login?redirect_to=\%2F1429takahiro\%2Fitems\%2F710a877b1afb1626334f}{ログイン}
+
+%\protect\hypertarget{header_text_message_1}{\href{https://zine.qiita.com/products/202010-wvd-6/?utm_source=qiita\&utm_medium=header-banner}{WVDのディープな技術情報を解説
+%\textbar{}
+%Teamsでのビデオ会議設定}}\protect\hypertarget{header_text_message_2}{\href{https://zine.qiita.com/products/202010-wvd-6/?utm_source=qiita\&utm_medium=header-banner}{詳しくはこちら}}
+
+%{}{Python}
+
+%{}{Python3}
+
+%{}{Pycharm}
+
+%{}{チートシート}
+
+%{}{Python基礎}
+
+% \includegraphics{https://relay-dsp.ad-m.asia/dmp/sync/bizmatrix?pid=c3ed207b574cf11376\&d=x18o8hduaj\&uid=}
+
+%\hypertarget{PersonalArticlePage-react-component-0b5c3ba8-b454-4248-8b76-5864438cd0c7}{}
+%\href{/1429takahiro/items/710a877b1afb1626334f/likers}{18}
+
+%{24}
+
+%{}
+
+%{}
+
+%\emph{}
+
+%記事の改善
+
+%\href{/drafts/710a877b1afb1626334f/edit}{{\emph{}}編集リクエストを送る}
+
+%記事の情報
+
+%\href{/1429takahiro/items/710a877b1afb1626334f/revisions}{{\emph{}}編集履歴}\href{/1429takahiro/items/710a877b1afb1626334f/patches}{{\emph{}}編集リクエスト一覧}
+
+%LGTMしたユーザー一覧\href{/1429takahiro/items/710a877b1afb1626334f.md}{{\emph{}}Markdown
+%で本文を見る}
+
+%{\emph{}}問題がある記事を報告する
+
+%{この記事にどのような問題がありますか？}
+
+%法律違反（著作権侵害、プライバシー侵害、名誉棄損等）
+
+%社会的に不適切（公序良俗に反する）
+
+%宣伝行為
+
+%スパムの疑い
+
+%上記以外だが、Qiitaのコミュニティにふさわしくない（ガイドライン違反）
+
+%%\href{/1429takahiro}{\includegraphics[width=0.25in,height=0.25in]{https://avatars.githubusercontent.com/u/8001474?v=3}}
+
+%\href{/1429takahiro}{@1429takahiro}
+
+%が2020年07月04日に作成
+
+%\hypertarget{python3ux30c1ux30fcux30c8ux30b7ux30fcux30c8ux57faux672cux7de8}{%
+
+%{Python3チートシート(基本編)}\label{python3ux30c1ux30fcux30c8ux30b7ux30fcux30c8ux57faux672cux7de8}}
+
+%{}\href{/tags/python}{Python}\href{/tags/python3}{Python3}\href{/tags/pycharm}{Pycharm}\href{/tags/\%e3\%83\%81\%e3\%83\%bc\%e3\%83\%88\%e3\%82\%b7\%e3\%83\%bc\%e3\%83\%88}{チートシート}\href{/tags/python\%e5\%9f\%ba\%e7\%a4\%8e}{Python基礎}
+
+%\hypertarget{personal-public-article-body}{}
+%\hypertarget{ux672cux8a18ux4e8bux306eux5185ux5bb9}{%
+%\section[\protect\hyperlink{ux5cux25E6ux5cux259Cux5cux25ACux5cux25E8ux5cux25A8ux5cux2598ux5cux25E4ux5cux25BAux5cux258Bux5cux25E3ux5cux2581ux5cux25AEux5cux25E5ux5cux2586ux5cux2585ux5cux25E5ux5cux25AEux5cux25B9}{\emph{}}本記事の内容]{\texorpdfstring{\protect\hypertarget{ux672cux8a18ux4e8bux306eux5185ux5bb9}{}{}\protect\hyperlink{ux5cux25E6ux5cux259Cux5cux25ACux5cux25E8ux5cux25A8ux5cux2598ux5cux25E4ux5cux25BAux5cux258Bux5cux25E3ux5cux2581ux5cux25AEux5cux25E5ux5cux2586ux5cux2585ux5cux25E5ux5cux25AEux5cux25B9}{\emph{}}本記事の内容}{本記事の内容}}\label{ux672cux8a18ux4e8bux306eux5185ux5bb9}}
+
+%\begin{enumerate}
+%% \tightlist
+%\item
+%  Pythonの基本
+%\item
+%  制御構造
+%\item
+%  データ構造
+%\item
+%  関数
+%\item
+%  クラス/インスタンス
+%\item
+%  モジュール/パッケージ/名前空間/スコープ
+%\item
+%  組み込み関数/特殊メソッド
+%\item
+%  ファイル操作と入出力
+%\end{enumerate}
+
+%\hypertarget{pythonux306eux57faux672c}{%
+%\section[\protect\hyperlink{1-pythonux5cux25E3ux5cux2581ux5cux25AEux5cux25E5ux5cux259Fux5cux25BAux5cux25E6ux5cux259Cux5cux25AC}{\emph{}}1.
+%Pythonの基本]{\texorpdfstring{\protect\hypertarget{1-pythonux306eux57faux672c}{}{}\protect\hyperlink{1-pythonux5cux25E3ux5cux2581ux5cux25AEux5cux25E5ux5cux259Fux5cux25BAux5cux25E6ux5cux259Cux5cux25AC}{\emph{}}1.
+%Pythonの基本}{1. Pythonの基本}}\label{pythonux306eux57faux672c}}
+
+\section{Pythonの基本}
+
+%\hypertarget{ux57faux672cux6587ux6cd5}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E5ux5cux259Fux5cux25BAux5cux25E6ux5cux259Cux5cux25ACux5cux25E6ux5cux2596ux5cux2587ux5cux25E6ux5cux25B3ux5cux2595}{\emph{}}基本文法]{\texorpdfstring{\protect\hypertarget{ux57faux672cux6587ux6cd5}{}{}\protect\hyperlink{ux5cux25E5ux5cux259Fux5cux25BAux5cux25E6ux5cux259Cux5cux25ACux5cux25E6ux5cux2596ux5cux2587ux5cux25E6ux5cux25B3ux5cux2595}{\emph{}}基本文法}{基本文法}}\label{ux57faux672cux6587ux6cd5}}
+
+\subsection{基本文法}
+
+%{インデント}
+
+\begin{lstlisting}[showspaces=true,title=インデント]
+import os
+def function():
+    # インデントは半角スペース4つが推奨されている
+    print('Hello world')
+\end{lstlisting}
+
+%\begin{quote}
+%(*)PEP8(Python Enhancement Proposal)\\
+%\url{https://www.python.org/dev/peps/pep-0008/}~\\
+%Indentation\\
+%Use 4 spaces per indentation level.
+%\end{quote}
+
+%{変数宣言}
+
+\begin{lstlisting}[title=変数宣言]
+# 数値
+num = 1
+# 文字列
+name = 'Tanaka'
+# リスト
+list = [1, 2, 3, 4, 5]
+
+# 明示的な型宣言
+num: int = 1
+name: str = 'Tanaka'
+
+# 型変換
+old_num = '1' # String型
+new_num = int(num) # integer型に変換してnew_numに代入
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  Pythonで変数宣言が不要な理由は、Pythonが動的型付き言語の為。動的型付き言語はプログラムの実行中に型を自動で判定しながら処理を行っていく。型を明示しなくても実行時には決まっているが、暗黙的な型変換は行われない為、コード記述時には型を意識する必要がある。
+\end{itemize}
+
+\pagebreak
+
+%{コメント}
+
+\begin{lstlisting}[title=コメント]
+# 1行単位のコメント
+
+"""
+複数行を
+まとめて
+コメント
+"""
+\end{lstlisting}
+
+%{Docstring}
+
+\begin{lstlisting}[title=Docstring]
+def test_function(param1, param2):
+    """二つの引数を加算して返却するtest_function
+
+    Args:
+        param1(int): 第一引数の説明
+        param2(int): 第二引数の説明
+
+    Returns:
+        param1とparam2の加算結果を返却する
+    """
+    return param1 + param2
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  Docstringはコメントと違い様々なツールからも参照できるドキュメント。モジュールの冒頭と関数、クラス、メソッドの定義のみで利用可能。(関数等の途中では使えない。)
+\end{itemize}
+
+%\hypertarget{ux6570ux5024ux306eux64cdux4f5c}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E6ux5cux2595ux5cux25B0ux5cux25E5ux5cux2580ux5cux25A4ux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}数値の操作]{\texorpdfstring{\protect\hypertarget{ux6570ux5024ux306eux64cdux4f5c}{}{}\protect\hyperlink{ux5cux25E6ux5cux2595ux5cux25B0ux5cux25E5ux5cux2580ux5cux25A4ux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}数値の操作}{数値の操作}}\label{ux6570ux5024ux306eux64cdux4f5c}}
+
+\subsection{数値の操作}
+
+%{数値計算}
+
+\begin{lstlisting}[title=数値の操作]
+# 整数の加算
+>>> 1 + 1
+2
+
+# 整数の減算
+>>> 2 - 1
+1
+
+# 整数の乗算
+>>> 5 * 6
+30
+
+# 整数の除算 ※除算は常に浮動小数点を返す
+>>> 6 / 5
+1.2
+
+# 評価順は数学と同様
+>>> 50 - 5 * 6
+20
+>>> (50 - 5 * 6) / 4
+5.0
+
+# 標準の除算はfloatを返す
+>>> 17 / 3
+5.666666666666667
+
+# 「//」：切り下げ除算は小数点以下を切り捨てる
+>>> 17 // 3
+5
+
+# 「%」：剰余（除算の余り）を返す
+>>> 17 % 3
+2
+>>> 
+
+# 5の2乗
+>>> 5 ** 2
+25
+# 2の7乗
+>>> 2 ** 7
+128
+
+# 小数点以下を丸める(小数点以下を2桁で丸める)
+>>> pie = 3.1415926535
+>>> pie
+3.1415926535
+>>> round(pie, 2)
+3.14
+\end{lstlisting}
+
+%\hypertarget{ux6587ux5b57ux5217ux306eux64cdux4f5c}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E6ux5cux2596ux5cux2587ux5cux25E5ux5cux25ADux5cux2597ux5cux25E5ux5cux2588ux5cux2597ux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}文字列の操作]{\texorpdfstring{\protect\hypertarget{ux6587ux5b57ux5217ux306eux64cdux4f5c}{}{}\protect\hyperlink{ux5cux25E6ux5cux2596ux5cux2587ux5cux25E5ux5cux25ADux5cux2597ux5cux25E5ux5cux2588ux5cux2597ux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}文字列の操作}{文字列の操作}}\label{ux6587ux5b57ux5217ux306eux64cdux4f5c}}
+
+\subsection{文字列の操作}
+
+%{文字列}
+
+\begin{lstlisting}[title=文字列]
+# シングルクオートで囲む
+>>> print('Hello world')
+Hello world
+
+# ダブルクオートで囲む
+>>> print("Hello world")
+Hello world
+
+# 文字列として「'」を使う場合(ダブルクオートで囲む)
+>>> print("I'm from Japan.")
+I'm from Japan.
+
+# 文字列として「'」を使う場合(「\」―日本語キーボードでは小文字の「￥」―でエスケープする)
+>>> print('I\'m from Japan.')
+I'm from Japan.
+
+# 改行する(\n)
+>>> print('Hello!\nHow are you doing?')
+Hello!
+How are you doing?
+
+# 特殊文字としての解釈を防ぐ(「\n」部分が改行として解釈される為、rawデータとして処理させる)
+>>> print(r'C:\name\name')
+C:\name\name
+
+# 複数行の出力(「"""」で囲む)
+>>> print("""
+... line1
+... line2
+... line3
+... """)
+
+line1
+line2
+line3
+
+# 改行をさせない(「\」を記載する)
+>>> print("""\
+... line1
+... line2
+... line3\
+... """)
+line1
+line2
+line3
+
+# 文字の繰り返し
+>>> print('Yes.' * 3 + '!!!')
+Yes.Yes.Yes.!!!
+
+# 文字列の結合(リテラル同士は「+」がなくてもOK)
+>>> print('Py''thon')
+Python
+
+# 文字列の結合(変数 + リテラルは「+」が必要)
+>>> prefix = 'Py'
+>>> print(prefix + 'thon')
+Python
+\end{lstlisting}
+
+%{文字列のインデックス/スライシング}
+
+\begin{lstlisting}[title=文字列のインデックス/スライシング]
+# 変数定義
+>>> word = 'Python'
+
+# wordの0番目の位置の文字を取得
+>>> print(word[0])
+P
+
+# wordの5番目の位置の文字を取得
+>>> print(word[5])
+n
+
+# wordの最後から1番目の位置の文字を取得(先頭からは、0,1,2・・・　最後からは-1,-2,-3・・・)
+>>> print(word[-1])
+n
+
+# wordの最後から3番目の位置の文字を取得(先頭からは、0,1,2・・・　最後からは-1,-2,-3・・・) 
+>>> print(word[-3])
+h
+
+# wordの0(0含む)から2(2は含まない)の位置まで文字を取得
+>>> print(word[0:2])
+Py
+
+# wordの2(2含む)から5(5は含まない)の位置まで文字を取得
+>>> print(word[2:5])
+tho
+
+# wordの最初から2(2含む)の位置まで文字を取得
+>>> print(word[:2])
+Py
+
+# wordの2(2含む)の位置から最後までの文字を取得
+>>> print(word[2:])
+thon
+
+# wordの最初から最後までの文字を取得
+>>> print(word[:])
+Python
+\end{lstlisting}
+
+%{文字に関するメソッド}
+
+\begin{lstlisting}[title=文字に関するメソッド]
+# 文字列sを定義
+>>> s = 'Hello Tom. How are you doing.'
+>>> print(s)
+Hello Tom. How are you doing.
+
+# 文字列に特定の文字列が含まれるかを確認
+>>> print(s.startswith('Hello'))
+True
+>>> print(s.startswith('Tom'))
+False
+
+# 文字列に特定の文字(or文字列)が含まれる位置を確認(先頭から)
+>>> print(s.find('o'))
+4
+
+# 文字列に特定の文字(or文字列)が含まれる位置を確認(最後から)
+>>> print(s.rfind('o'))
+24
+
+# 文字列に含まれる特定の文字(or文字列)の数を確認
+>>> print(s.count('o'))
+5
+
+# 文字列の先頭の文字を大文字に変換
+>>> print(s.capitalize())
+Hello tom. how are you doing.
+
+# 文字列の各単語の先頭の文字を大文字に変換
+>>> print(s.title())
+Hello Tom. How Are You Doing.
+
+# 文字列を大文字に変換
+>>> print(s.upper())
+HELLO TOM. HOW ARE YOU DOING.
+
+# 文字列を小文字に変換
+>>> print(s.lower())
+hello tom. how are you doing.
+
+# 特定の文字列を置換
+>>> print(s.replace('Tom', 'Bob'))
+Hello Bob. How are you doing.
+\end{lstlisting}
+
+%\hypertarget{ux5236ux5fa1ux69cbux9020}{%
+%\section[\protect\hyperlink{2-ux5cux25E5ux5cux2588ux5cux25B6ux5cux25E5ux5cux25BEux5cux25A1ux5cux25E6ux5cux25A7ux5cux258Bux5cux25E9ux5cux2580ux5cux25A0}{\emph{}}2.
+%制御構造]{\texorpdfstring{\protect\hypertarget{2-ux5236ux5fa1ux69cbux9020}{}{}\protect\hyperlink{2-ux5cux25E5ux5cux2588ux5cux25B6ux5cux25E5ux5cux2%5BEux5cux25A1ux5cux25E6ux5cux25A7ux5cux258Bux5cux25E9ux5cux2580ux5cux25A0}{\emph{}}2.
+%制御構造}{2. 制御構造}}\label{ux5236ux5fa1ux69cbux9020}}
+
+\section{制御構造}
+
+%\hypertarget{ux6761ux4ef6ux5206ux5c90ifux6587}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E6ux5cux259Dux5cux25A1ux5cux25E4ux5cux25BBux5cux25B6ux5cux25E5ux5cux2588ux5cux2586ux5cux25E5ux5cux25B2ux5cux2590ifux5cux25E6ux5cux2596ux5cux2587}{\emph{}}条件分岐(if文)]{\texorpdfstring{\protect\hypertarget{ux6761ux4ef6ux5206ux5c90ifux6587}{}{}\protect\hyperlink{ux5cux25E6ux5cux259Dux5cux25A1ux5cux25E4ux5cux25BBux5cux25B6ux5cux25E5ux5cux2588ux5cux2586ux5cux25E5ux5cux25B2ux5cux2590ifux5cux25E6ux5cux2596ux5cux2587}{\emph{}}条件分岐(if文)}{条件分岐(if文)}}\label{ux6761ux4ef6ux5206ux5c90ifux6587}}
+
+\subsection{条件分岐(if文)}
+
+\begin{lstlisting}[title=条件分岐(if文)]
+if 条件式1:
+    条件式1が真の場合に実行される処理
+elif 条件式2:
+    条件式1が偽かつ条件式2が真の場合に実行される処理
+else:
+    全ての条件式が偽の場合に実行される処理
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  ifは上から順に評価され、最初に真になった節の処理が実行される。条件式1が真の場合、条件式2の結果が真でも条件式2の処理は実行されない。
+\end{itemize}
+
+%{条件式で偽となる値}
+
+\begin{lstlisting}[title=条件式で偽となる値]
+- None
+- False
+- 数値型のゼロ 、 0 、 0.0 、 0j(複素数)
+- 文字列、リスト、辞書、集合などのコンテナオブジェクトの空オブジェクト
+- メソッド__bool__()がFalseを返すオブジェクト
+- メソッド__bool__()を定義しておらず、メソッド__len__()が0を返すオブジェクト
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  Pythonでは、偽となるオブジェクト以外が真と評価される。つまり上記以外は全て真となる。
+\end{itemize}
+
+%{数値の比較}
+
+\begin{lstlisting}[title=数値の比較]
+# 等価の場合にTrue
+>>> 1 == 1
+True
+
+# 等価でない場合にTrue
+>>> 1 != 1
+False
+
+# 左辺が大きい場合にTrue
+>>> 1 > 0
+True
+
+# 右辺が大きい場合にTrue
+>>> 1 < 0
+False
+
+# 左辺が大きいまたは等価の場合にTrue
+>>> 1 >= 0
+True
+
+# 右辺が大きいまたは等価の場合にTrue 
+>>> 1 <= 0
+False
+
+# x < y and y < z と等価
+>>> x, y, z = 1, 2, 3
+>>> x < y < z
+True
+\end{lstlisting}
+
+%{オブジェクトの比較}
+
+\begin{lstlisting}[title=オブジェクトの比較]
+>>> x = 'red'
+>>> y = 'green'
+
+# 等価の場合にTrue
+>>> x == y
+False
+
+# 等価でない場合にTrue
+>>> x != y
+True
+
+# 同じオブジェクトの場合にTrue
+>>> x is None
+False
+
+# 同じオブジェクトでない場合にTrue
+>>> x is not None
+True
+
+>>> items = ['pen', 'note', 'book']
+
+# itemsに'book'が含まれている場合にTrue
+>>> 'book' in items
+True
+
+# itemsに'note'が含まれていない場合にTrue
+>>> 'note' not in items
+False
+\end{lstlisting}
+
+%\hypertarget{ux30ebux30fcux30d7forux6587}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2597forux5cux25E6ux5cux2596ux5cux2587}{\emph{}}ループ（for文）]{\texorpdfstring{\protect\hypertarget{ux30ebux30fcux30d7forux6587}{}{}\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2597forux5cux25E6ux5cux2596ux5cux2587}{\emph{}}ループ（for文）}{ループ（for文）}}\label{ux30ebux30fcux30d7forux6587}}
+
+\pagebreak
+
+\subsection{ループ（for文）}
+
+\begin{lstlisting}[title=for文]
+>>> items = [1, 2, 3]
+>>> for i in items:
+... 　　print(f'変数iの値は{i}')
+... 
+変数iの値は1
+変数iの値は2
+変数iの値は3
+
+# range()関数
+>>> for i in range(3):
+... 　　print(f'{i}番目の処理')
+... 
+0番目の処理
+1番目の処理
+2番目の処理
+
+# enumerate()関数
+>>> chars = 'word'
+>>> for count, char in enumerate(chars):
+... 　　print(f'{count}番目の文字は{char}')
+... 
+0番目の文字はw
+1番目の文字はo
+2番目の文字はr
+3番目の文字はd
+
+# ディクショナリのループ(items()メソッド)
+>>> sports = {'baseball': 9, 'soccer': 11, 'tennis': 2}
+>>> for k, v in sports.items():
+... 　　print(k, v)
+... 
+baseball 9
+soccer 11
+tennis 2
+
+# 二つのシーケンスの同時ループ(zip()関数)
+>>> questions = ['name', 'quest', 'favorite color']
+>>> answers = ['lancelot', 'the holy grail', 'blue' ]
+>>> for q, a in zip(questions, answers):
+... 　　print('What is your {0}?  It is {1}.'.format(q, a))
+... 
+What is your name?  It is lancelot.
+What is your quest?  It is the holy grail.
+What is your favorite color?  It is blue.
+\end{lstlisting}
+
+%{for文のelse節の挙動}
+
+\begin{lstlisting}[title=for文のelse節の挙動]
+>>> nums = [2, 4, 6, 8]
+>>> for n in nums:
+... 　　if n % 2 == 1:
+... 　　　　break
+... else:
+... 　　print('奇数がありません')
+... 
+奇数がありません
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  else節にはfor文が終了した後に一度だけ実行したい処理を記述する。
+\item
+  else節を使用すると、for文、あるいはwhile文の処理中でbreak文を使用しなかった時、else節のブロックを実行する。
+\end{itemize}
+
+%\hypertarget{ux4f8bux5916ux51e6ux7406}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E4ux5cux25BEux5cux258Bux5cux25E5ux5cux25A4ux5cux2596ux5cux25E5ux5cux2587ux5cux25A6ux5cux25E7ux5cux2590ux5cux2586}{\emph{}}例外処理]{\texorpdfstring{\protect\hypertarget{ux4f8bux5916ux51e6ux7406}{}{}\protect\hyperlink{ux5cux25E4ux5cux25BEux5cux258Bux5cux25E5ux5cux25A4ux5cux2596ux5cux25E5ux5cux2587ux5cux25A6ux5cux25E7ux5cux2590ux5cux2586}{\emph{}}例外処理}{例外処理}}\label{ux4f8bux5916ux51e6ux7406}}
+
+\subsection{例外処理}
+
+%{try文}
+
+\begin{lstlisting}[title=try文]
+try:
+    例外が発生する可能性のある処理
+except 捕捉したい例外クラス:
+    捕捉したい例外が発生した時に実行される処理
+else:
+    例外が発生しなかった時のみ実行される処理
+finally:
+    例外の発生有無にかかわらず実行したい処理
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  try節：例外が発生する可能性のある処理をtry-except節の間に記載する
+\end{itemize}
+
+%{try-except節}
+
+\begin{lstlisting}[title=try-except節]
+# 配列の存在しない要素へのアクセスを行い例外を発生させ、except節で捕捉する
+>>> l = [1, 2, 3]
+>>> i = 5
+>>> try:
+... 　　l[i]
+... except:
+... 　　print('It is no problem')
+... 
+It is no problem
+
+# 特定の例外をexcept節で捕捉する
+>>> try:
+... 　　l[i]
+... except IndexError:
+... 　　print('You got an IndexError')
+... 
+You got an IndexError
+
+# 例外の原因を出力させる
+>>> try:
+... 　　l[i]
+... except IndexError as ex:
+... 　　print('You got an IndexError : {}'.format(ex))
+... 
+You got an IndexError : list index out of range
+
+# 全ての例外を捕捉する
+>>> try:
+... 　　() + l
+... except IndexError:
+... 　　print('You got an IndexError')
+... except BaseException as ex:
+... 　　print('You got an Exception : {}'.format(ex))
+... 
+You got an Exception : can only concatenate tuple (not "list") to tuple
+\end{lstlisting}
+
+%例外のクラス階層\\
+%\url{https://docs.python.org/ja/3/library/exceptions.html\#exception-hierarchy}
+
+\begin{itemize}
+% \tightlist
+\item
+  else節：例外が発生しなかった場合に実行する処理をelse節に記述する
+\end{itemize}
+
+%{else節}
+
+\begin{lstlisting}[title=else節]
+# 例外が発生しなかった場合に実行する処理をelse節に記述する
+>>> try:
+... 　　1 + 1
+... except BaseException:
+... 　　print('You got an Exception.')
+... else:
+... 　　print('There are no Exceptions!')
+... 
+2
+There are no Exceptions!
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  finally節：例外が発生しても発生しなくても実行する処理をfinally節に記述する
+\end{itemize}
+
+\pagebreak
+
+%{finally節}
+
+\begin{lstlisting}[title=finally節]
+# 例外が発生しても発生しなくても実行する処理をfinally節に記述する
+>>> try:
+... 　　raise NameError('It is a NameError!!!')
+... except NameError as ne:
+... 　　print(ne)
+... finally:
+... 　　print('NameError Program finished!!!')
+... 
+It is a NameError!!!
+NameError Program finished!!!
+\end{lstlisting}
+
+%\hypertarget{ux4f8bux5916ux306eux9001ux51faux610fux56f3ux7684ux306aux4f8bux5916ux306eux767aux751f}{%
+%\subparagraph[\protect\hyperlink{ux5cux25E4ux5cux25BEux5cux258Bux5cux25E5ux5cux25A4ux5cux2596ux5cux25E3ux5cux2581ux5cux25AEux5cux25E9ux5cux2580ux5cux2581ux5cux25E5ux5cux2587ux5cux25BAux5cux25E6ux5cux2584ux5cux258Fux5cux25E5ux5cux259Bux5cux25B3ux5cux25E7ux5cux259Aux5cux2584ux5cux25E3ux5cux2581ux5cux25AAux5cux25E4ux5cux25BEux5cux258Bux5cux25E5ux5cux25A4ux5cux2596ux5cux25E3ux5cux2581ux5cux25AEux5cux25E7ux5cux2599ux5cux25BAux5cux25E7ux5cux2594ux5cux259F}{\emph{}}例外の送出（意図的な例外の発生）]{\texorpdfstring{\protect\hypertarget{ux4f8bux5916ux306eux9001ux51faux610fux56f3ux7684ux306aux4f8bux5916ux306eux767aux751f}{}{}\protect\hyperlink{ux5cux25E4ux5cux25BEux5cux258Bux5cux25E5ux5cux25A4ux5cux2596ux5cux25E3ux5cux2581ux5cux25AEux5cux25E9ux5cux2580ux5cux2581ux5cux25E5ux5cux2587ux5cux25BAux5cux25E6ux5cux2584ux5cux258Fux5cux25E5ux5cux259Bux5cux25B3ux5cux25E7ux5cux259Aux5cux2584ux5cux25E3ux5cux2581ux5cux25AAux5cux25E4ux5cux25BEux5cux258Bux5cux25E5ux5cux25A4ux5cux2596ux5cux25E3ux5cux2581ux5cux25AEux5cux25E7ux5cux2599ux5cux25BAux5cux25E7ux5cux2594ux5cux259F}{\emph{}}例外の送出（意図的な例外の発生）}{例外の送出（意図的な例外の発生）}}\label{ux4f8bux5916ux306eux9001ux51faux610fux56f3ux7684ux306aux4f8bux5916ux306eux767aux751f}}
+
+\textbf{例外の送出（意図的な例外の発生）}
+
+%{raise文}
+
+\begin{lstlisting}[title=raise文]
+# 単純にraiseのみを記載すると、例外を再送出することができる。
+#（例外の送出は知りたいが、その場では処理をさせない場合）
+>>> try:
+... 　　raise NameError('It is a NameError!!!')
+... except NameError:
+... 　　print('Name Error.')
+... 　　raise
+... 
+Name Error.
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+NameError: It is a NameError!!!
+\end{lstlisting}
+
+%\hypertarget{ux30c7ux30fcux30bfux69cbux9020}{%
+%\section[\protect\hyperlink{3-ux5cux25E3ux5cux2583ux5cux2587ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2582ux5cux25BFux5cux25E6ux5cux25A7ux5cux258Bux5cux25E9ux5cux2580ux5cux25A0}{\emph{}}3.
+%データ構造]{\texorpdfstring{\protect\hypertarget{3-ux30c7ux30fcux30bfux69cbux9020}{}{}\protect\hyperlink{3-ux5cux25E3ux5cux2583ux5cux2587ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2582ux5cux25BFux5cux25E6ux5cux25A7ux5cux258Bux5cux25E9ux5cux2580ux5cux25A0}{\emph{}}3.
+%データ構造}{3. データ構造}}\label{ux30c7ux30fcux30bfux69cbux9020}}
+
+\section{データ構造}
+
+%\hypertarget{ux30eaux30b9ux30c8ux578b}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25AAux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2583ux5cux2588ux5cux25E5ux5cux259Eux5cux258B}{\emph{}}リスト型]{\texorpdfstring{\protect\hypertarget{ux30eaux30b9ux30c8ux578b}{}{}\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25AAux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2583ux5cux2588ux5cux25E5ux5cux259Eux5cux258B}{\emph{}}リスト型}{リスト型}}\label{ux30eaux30b9ux30c8ux578b}}
+
+\subsection{リスト型}
+
+\begin{lstlisting}[title=リスト型]
+# リスト「l」の定義
+>>> l = [1, 2, 3, 4, 5]
+>>> print(l)
+[1, 2, 3, 4, 5]
+
+# リストの特定の要素の取得
+>>> print(l[0])
+1 
+>>> print(l[-1])
+5
+
+# リストの最初から3番目(0番目、1番目、2番目)の要素まで(3番目は含まない)を取得
+>>> print(l[:3])
+[1, 2, 3]
+
+# リストの最後から3番目(3番目は含む)の要素から最後までを取得
+>>> print(l[-3:])
+[3, 4, 5]
+
+# リストの全ての要素を取得
+>>> print(l[:])
+[1, 2, 3, 4, 5]
+
+# リストの結合
+>>> l2 = [6, 7, 8, 9, 10]
+>>> print(l + l2)
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# リストの要素の変更
+>>> l[2] = 300
+>>> print(l)
+[1, 2, 300, 4, 5]
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  文字列は変更不能体（immutable）であり、特定の要素を変更することはできないが、リストは変更可能体（mutable）であり、要素を入れ替えることができる。
+\end{itemize}
+
+%\hypertarget{ux30eaux30b9ux30c8ux306eux64cdux4f5c}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25AAux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2583ux5cux2588ux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}リストの操作]{\texorpdfstring{\protect\hypertarget{ux30eaux30b9ux30c8ux306eux64cdux4f5c}{}{}\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25AAux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2583ux5cux2588ux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}リストの操作}{リストの操作}}\label{ux30eaux30b9ux30c8ux306eux64cdux4f5c}}
+
+\subsection{リストの操作}
+
+\begin{lstlisting}[title=リストの操作]
+# リストの要素の追加(最後に追加)
+>>> l.append(600)
+>>> print(l)
+[1, 2, 300, 4, 5, 600]
+
+# リストの要素の追加(先頭に追加：0番目のインデックスに「0」を追加)
+>>> l.insert(0, 0)
+>>> print(l)
+[0, 1, 2, 300, 4, 5, 600]
+
+# リストの要素の取得(最後の要素の取得、リストからは消える)
+>>> l.pop()
+600
+>>> print(l)
+[0, 1, 2, 300, 4, 5]
+
+# リストの要素の取得（０番目の要素の削除、リストからは消える）
+>>> l.pop(0)
+0
+>>> print(l)
+[1, 2, 300, 4, 5]
+
+# リストの要素の削除(2番目の要素の削除)
+>>> del l[2]
+>>> print(l)
+[1, 2, 4, 5]
+
+# リストの削除（リストごと削除）
+>>> del l
+>>> print(l)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'l' is not defined
+
+# リストの全要素の削除（リストは削除しない）
+>>> print(l)
+[['A', 'B', 'C'], [1, 2, 3]]
+>>> l.clear()
+>>> print(l)
+[]
+
+# リストの指定した値に合致した要素を削除
+>>> l = [0, 1, 2, 3, 3, 3, 4, 5]
+>>> l.remove(3)
+>>> print(l)
+[0, 1, 2, 3, 3, 4, 5]
+
+# リストの指定した値に合致した要素を削除（合致する要素がないとエラーとなる）
+>>> l.remove(3)
+>>> l.remove(3)
+>>> l.remove(3)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: list.remove(x): x not in list
+>>> print(l)
+[0, 1, 2, 4, 5]
+
+# リストの要素数の取得
+>>> print(len(l))
+5
+
+# リストの入れ子（リストを要素とするリストを作成）
+>>> l1 = ['A', 'B', 'C']
+>>> l2 = [1, 2, 3]
+>>> l = [l1, l2]
+>>> print(l)
+[['A', 'B', 'C'], [1, 2, 3]]
+
+# 指定した値に合致するインデックスの取得（アイテムが存在しない場合はエラー）
+>>> l = [1, 2, 3, 4, 5]
+>>> l.index(3)
+2
+>>> l.index(6)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: 6 is not in list
+
+# 指定した値に合致する要素数を取得
+>>> l.count(4)
+1
+
+# リストの要素を逆順に変更
+>>> print(l)
+[1, 2, 3, 4, 5]
+>>> l.reverse()
+>>> print(l)
+[5, 4, 3, 2, 1]
+
+# リストの要素を昇順に並び替え
+>>> l = [4, 5, 2, 1, 3]
+>>> print(l)
+[4, 5, 2, 1, 3]
+>>> l.sort(key=None, reverse=False)
+>>> print(l)
+[1, 2, 3, 4, 5]
+
+# リストの要素を降順に並び替え
+>>> l = [4, 5, 2, 1, 3]
+>>> print(l)
+[4, 5, 2, 1, 3]
+>>> l.sort(key=None, reverse=True)
+>>> print(l)
+[5, 4, 3, 2, 1]
+
+# 特定の文字で区切ってリストに格納
+>>> s = 'Hi, Tom. How are you doing?'
+>>> print(s.split(' '))
+['Hi,', 'Tom.', 'How', 'are', 'you', 'doing?']
+>>> print(s.split('.'))
+['Hi, Tom', ' How are you doing?']
+\end{lstlisting}
+
+%\hypertarget{ux30bfux30d7ux30ebux578b}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2582ux5cux25BFux5cux25E3ux5cux2583ux5cux2597ux5cux25E3ux5cux2583ux5cux25ABux5cux25E5ux5cux259Eux5cux258B}{\emph{}}タプル型]{\texorpdfstring{\protect\hypertarget{ux30bfux30d7ux30ebux578b}{}{}\protect\hyperlink{ux5cux25E3ux5cux2582ux5cux25BFux5cux25E3ux5cux2583ux5cux2597ux5cux25E3ux5cux2583ux5cux25ABux5cux25E5ux5cux259Eux5cux258B}{\emph{}}タプル型}{タプル型}}\label{ux30bfux30d7ux30ebux578b}}
+
+\subsection{タプル型}
+
+\begin{itemize}
+% \tightlist
+\item
+  リストとタプルの違いは、リストは各要素に対して値を変更できる（mutable）のに対し、タプルは値を変更できない（immutable）。
+\item
+  その為、タプルは値を一度入れたら書き換えられたくない時など、読み込み専用の用途で利用する。
+\end{itemize}
+
+%{タプル型}
+
+\begin{lstlisting}[title=タプル型]
+# タプルの宣言(括弧ありでもなしでもタプルとして定義される)
+>>> t = (1, 2, 3, 4, 5)
+>>> print(t)
+(1, 2, 3, 4, 5)
+
+>>> t2 = 1, 2, 3
+>>> print(t2)
+(1, 2, 3)
+
+# タプルの宣言（定義の最後に「,」があるとタプルとして定義される為注意）
+# 要素数が一つのみの場合にも最後に「,」を記述する必要がある。
+>>> t3 = 1,
+>>> t3
+(1,)
+>>> type(t3)
+<class　'tuple'>
+
+# タプルはリストと違い、値を変更できない
+>>> t[0] = 100
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+
+# タプルにリストを格納し、そのリストの値は変更可能
+>>> t = ([1, 2, 3], [4, 5, 6])
+>>> t
+([1, 2, 3], [4, 5, 6])
+>>> t[0][0]
+1
+>>> t[0][0] = 100
+>>> t
+([100, 2, 3], [4, 5, 6]) 
+\end{lstlisting}
+
+\pagebreak
+
+%{タプルのアンパッキング}
+
+\begin{lstlisting}[title=タプルのアンパッキング]
+# タプルの値を変数に代入
+>>> t = (1, 2, 3)
+>>> t
+(1, 2, 3)
+>>> x, y, z = t
+>>> print(x, y, z)
+1 2 3
+
+# 特定の変数の値を入れ替える場合等に有効
+>>> X = 100
+>>> Y = 200
+>>> print(X, Y)
+100 200
+>>> X, Y = Y, X
+>>> print(X, Y)
+200 100
+\end{lstlisting}
+
+%\hypertarget{ux8f9eux66f8ux578bux30c7ux30a3ux30afux30b7ux30e7ux30caux30eaux578b}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E8ux5cux25BEux5cux259Eux5cux25E6ux5cux259Bux5cux25B8ux5cux25E5ux5cux259Eux5cux258Bux5cux25E3ux5cux2583ux5cux2587ux5cux25E3ux5cux2582ux5cux25A3ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2582ux5cux25B7ux5cux25E3ux5cux2583ux5cux25A7ux5cux25E3ux5cux2583ux5cux258Aux5cux25E3ux5cux2583ux5cux25AAux5cux25E5ux5cux259Eux5cux258B}{\emph{}}辞書型（ディクショナリ型）]{\texorpdfstring{\protect\hypertarget{ux8f9eux66f8ux578bux30c7ux30a3ux30afux30b7ux30e7ux30caux30eaux578b}{}{}\protect\hyperlink{ux5cux25E8ux5cux25BEux5cux259Eux5cux25E6ux5cux259Bux5cux25B8ux5cux25E5ux5cux259Eux5cux258Bux5cux25E3ux5cux2583ux5cux2587ux5cux25E3ux5cux2582ux5cux25A3ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2582ux5cux25B7ux5cux25E3ux5cux2583ux5cux25A7ux5cux25E3ux5cux2583ux5cux258Aux5cux25E3ux5cux2583ux5cux25AAux5cux25E5ux5cux259Eux5cux258B}{\emph{}}辞書型（ディクショナリ型）}{辞書型（ディクショナリ型）}}\label{ux8f9eux66f8ux578bux30c7ux30a3ux30afux30b7ux30e7ux30caux30eaux578b}}
+
+\subsection{辞書型（ディクショナリ型）}
+
+\begin{lstlisting}[title=辞書型（ディクショナリ型）]
+# 辞書型（ディクショナリ型）の宣言 パターン1
+>>> d = {'x': 10, 'y': 20, 'z': 30}
+>>> d
+{'x': 10, 'y': 20, 'z': 30}
+
+# 辞書型（ディクショナリ型）の宣言 パターン2
+>>> dict(a=100, b=200, c=300)
+{'a': 100, 'b': 200, 'c': 300}
+
+# 辞書型（ディクショナリ型）の特定のキーの値の取得
+>>> d['y']
+20
+
+# 辞書型（ディクショナリ型）にキーと値の追加
+>>> d['a'] = 40
+>>> d
+{'x': 10, 'y': 20, 'z': 30, 'a': 40}
+
+# 辞書型（ディクショナリ型）の特定のキーの削除
+>>> del d['a']
+>>> d
+{'x': 10, 'y': 20, 'z': 30}
+\end{lstlisting}
+
+%\hypertarget{ux8f9eux66f8ux578bux30c7ux30a3ux30afux30b7ux30e7ux30caux30eaux578bux306eux64cdux4f5c}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E8ux5cux25BEux5cux259Eux5cux25E6ux5cux259Bux5cux25B8ux5cux25E5ux5cux259Eux5cux258Bux5cux25E3ux5cux2583ux5cux2587ux5cux25E3ux5cux2582ux5cux25A3ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2582ux5cux25B7ux5cux25E3ux5cux2583ux5cux25A7ux5cux25E3ux5cux2583ux5cux258Aux5cux25E3ux5cux2583ux5cux25AAux5cux25E5ux5cux259Eux5cux258Bux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}辞書型（ディクショナリ型）の操作]{\texorpdfstring{\protect\hypertarget{ux8f9eux66f8ux578bux30c7ux30a3ux30afux30b7ux30e7ux30caux30eaux578bux306eux64cdux4f5c}{}{}\protect\hyperlink{ux5cux25E8ux5cux25BEux5cux259Eux5cux25E6ux5cux259Bux5cux25B8ux5cux25E5ux5cux259Eux5cux258Bux5cux25E3ux5cux2583ux5cux2587ux5cux25E3ux5cux2582ux5cux25A3ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2582ux5cux25B7ux5cux25E3ux5cux2583ux5cux25A7ux5cux25E3ux5cux2583ux5cux258Aux5cux25E3ux5cux2583ux5cux25AAux5cux25E5ux5cux259Eux5cux258Bux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}辞書型（ディクショナリ型）の操作}{辞書型（ディクショナリ型）の操作}}\label{ux8f9eux66f8ux578bux30c7ux30a3ux30afux30b7ux30e7ux30caux30eaux578bux306eux64cdux4f5c}}
+
+\subsection{辞書型（ディクショナリ型）の操作}
+
+\begin{lstlisting}[title=辞書型（ディクショナリ型）の操作]
+# 辞書型（ディクショナリ型）のキーリストの取得
+>>> d
+{'x': 10, 'y': 20, 'z': 30}
+>>> d.keys()
+dict_keys(['x', 'y', 'z'])
+>>> list(d.keys())
+['x', 'y', 'z']
+
+# 辞書型（ディクショナリ型）の更新（結合）
+# キーが存在している項目は値の更新、キーが存在していない項目はキーと値の追加
+>>> d
+{'x': 10, 'y': 20, 'z': 30}
+>>> d2
+{'x': 100, 'a': 1, 'b': 2}
+>>> d.update(d2)
+>>> d
+{'x': 100, 'y': 20, 'z': 30, 'a': 1, 'b': 2}
+
+# 特定のキーの値を取得
+>>> d.get('x')
+100
+
+# 特定のキーの値を取得（取り出したキーと値は辞書定義からはなくなる）
+>>> d
+{'x': 100, 'y': 20, 'z': 30, 'a': 1, 'b': 2}
+>>> d.pop('a')
+1
+>>> d.pop('b')
+2
+>>> d
+{'x': 100, 'y': 20, 'z': 30}
+
+# 特定のキーが辞書に含まれるか確認
+>>> d
+{'x': 100, 'y': 20, 'z': 30}
+>>> 'x' in d
+True
+\end{lstlisting}
+
+\pagebreak
+
+%\hypertarget{ux96c6ux5408}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E9ux5cux259Bux5cux2586ux5cux25E5ux5cux2590ux5cux2588}{\emph{}}集合]{\texorpdfstring{\protect\hypertarget{ux96c6ux5408}{}{}\protect\hyperlink{ux5cux25E9ux5cux259Bux5cux2586ux5cux25E5ux5cux2590ux5cux2588}{\emph{}}集合}{集合}}\label{ux96c6ux5408}}
+
+\subsection{集合}
+
+\begin{itemize}
+% \tightlist
+\item
+  リストやタプルとの違いは、集合は要素の重複を許さず、要素の順番を保持しない。
+\item
+  組み込み型の集合型には、set型とfrozenset型の二種類がある。
+\end{itemize}
+
+%{set型}
+
+\begin{lstlisting}[title=set型]
+>>> items = {'note', 'notebook', 'pen'}
+>>> type(items)
+<class　'set'>
+>>> items
+{'notebook', 'note', 'pen'}
+
+# 重複している要素は1つになる
+>>> items = {'note', 'notebook', 'pen', 'pen', 'note'}
+>>> items
+{'notebook', 'note', 'pen'}
+
+# 要素の追加
+>>> items.add('book')
+>>> items
+{'notebook', 'note', 'pen', 'book'}
+
+# 要素の削除
+>>> items.remove('pen')
+>>> items
+{'notebook', 'note', 'book'}
+
+# 要素を取り出して集合から削除
+# 順序がない為、取り出される要素は不定
+>>> items.pop()
+'notebook'
+>>> items
+{'note', 'book'}
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  frozenset型は、set型を不変にした型(不変な集合を扱う型)
+\end{itemize}
+
+%{frozenset型}
+
+\begin{lstlisting}[title=frozenset型]
+>>> items = frozenset(['note', 'notebook', 'pen'])
+>>> type(items)
+<class　'frozenset'>
+
+>>> items
+frozenset({'notebook', 'note', 'pen'})
+
+# 不変な型の為変更はできない
+>>> items.add('book')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'frozenset' object has no attribute 'add'
+\end{lstlisting}
+
+%{集合の演算}
+
+\begin{lstlisting}[title=集合の演算]
+>>> set_a = {'note', 'notebook', 'pen'}
+>>> set_b = {'note', 'book', 'file'}
+
+# 和集合
+>>> set_a | set_b
+{'notebook', 'note', 'file', 'book', 'pen'}
+>>> set_a.union(set_b)
+{'notebook', 'note', 'file', 'book', 'pen'}
+
+# 差集合
+>>> set_a - set_b
+{'notebook', 'pen'}
+>>> set_a.difference(set_b)
+{'notebook', 'pen'}
+
+# 積集合
+>>> set_a & set_b
+{'note'}
+>>> set_a.intersection(set_b)
+{'note'}
+
+# 対称差
+>>> set_a ^ set_b
+{'notebook', 'book', 'file', 'pen'}
+>>> set_a.symmetric_difference(set_b)
+{'notebook', 'book', 'file', 'pen'}
+
+# 部分集合か判定
+>>> {'note', 'pen'} <= set_a
+True
+>>> {'note', 'pen'}.issubset(set_a)
+True
+\end{lstlisting}
+
+%\hypertarget{ux5185ux5305ux8868ux8a18}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E5ux5cux2586ux5cux2585ux5cux25E5ux5cux258Cux5cux2585ux5cux25E8ux5cux25A1ux5cux25A8ux5cux25E8ux5cux25A8ux5cux2598}{\emph{}}内包表記]{\texorpdfstring{\protect\hypertarget{ux5185ux5305ux8868ux8a18}{}{}\protect\hyperlink{ux5cux25E5ux5cux2586ux5cux2585ux5cux25E5ux5cux258Cux5cux2585ux5cux25E8ux5cux25A1ux5cux25A8ux5cux25E8ux5cux25A8ux5cux2598}{\emph{}}内包表記}{内包表記}}\label{ux5185ux5305ux8868ux8a18}}
+
+\pagebreak
+
+\subsection{内包表記}
+
+\begin{itemize}
+% \tightlist
+\item
+  内包表記は、リストや集合、辞書等を生成できる構文。
+\end{itemize}
+
+%{リスト内包表記(リストの作成)}
+
+\begin{lstlisting}[title=リスト内包表記(リストの作成)]
+# for文を使ったリストの作成
+>>> numbers = []
+>>> for i in range(10):
+... 　　numbers.append(str(i))
+... 
+>>> numbers
+['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+# リスト内包表記を使ったリストの作成
+>>> [str(v) for v in range(10)]
+['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+# ネストしたリストの内包表記
+# for文を使った記述
+>>> tuples = []
+>>> for x in [1, 2, 3]:
+... 　　for y in [4, 5, 6]:
+... 　　　　tuples.append((x, y))
+... 
+>>> tuples
+[(1, 4), (1, 5), (1, 6), (2, 4), (2, 5), (2, 6), (3, 4), (3, 5), (3, 6)]
+
+# リスト内包表記を使ったネストしたリストの作成
+>>> [(x, y) for x in [1, 2, 3] for y in [4, 5, 6]]
+[(1, 4), (1, 5), (1, 6), (2, 4), (2, 5), (2, 6), (3, 4), (3, 5), (3, 6)]
+
+# if文のある内包表記
+# for文を使った記述
+>>> even = []
+>>> for i in range(10):
+... 　　if i % 2 == 0:
+... 　　　　even.append(i)
+... 
+>>> even
+[0, 2, 4, 6, 8]
+
+# 内包表記を使った記述
+>>> [x for x in range(10) if x % 2 == 0]
+[0, 2, 4, 6, 8]
+\end{lstlisting}
+
+%\hypertarget{ux95a2ux6570}{%
+%\section[\protect\hyperlink{4-ux5cux25E9ux5cux2596ux5cux25A2ux5cux25E6ux5cux2595ux5cux25B0}{\emph{}}4.
+%関数]{\texorpdfstring{\protect\hypertarget{4-ux95a2ux6570}{}{}\protect\hyperlink{4-ux5cux25E9ux5cux2596ux5cux25A2ux5cux25E6ux5cux2595ux5cux25B0}{\emph{}}4.
+%関数}{4. 関数}}\label{ux95a2ux6570}}
+
+\section{関\quad 数}
+
+\subsection{関数の定義}
+
+\begin{lstlisting}[title=関数の定義]
+# 関数の定義（引数なし）
+>>> def say_hello():
+... 　　print('Hello')
+... 
+>>> say_hello()
+Hello
+
+# 関数の定義（引数あり）
+>>> def say_something(str):
+... 　　print(str)
+... 
+>>> say_something('Good morning')
+Good morning
+
+# 関数の定義（引数あり、デフォルト引数指定あり）
+>>> def say_something(str='Hi!'):
+... 　　print(str)
+... 
+# 引数を指定しない場合は、デフォルト引数が使われる
+>>> say_something()
+Hi!
+# 引数を指定した場合は、その引数が使われる。
+>>> say_something('Hello')
+Hello
+
+# 関数の定義（戻り値あり）
+>>> def increment(num):
+... 　　return num + 1
+... 
+>>> increment(1)
+2
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  関数の中で、return文が実行されるとそこで処理が終了される為、その後の処理は実行されない。
+\item
+  returnがない関数の戻り値は、Noneとなる。
+\end{itemize}
+
+\pagebreak
+
+\subsection{関数の引数}
+
+\begin{lstlisting}[title=関数の引数]
+# 位置引数 -> 関数呼び出し時に渡された順序通りに変数に格納される(引数の数が異なるとエラー)
+>>> def increment(num1, num2):
+... 　　return num1 + num2
+... 
+>>> increment(2, 4)
+6
+
+# キーワード引数 -> 呼び出し時にキーワード引数を指定(順序は関係ない)
+>>> def greeting(name, str):
+... 　　print(str + ', ' + name + '!')
+... 
+>>> greeting(str='Hello', name='Tom')
+Hello, Tom!
+
+# デフォルト引数 -> 仮引数にデフォルト値を指定可能（ただし、デフォルト値のある仮引数は、デフォルト値のない仮引数よりも後に記述する必要がある。）
+>>> def greeting(name, str='Hi'):
+... 　　print(str + ', ' + name + '!')
+... 
+>>> greeting('Tom')
+Hi, Tom!
+
+# 可変長の位置引数 -> 任意の数の引数を受け取ることが可能（指定位置は、位置引数の最後で、デフォルト値のある引数よりも前）
+>>> def say_something(name, *args):
+... 　　for str in args:
+... 　　　　print("I'm " + name + ". " + str + "!")
+... 
+>>> say_something('Tom', 'Hello', 'Hi', 'Good morning')
+I'm Tom. Hello!
+I'm Tom. Hi!
+I'm Tom. Good morning!
+
+# 可変長のキーワード引数 -> 仮引数に割当てられなかったキーワード引数を辞書型で受け取る（指定位置は、一番最後）
+>>> def print_birthday(family_name, **kwargs):
+... 　　print("Birthday of " + family_name + " family")
+... 　　for key, value in kwargs.items():
+... 　　　　print(f'{key}: {value}')
+... 
+>>> print_birthday('Smith', Nancy='1990/1/1', Tom='1993/1/1', Julia='2010/1/1')
+Birthday of Smith family
+Nancy: 1990/1/1
+Tom: 1993/1/1
+Julia: 2010/1/1
+
+# 可変長の位置引数とキーワード引数 -> どのような引数の呼び出しにも対応可能
+>>> def say_something(*args, **kwargs):
+... 　　for s in args:
+... 　　　　print(s)
+... 　　for key, value in kwargs.items():
+... 　　　　print(f'{key}: {value}')
+... 
+>>> say_something('Hello', 'Hi', 'Bye', Nancy='29 years old', Tom='26 years old')
+Hello
+Hi
+Bye
+Nancy: 29 years old
+Tom: 26 years old
+
+# キーワードのみ引数 -> 呼び出し時に仮引数名が必須になる引数
+# 「*」以降がキーワードのみ引数となる
+>>> def increment(num, lsat, *, ignore_error=False):
+... 　　pass
+... 
+# 位置引数ではエラーとなる
+>>> increment(1, 2, True)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: increment() takes 2 positional arguments but 3 were given
+# キーワード引数でのみ指定できる
+>>> increment(1, 2, ignore_error=True)
+>>> 
+
+# 位置のみ引数 -> 呼び出し時に仮引数名を指定できない引数
+# 「/」より前が位置のみ引数となる。仮にabs関数で仮引数名を指定するとエラーになる。
+>>> help(abs)
+abs(x, /)
+    Return the absolute value of the argument.
+>>> abs(x=-1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: abs() takes no keyword arguments
+\end{lstlisting}
+
+\pagebreak
+
+%{引数リストのアンパック}
+
+\begin{lstlisting}[title=引数リストのアンパック]
+# リストに格納された値を引数に渡す
+>>> def greeting(x, y, z):
+... 　　print(x)
+... 　　print(y)
+... 　　print(z)
+... 
+>>> contents = ['Hello', 'Good morning', 'Bye']
+# 関数呼び出し時に「*」演算子でリストから引数を展開する
+>>> greeting(*contents)
+Hello
+Good morning
+Bye
+
+# 辞書に格納された値を引数に渡す
+>>> def say_something(name, greeting):
+... 　　print(name)
+... 　　print(greeting)
+... 
+>>> dict = {'greeting': 'Hello'}
+# 関数呼び出し時に「**」演算子で辞書から引数を展開する
+>>> say_something('Julia', **dict)
+Julia
+Hello
+\end{lstlisting}
+
+%\hypertarget{lambdaux5f0f}{%
+%\subsubsection[\protect\hyperlink{lambdaux5cux25E5ux5cux25BCux5cux258F}{\emph{}}lambda式]{\texorpdfstring{\protect\hypertarget{lambdaux5f0f}{}{}\protect\hyperlink{lambdaux5cux25E5ux5cux25BCux5cux258F}{\emph{}}lambda式}{lambda式}}\label{lambdaux5f0f}}
+
+\subsection{lambda式}
+
+\begin{itemize}
+% \tightlist
+\item
+  lambda式を使うと、1行で無名関数を作成できる。
+\item
+  無名関数は関数の引数として関数オブジェクトを渡す時によく利用される。
+\end{itemize}
+
+%{lambda式の構文}
+
+\begin{lstlisting}[title=lambda式の構文]
+lambda 引数1, 引数2, 引数3, ...: 戻り値になる式
+\end{lstlisting}
+
+%{lambda式の例}
+
+\begin{lstlisting}[title=lambda式の例]
+>>> increment = lambda num1, num2: num1 + num2
+>>> increment(1, 2)
+3
+
+# 以下と同義
+>>> def increment(num1, num2):
+... 　　return num1 + num2
+... 
+>>> increment(1, 2)
+3
+
+# 第一引数の関数が真になるもののみが残る。
+>>> nums = ['one', 'two', 'three']
+>>> filterd = filter(lambda x: len(x) == 3, nums)
+>>> list(filterd)
+['one', 'two']
+\end{lstlisting}
+
+%\hypertarget{ux578bux30d2ux30f3ux30c8}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E5ux5cux259Eux5cux258Bux5cux25E3ux5cux2583ux5cux2592ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2583ux5cux2588}{\emph{}}型ヒント]{\texorpdfstring{\protect\hypertarget{ux578bux30d2ux30f3ux30c8}{}{}\protect\hyperlink{ux5cux25E5ux5cux259Eux5cux258Bux5cux25E3ux5cux2583ux5cux2592ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2583ux5cux2588}{\emph{}}型ヒント}{型ヒント}}\label{ux578bux30d2ux30f3ux30c8}}
+
+\subsection{型ヒント}
+
+\begin{itemize}
+% \tightlist
+\item
+  アノテーションで関数に型情報を付与する。
+\item
+  コードの保守性を高めるために利用する。また、mypyなどの静的解析ツールによる型チェックの利用もできる。
+\item
+  実行時に型チェックが行われる訳ではないので、指定した意外の型を使ってもエラーにはならない。
+\end{itemize}
+
+%{型情報を付与する為の構文}
+
+\begin{lstlisting}[title=型情報を付与する為の構文]
+def 関数名(arg1: arg1の型, arg2: arg2の型, ...) -> 戻り値の型:
+    # 関数で実行したい処理
+    return 戻り値
+
+>>> def say_something(name: str, age: int) -> str:
+... 　　print(name)
+... 　　print(age)
+... 　　return name
+... 
+>>> say_something('Tom', 29)
+Tom
+29
+'Tom'
+\end{lstlisting}
+
+%\hypertarget{ux30afux30e9ux30b9ux30a4ux30f3ux30b9ux30bfux30f3ux30b9}{%
+%\section[\protect\hyperlink{5-ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2583ux5cux25A9ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2582ux5cux25BFux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2582ux5cux25B9}{\emph{}}5.
+%クラス/インスタンス]{\texorpdfstring{\protect\hypertarget{5-ux30afux30e9ux30b9ux30a4ux30f3ux30b9ux30bfux30f3ux30b9}{}{}\protect\hyperlink{5-ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2583ux5cux25A9ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2582ux5cux25BFux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2582ux5cux25B9}{\emph{}}5.
+%クラス/インスタンス}{5. クラス/インスタンス}}\label{ux30afux30e9ux30b9ux30a4ux30f3ux30b9ux30bfux30f3ux30b9}}
+
+\section{クラス/インスタンス}
+
+%\hypertarget{ux30afux30e9ux30b9ux5b9aux7fa9}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2583ux5cux25A9ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E5ux5cux25AEux5cux259Aux5cux25E7ux5cux25BEux5cux25A9}{\emph{}}クラス定義]{\texorpdfstring{\protect\hypertarget{ux30afux30e9ux30b9ux5b9aux7fa9}{}{}\protect\hyperlink{ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2583ux5cux25A9ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E5ux5cux25AEux5cux259Aux5cux25E7ux5cux25BEux5cux25A9}{\emph{}}クラス定義}{クラス定義}}\label{ux30afux30e9ux30b9ux5b9aux7fa9}}
+
+\subsection{クラス定義}
+
+\begin{lstlisting}[title=クラス定義]
+class クラス名(基底クラス名):
+    def メソッド名(引数1, 引数2, ...):
+        メソッドで実行したい処理
+        return 戻り値
+
+>>> class Person(object):
+... 　　def say_something(self):
+... 　　　　print('Hello!!!')
+... 
+# クラスをインスタンス化
+>>> person = Person()
+# インスタンスメソッドの呼び出し
+>>> person.say_something()
+Hello!!!
+\end{lstlisting}
+
+%\hypertarget{ux30a4ux30f3ux30b9ux30bfux30f3ux30b9ux306eux521dux671fux5316}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2582ux5cux25BFux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2581ux5cux25AEux5cux25E5ux5cux2588ux5cux259Dux5cux25E6ux5cux259Cux5cux259Fux5cux25E5ux5cux258Cux5cux2596}{\emph{}}インスタンスの初期化]{\texorpdfstring{\protect\hypertarget{ux30a4ux30f3ux30b9ux30bfux30f3ux30b9ux306eux521dux671fux5316}{}{}\protect\hyperlink{ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2582ux5cux25BFux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2581ux5cux25AEux5cux25E5ux5cux2588ux5cux259Dux5cux25E6ux5cux259Cux5cux259Fux5cux25E5ux5cux258Cux5cux2596}{\emph{}}インスタンスの初期化}{インスタンスの初期化}}\label{ux30a4ux30f3ux30b9ux30bfux30f3ux30b9ux306eux521dux671fux5316}}
+
+\subsection{インスタンスの初期化}
+
+\begin{lstlisting}[title=インスタンスの初期化]
+ >>> class Person:
+... 　　def __init__(self):
+... 　　　　print('Init completed!')
+... 　　def say_something(self):
+... 　　　　print('Hello!!!')
+... 
+# インスタンスを生成した時に、初期化処理(__init__に定義した処理)が呼ばれる
+>>> person = Person()
+Init completed!
+>>> person.say_something()
+Hello!!!
+\end{lstlisting}
+
+%\hypertarget{ux30d7ux30edux30d1ux30c6ux30a3}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux2597ux5cux25E3ux5cux2583ux5cux25ADux5cux25E3ux5cux2583ux5cux2591ux5cux25E3ux5cux2583ux5cux2586ux5cux25E3ux5cux2582ux5cux25A3}{\emph{}}プロパティ]{\texorpdfstring{\protect\hypertarget{ux30d7ux30edux30d1ux30c6ux30a3}{}{}\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux2597ux5cux25E3ux5cux2583ux5cux25ADux5cux25E3ux5cux2583ux5cux2591ux5cux25E3ux5cux2583ux5cux2586ux5cux25E3ux5cux2582ux5cux25A3}{\emph{}}プロパティ}{プロパティ}}\label{ux30d7ux30edux30d1ux30c6ux30a3}}
+
+\subsection{プロパティ}
+
+\begin{itemize}
+% \tightlist
+\item
+  インスタンスメソッドに「@property」を付けると、そのインスタンスメソッドは、「()」を付けずに呼び出せる
+\item
+  「@property」が付いたメソッド -\textgreater{}
+  値の取得時に呼び出される(読み取り専用) -\textgreater{} getter
+\item
+  「@メソッド名.setter」 -\textgreater{} 値を代入する時に呼び出される
+  -\textgreater{} setter
+\item
+  setterのメソッド名には、「@property」を付けたメソッド名をそのまま利用しなくてはならない。
+\end{itemize}
+
+%{@property(setter)}
+
+\begin{lstlisting}[title=@property(setter)]
+>>> class Person:
+... 　　@property
+... 　　def name(self):
+... 　　　　return self._name
+... 　　@name.setter
+... 　　def name(self, name):
+... 　　　　self._name = name
+... 
+>>> person = Person()
+>>> person.name = 'Tom'
+>>> person.name
+'Tom'
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  アンダースコアから始まる属性(\_name):プライベートな属性であることを表現する。
+\item
+  アンダースコア2つから始まる属性(\_\_name):名前修飾が行われる。（例：Personクラスの変数「\_\_name」を「\_Person\_\_name」に変換する。）サブクラスでの名前衝突を防ぐために利用される。
+\end{itemize}
+
+%\hypertarget{ux30afux30e9ux30b9ux306eux7d99ux627f}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2583ux5cux25A9ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2581ux5cux25AEux5cux25E7ux5cux25B6ux5cux2599ux5cux25E6ux5cux2589ux5cux25BF}{\emph{}}クラスの継承]{\texorpdfstring{\protect\hypertarget{ux30afux30e9ux30b9ux306eux7d99ux627f}{}{}\protect\hyperlink{ux5cux25E3ux5cux2582ux5cux25AFux5cux25E3ux5cux2583ux5cux25A9ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2581ux5cux25AEux5cux25E7ux5cux25B6ux5cux2599ux5cux25E6ux5cux2589ux5cux25BF}{\emph{}}クラスの継承}{クラスの継承}}\label{ux30afux30e9ux30b9ux306eux7d99ux627f}}
+
+\subsection{クラスの継承}
+
+\begin{lstlisting}[title=クラスの継承]
+>>> class Person:
+... 　　def greeting(self):
+... 　　　　print('Hello')
+... 　　def say_something(self):
+... 　　　　print('I am human')
+... 
+>>> class Man(Person):
+... 　　# メソッドのオーバーライド
+... 　　def say_something(self):
+... 　　　　print('I am a man')
+... 
+>>> man = Man()
+>>> man.say_something()
+I am a man
+# 基底クラス(Personクラス)のメソッドも利用可能
+>>> man.greeting()
+Hello 
+\end{lstlisting}
+
+%\hypertarget{ux30e2ux30b8ux30e5ux30fcux30ebux30d1ux30c3ux30b1ux30fcux30b8ux540dux524dux7a7aux9593ux30b9ux30b3ux30fcux30d7}{%
+%\section[\protect\hyperlink{6-ux5cux25E3ux5cux2583ux5cux25A2ux5cux25E3ux5cux2582ux5cux25B8ux5cux25E3ux5cux2583ux5cux25A5ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2583ux5cux2591ux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2582ux5cux25B1ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2582ux5cux25B8ux5cux25E5ux5cux2590ux5cux258Dux5cux25E5ux5cux2589ux5cux258Dux5cux25E7ux5cux25A9ux5cux25BAux5cux25E9ux5cux2596ux5cux2593ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2582ux5cux25B3ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2597}{\emph{}}6.
+%モジュール/パッケージ/名前空間/スコープ]{\texorpdfstring{\protect\hypertarget{6-ux30e2ux30b8ux30e5ux30fcux30ebux30d1ux30c3ux30b1ux30fcux30b8ux540dux524dux7a7aux9593ux30b9ux30b3ux30fcux30d7}{}{}\protect\hyperlink{6-ux5cux25E3ux5cux2583ux5cux25A2ux5cux25E3ux5cux2582ux5cux25B8ux5cux25E3ux5cux2583ux5cux25A5ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2583ux5cux2591ux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2582ux5cux25B1ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2582ux5cux25B8ux5cux25E5ux5cux2590ux5cux258Dux5cux25E5ux5cux2589ux5cux258Dux5cux25E7ux5cux25A9ux5cux25BAux5cux25E9ux5cux2596ux5cux2593ux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2582ux5cux25B3ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2597}{\emph{}}6.
+%モジュール/パッケージ/名前空間/スコープ}{6. モジュール/パッケージ/名前空間/スコープ}}\label{ux30e2ux30b8ux30e5ux30fcux30ebux30d1ux30c3ux30b1ux30fcux30b8ux540dux524dux7a7aux9593ux30b9ux30b3ux30fcux30d7}}
+
+%\hypertarget{ux30e2ux30b8ux30e5ux30fcux30eb}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25A2ux5cux25E3ux5cux2582ux5cux25B8ux5cux25E3ux5cux2583ux5cux25A5ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux25AB}{\emph{}}モジュール]{\texorpdfstring{\protect\hypertarget{ux30e2ux30b8ux30e5ux30fcux30eb}{}{}\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25A2ux5cux25E3ux5cux2582ux5cux25B8ux5cux25E3ux5cux2583ux5cux25A5ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux25AB}{\emph{}}モジュール}{モジュール}}\label{ux30e2ux30b8ux30e5ux30fcux30eb}}
+
+\section{モジュール/パッケージ/名前空間/スコープ}
+
+\subsection{モジュール}
+
+\begin{itemize}
+% \tightlist
+\item
+  コードを記述した .py ファイル
+\item
+  クラスや関数の定義が記載されたファイルをモジュールと呼ぶ
+\end{itemize}
+
+%{モジュールの作成（モジュール名：sample.py）}
+
+\begin{lstlisting}[numbers=left,numberstyle={\scriptsize},title=モジュールの作成（モジュール名：sample.py）]
+import sys
+
+def say_something_upper(s):
+    # 大文字に変換
+    upper_s = s.upper()
+    return upper_s
+
+str = sys.argv[1]
+print(say_something_upper(str))
+\end{lstlisting}
+
+%{モジュール(sample.py)の呼び出し}
+
+\begin{lstlisting}[title=モジュール(sample.py)の呼び出し]
+$ python sample.py hello
+HELLO
+$ 
+\end{lstlisting}
+
+%\hypertarget{ux76f4ux63a5ux5b9fux884cux3057ux305fux6642ux306eux307fux306bux52d5ux304fux30b3ux30fcux30c9ux306eux8a18ux8ff0}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E7ux5cux259Bux5cux25B4ux5cux25E6ux5cux258Eux5cux25A5ux5cux25E5ux5cux25AEux5cux259Fux5cux25E8ux5cux25A1ux5cux258Cux5cux25E3ux5cux2581ux5cux2597ux5cux25E3ux5cux2581ux5cux259Fux5cux25E6ux5cux2599ux5cux2582ux5cux25E3ux5cux2581ux5cux25AEux5cux25E3ux5cux2581ux5cux25BFux5cux25E3ux5cux2581ux5cux25ABux5cux25E5ux5cux258Bux5cux2595ux5cux25E3ux5cux2581ux5cux258Fux5cux25E3ux5cux2582ux5cux25B3ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2589ux5cux25E3ux5cux2581ux5cux25AEux5cux25E8ux5cux25A8ux5cux2598ux5cux25E8ux5cux25BFux5cux25B0}{\emph{}}直接実行した時のみに動くコードの記述]{\texorpdfstring{\protect\hypertarget{ux76f4ux63a5ux5b9fux884cux3057ux305fux6642ux306eux307fux306bux52d5ux304fux30b3ux30fcux30c9ux306eux8a18ux8ff0}{}{}\protect\hyperlink{ux5cux25E7ux5cux259Bux5cux25B4ux5cux25E6ux5cux258Eux5cux25A5ux5cux25E5ux5cux25AEux5cux259Fux5cux25E8ux5cux25A1ux5cux258Cux5cux25E3ux5cux2581ux5cux2597ux5cux25E3ux5cux2581ux5cux259Fux5cux25E6ux5cux2599ux5cux2582ux5cux25E3ux5cux2581ux5cux25AEux5cux25E3ux5cux2581ux5cux25BFux5cux25E3ux5cux2581ux5cux25ABux5cux25E5ux5cux258Bux5cux2595ux5cux25E3ux5cux2581ux5cux258Fux5cux25E3ux5cux2582ux5cux25B3ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2589ux5cux25E3ux5cux2581ux5cux25AEux5cux25E8ux5cux25A8ux5cux2598ux5cux25E8ux5cux25BFux5cux25B0}{\emph{}}直接実行した時のみに動くコードの記述}{直接実行した時のみに動くコードの記述}}\label{ux76f4ux63a5ux5b9fux884cux3057ux305fux6642ux306eux307fux306bux52d5ux304fux30b3ux30fcux30c9ux306eux8a18ux8ff0}}
+
+\subsection{直接実行した時のみに動くコードの記述}
+
+\begin{lstlisting}[numbers=left,numberstyle={\scriptsize},title=直接実行した時のみに動くコードの記述]
+import sys
+
+def say_something_upper(s):
+    # 大文字に変換
+    upper_s = s.upper()
+    return upper_s
+
+def main():
+    str = sys.argv[1]
+    print(say_something_upper(str))
+
+if __name__ == '__main__':
+    main()
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  「if \_\_name\_\_ == '\_\_main\_\_'」
+  の記述がない場合、他のモジュールからimportされた場合等でも実行されてしまう。
+\item
+  そのため、スクリプトとして直接実行された場合にのみ処理が呼ばれるように、上記の通り条件文を記載する。
+\item
+  グローバル変数「\_\_name\_\_」に格納される値は以下の通り
+
+  \begin{itemize}
+  % \tightlist
+  \item[・]
+    対話モードで実行した場合の変数「\_\_name\_\_」 $\rightarrow$ %-\textgreater{}
+    「\_\_main\_\_」
+  \item[・]
+    スクリプトとして実行した場合の変数「\_\_name\_\_」 $\rightarrow$ %-\textgreater{}
+    「\_\_main\_\_」
+  \item[・]
+    モジュールとしてimportされた場合の変数「\_\_name\_\_」 $\rightarrow$ %-\textgreater{}
+   「モジュール名」
+  \end{itemize}
+\item
+  よって、スクリプトとして実行された場合は、条件文が「真」となりモジュールが実行され、モジュールとしてimportされた場合は、条件文は「偽」となり、モジュールは実行されない。
+\end{itemize}
+
+%\hypertarget{ux30d1ux30c3ux30b1ux30fcux30b8ux306eux4f5cux6210}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux2591ux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2582ux5cux25B1ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2582ux5cux25B8ux5cux25E3ux5cux2581ux5cux25AEux5cux25E4ux5cux25BDux5cux259Cux5cux25E6ux5cux2588ux5cux2590}{\emph{}}パッケージの作成]{\texorpdfstring{\protect\hypertarget{ux30d1ux30c3ux30b1ux30fcux30b8ux306eux4f5cux6210}{}{}\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux2591ux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2582ux5cux25B1ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2582ux5cux25B8ux5cux25E3ux5cux2581ux5cux25AEux5cux25E4ux5cux25BDux5cux259Cux5cux25E6ux5cux2588ux5cux2590}{\emph{}}パッケージの作成}{パッケージの作成}}\label{ux30d1ux30c3ux30b1ux30fcux30b8ux306eux4f5cux6210}}
+
+\subsection{パッケージの作成}
+
+\begin{itemize}
+% \tightlist
+\item
+  パッケージを作成するためには、ディレクトリを作成し、そのディレクトリをパッケージとして扱うために、「\_\_init\_\_.py」ファイルを配置する。（空ファイルでもOK）
+\item
+  「\_\_init\_\_.py」にはパッケージの初期化コードを記述したり、「\textbf{all}.py」変数をセットしたりすることも可能。
+\end{itemize}
+
+\pagebreak
+
+%{\_\_init\_\_.py}
+
+\begin{lstlisting}[title=\_\_init\_\_.py]
+# 空ファイルでOK
+\end{lstlisting}
+
+%\hypertarget{ux30d1ux30c3ux30b1ux30fcux30b8ux5185ux306eux30e2ux30b8ux30e5ux30fcux30ebux306eux30a4ux30f3ux30ddux30fcux30c8}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux2591ux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2582ux5cux25B1ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2582ux5cux25B8ux5cux25E5ux5cux2586ux5cux2585ux5cux25E3ux5cux2581ux5cux25AEux5cux25E3ux5cux2583ux5cux25A2ux5cux25E3ux5cux2582ux5cux25B8ux5cux25E3ux5cux2583ux5cux25A5ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2581ux5cux25AEux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2583ux5cux259Dux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2588}{\emph{}}パッケージ内のモジュールのインポート]{\texorpdfstring{\protect\hypertarget{ux30d1ux30c3ux30b1ux30fcux30b8ux5185ux306eux30e2ux30b8ux30e5ux30fcux30ebux306eux30a4ux30f3ux30ddux30fcux30c8}{}{}\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux2591ux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2582ux5cux25B1ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2582ux5cux25B8ux5cux25E5ux5cux2586ux5cux2585ux5cux25E3ux5cux2581ux5cux25AEux5cux25E3ux5cux2583ux5cux25A2ux5cux25E3ux5cux2582ux5cux25B8ux5cux25E3ux5cux2583ux5cux25A5ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2581ux5cux25AEux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2583ux5cux259Dux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2588}{\emph{}}パッケージ内のモジュールのインポート}{パッケージ内のモジュールのインポート}}\label{ux30d1ux30c3ux30b1ux30fcux30b8ux5185ux306eux30e2ux30b8ux30e5ux30fcux30ebux306eux30a4ux30f3ux30ddux30fcux30c8}}
+
+\subsection{パッケージ内のモジュールのインポート}
+
+%{python\_programming/sample.py}
+
+\begin{lstlisting}[numbers=left,numberstyle={\scriptsize},title=python\_programming/sample.py]
+from python_package import hello
+
+def say_hello():
+    print(hello.return_hello())
+
+def main():
+    say_hello()
+
+if __name__ == '__main__':
+    main()
+\end{lstlisting}
+
+%{python\_programming/python\_package/hello.py}
+
+\begin{lstlisting}[title=python\_programming/python\_package/hello.py]
+def return_hello():
+    return 'Hello!!!'
+\end{lstlisting}
+
+%{実行結果}
+
+\begin{lstlisting}[title=実行結果]
+$ python sample.py
+Hello!!!
+$ 
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  importの記述方法
+\end{itemize}
+
+%{importの記述方法}
+
+\begin{lstlisting}[title=importの記述方法]
+# パッケージをimport
+import パッケージ名
+import sample_package
+
+# パッケージから特定のモジュールをimport(from指定なし)
+import パッケージ名.モジュール名
+import sample_package.greeting
+
+# パッケージから特定のモジュールをimport(from指定あり)
+from パッケージ名 import モジュール名
+from sample_package import greeting
+
+# パッケージやモジュールから特定の属性だけをimport
+from パッケージ名/モジュール名 import 関数名
+from sample_package.greeting import say_something
+
+# importしたパッケージ/モジュール/関数に別名を付与
+from パッケージ名 import モジュール名 as 別名
+from sample_package.greeting import say_something as s
+\end{lstlisting}
+
+%\hypertarget{ux30efux30a4ux30ebux30c9ux30abux30fcux30c9ux3092ux5229ux7528ux3057ux305fux8907ux6570ux5c5eux6027ux306eux4e00ux62ecimportux3068__all__}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25AFux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2583ux5cux2589ux5cux25E3ux5cux2582ux5cux25ABux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2589ux5cux25E3ux5cux2582ux5cux2592ux5cux25E5ux5cux2588ux5cux25A9ux5cux25E7ux5cux2594ux5cux25A8ux5cux25E3ux5cux2581ux5cux2597ux5cux25E3ux5cux2581ux5cux259Fux5cux25E8ux5cux25A4ux5cux2587ux5cux25E6ux5cux2595ux5cux25B0ux5cux25E5ux5cux25B1ux5cux259Eux5cux25E6ux5cux2580ux5cux25A7ux5cux25E3ux5cux2581ux5cux25AEux5cux25E4ux5cux25B8ux5cux2580ux5cux25E6ux5cux258Bux5cux25ACimportux5cux25E3ux5cux2581ux5cux25A8__all__}{\emph{}}ワイルドカードを利用した複数属性の一括importと「\_\_all\_\_」]{\texorpdfstring{\protect\hypertarget{ux30efux30a4ux30ebux30c9ux30abux30fcux30c9ux3092ux5229ux7528ux3057ux305fux8907ux6570ux5c5eux6027ux306eux4e00ux62ecimportux3068__all__}{}{}\protect\hyperlink{ux5cux25E3ux5cux2583ux5cux25AFux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2583ux5cux2589ux5cux25E3ux5cux2582ux5cux25ABux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2589ux5cux25E3ux5cux2582ux5cux2592ux5cux25E5ux5cux2588ux5cux25A9ux5cux25E7ux5cux2594ux5cux25A8ux5cux25E3ux5cux2581ux5cux2597ux5cux25E3ux5cux2581ux5cux259Fux5cux25E8ux5cux25A4ux5cux2587ux5cux25E6ux5cux2595ux5cux25B0ux5cux25E5ux5cux25B1ux5cux259Eux5cux25E6ux5cux2580ux5cux25A7ux5cux25E3ux5cux2581ux5cux25AEux5cux25E4ux5cux25B8ux5cux2580ux5cux25E6ux5cux258Bux5cux25ACimportux5cux25E3ux5cux2581ux5cux25A8__all__}{\emph{}}ワイルドカードを利用した複数属性の一括importと「\_\_all\_\_」}{ワイルドカードを利用した複数属性の一括importと「\_\_all\_\_」}}\label{ux30efux30a4ux30ebux30c9ux30abux30fcux30c9ux3092ux5229ux7528ux3057ux305fux8907ux6570ux5c5eux6027ux306eux4e00ux62ecimportux3068__all__}}
+
+\subsection{ワイルドカードを利用した複数属性の一括importと「\_\_all\_\_」}
+
+%{一括import}
+
+\begin{lstlisting}[title=一括import]
+# ワイルドカード（*）を利用した一括import
+from パッケージ名 import *
+from sample_package import *
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  上記のようにワイルドカードを利用したimportは、可読性が低下したり、意図しない名前の上書きによって不具合が発生する可能性があるため、基本的には利用しない。
+\item
+  パッケージの「\_\_init\_\_.py」のコードが、「\_\_all\_\_」というリストを定義していれば、それは「from
+  パッケージ import *」の際にimportすべきモジュールのリストとなる。
+\item
+  例として、下記を定義した場合、「from sample\_package import
+  *」を実行されても、"morning", "evening",
+  "night"のモジュールのみがimportされる。
+\end{itemize}
+
+%{\_\_init\_\_.py}
+
+\begin{lstlisting}[title=\_\_init\_\_.py]
+__all__ = ["morning", "evening", "night"]
+\end{lstlisting}
+
+\texttt{前提：sample\_packageの中に、"morning",\ "evening",\ "night"を含む多数のモジュールが存在}
+
+%\hypertarget{ux7d44ux307fux8fbcux307fux95a2ux6570ux7279ux6b8aux30e1ux30bdux30c3ux30c9}{%
+%\section[\protect\hyperlink{7-ux5cux25E7ux5cux25B5ux5cux2584ux5cux25E3ux5cux2581ux5cux25BFux5cux25E8ux5cux25BEux5cux25BCux5cux25E3ux5cux2581ux5cux25BFux5cux25E9ux5cux2596ux5cux25A2ux5cux25E6ux5cux2595ux5cux25B0ux5cux25E7ux5cux2589ux5cux25B9ux5cux25E6ux5cux25AEux5cux258Aux5cux25E3ux5cux2583ux5cux25A1ux5cux25E3ux5cux2582ux5cux25BDux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2583ux5cux2589}{\emph{}}7.
+%組み込み関数/特殊メソッド]{\texorpdfstring{\protect\hypertarget{7-ux7d44ux307fux8fbcux307fux95a2ux6570ux7279ux6b8aux30e1ux30bdux30c3ux30c9}{}{}\protect\hyperlink{7-ux5cux25E7ux5cux25B5ux5cux2584ux5cux25E3ux5cux2581ux5cux25BFux5cux25E8ux5cux25BEux5cux25BCux5cux25E3ux5cux2581ux5cux25BFux5cux25E9ux5cux2596ux5cux25A2ux5cux25E6ux5cux2595ux5cux25B0ux5cux25E7ux5cux2589ux5cux25B9ux5cux25E6ux5cux25AEux5cux258Aux5cux25E3ux5cux2583ux5cux25A1ux5cux25E3ux5cux2582ux5cux25BDux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2583ux5cux2589}{\emph{}}7.
+%組み込み関数/特殊メソッド}{7. 組み込み関数/特殊メソッド}}\label{ux7d44ux307fux8fbcux307fux95a2ux6570ux7279ux6b8aux30e1ux30bdux30c3ux30c9}}
+
+%\hypertarget{ux7d44ux307fux8fbcux307fux95a2ux6570}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E7ux5cux25B5ux5cux2584ux5cux25E3ux5cux2581ux5cux25BFux5cux25E8ux5cux25BEux5cux25BCux5cux25E3ux5cux2581ux5cux25BFux5cux25E9ux5cux2596ux5cux25A2ux5cux25E6ux5cux2595ux5cux25B0}{\emph{}}組み込み関数]{\texorpdfstring{\protect\hypertarget{ux7d44ux307fux8fbcux307fux95a2ux6570}{}{}\protect\hyperlink{ux5cux25E7ux5cux25B5ux5cux2584ux5cux25E3ux5cux2581ux5cux25BFux5cux25E8ux5cux25BEux5cux25BCux5cux25E3ux5cux2581ux5cux25BFux5cux25E9ux5cux2596ux5cux25A2ux5cux25E6ux5cux2595ux5cux25B0}{\emph{}}組み込み関数}{組み込み関数}}\label{ux7d44ux307fux8fbcux307fux95a2ux6570}}
+
+\section{組み込み関数/特殊メソッド}
+
+\subsection{組み込み関数}
+
+組み込み関数とは、Pythonに組み込まれている関数で、何もimportすることなく利用することが可能。
+
+\begin{itemize}
+% \tightlist
+\item
+  isinstance() :
+  第一引数に渡したインスタンスオブジェクトが、第二引数に渡したクラスに属していれば、Trueを返す。
+\end{itemize}
+
+%{isinstance()}
+
+\begin{lstlisting}[title=isinstance()]
+>>> d = {}
+
+# 第一引数はインスタンスオブジェクト
+>>> isinstance(d, dict)
+True
+
+# 第二引数をタプルにすると複数のクラスで同時に比較
+>>> isinstance(d, (list, int, dict))
+True
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  issubclass() :
+  isinstance()とほぼ同じだが、第一引数にクラスオブジェクトを取る。
+\end{itemize}
+
+%{issubclass()}
+
+\begin{lstlisting}[title=issubclass()]
+# 第一引数はクラスオブジェクト
+>>> issubclass(dict, object)
+True
+
+# bool型はint型のサブクラス
+>>> issubclass(bool, (list, int, dict))
+True
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  callable() :
+  呼び出し可能オブジェクトを判定（関数やクラス、メソッド等、（）を付けて呼び出せるオブジェクト）
+\end{itemize}
+
+%{callable()}
+
+\begin{lstlisting}[title=callable()]
+>>> callable(isinstance) # 関数
+True
+>>> callable(Exception) # クラス
+True
+>>> callable(''.split) # メソッド 
+True
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  getattr() / setattr() / delattr() : オブジェクトの属性を操作
+\end{itemize}
+
+%{getattr()/setattr()/delattr()}
+
+\begin{lstlisting}[title=getattr()/setattr()/delattr()]
+# サンプルクラス定義
+>>> class Mutable:
+... 　　def __init__(self, attr_map):
+... 　　　　for k, v in attr_map.items():
+... 　　　　　　setattr(self, str(k), v)
+... 
+# mに属性を設定
+>>> m = Mutable({'a': 1, 'b': 2})
+>>> m.a
+1
+>>> attr = 'b'
+
+# 値の取得
+>>> getattr(m, attr)
+2
+
+# 値の削除
+>>> delattr(m, 'a')
+>>> m.a
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Mutable' object has no attribute 'a'
+
+# getattr()はメソッドも取得可能
+>>> str = 'python'
+>>> instance_method = getattr(str, 'upper')
+>>> instance_method()
+'PYTHON'
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  zip() : 複数のイテラブルの要素を同時に返す
+\end{itemize}
+
+%{zip()}
+
+\begin{lstlisting}[title=zip()]
+# それぞれのイテラブルのi番目の要素どうしをまとめる
+>>> a = [1, 2, 3]
+>>> b = [4, 5, 6]
+>>> zip(a, b)
+<zip object at 0x10827a7d0>
+>>> list(zip(a, b))
+[(1, 4), (2, 5), (3, 6)]
+
+# zip()は一番短いイテラブルの長さまでしか結果を返さない
+>>> d = [1, 2, 3]
+>>> e = [4, 5, 6, 7, 8]
+>>> f = [9, 10]
+>>> zip(d, e, f)
+<zip object at 0x10827a7d0>
+>>> list(zip(d, e, f))
+[(1, 4, 9), (2, 5, 10)]
+
+# 一番長いイテラブルに合わせる場合は、標準ライブラリのitertools.zip_longest()関数を利用
+>>> from itertools import zip_longest
+>>> list(zip_longest(d, e, f, fillvalue=0))
+[(1, 4, 9), (2, 5, 10), (3, 6, 0), (0, 7, 0), (0, 8, 0)]
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  sorted() : イテラブルの要素を並べ替える
+\end{itemize}
+
+%{sorted()}
+
+\begin{lstlisting}[title=sorted()]
+>>> a = [3, 2, 5, 1, 4]
+>>> b = [2, 1, 4, 5, 3]
+
+# list.sort()は自分自身を並べ替える
+>>> a.sort()
+>>> a
+[1, 2, 3, 4, 5]
+
+# sorted()は新しいリストを返す
+>>> sorted(b)
+[1, 2, 3, 4, 5]
+>>> b
+[2, 1, 4, 5, 3]
+
+# reverse=Trueを指定すると逆順になる
+>>> sorted(b, reverse=True)
+[5, 4, 3, 2, 1]
+\end{lstlisting}
+
+\begin{itemize}
+\item \texttt{sorted()では要素同士を直接比較するため、数値と文字列が混在しているとエラーになる}
+
+\item その他の組み込み関数は以下ご参照
+
+	Python組み込み関数一覧\\
+	\url{https://docs.python.org/ja/3/library/functions.html}
+\end{itemize}
+
+%\hypertarget{ux7279ux6b8aux30e1ux30bdux30c3ux30c9}{%
+%\subsubsection[\protect\hyperlink{ux5cux25E7ux5cux2589ux5cux25B9ux5cux25E6ux5cux25AEux5cux258Aux5cux25E3ux5cux2583ux5cux25A1ux5cux25E3ux5cux2582ux5cux25BDux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2583ux5cux2589}{\emph{}}特殊メソッド]{\texorpdfstring{\protect\hypertarget{ux7279ux6b8aux30e1ux30bdux30c3ux30c9}{}{}\protect\hyperlink{ux5cux25E7ux5cux2589ux5cux25B9ux5cux25E6ux5cux25AEux5cux258Aux5cux25E3ux5cux2583ux5cux25A1ux5cux25E3ux5cux2582ux5cux25BDux5cux25E3ux5cux2583ux5cux2583ux5cux25E3ux5cux2583ux5cux2589}{\emph{}}特殊メソッド}{特殊メソッド}}\label{ux7279ux6b8aux30e1ux30bdux30c3ux30c9}}
+
+\subsection{特殊メソッド}
+
+特殊メソッドとは、メソッド名の前後にアンダースコアが二つ（ \_\_
+）ついているメソッドで、Pythonから暗黙的に呼び出される。
+
+%{特殊メソッド}
+
+\begin{lstlisting}[title=特殊メソッド]
+# クラス「Word」の中に特殊メソッド、「__init__」「__str__」「__len__」を定義
+>>> class Word(object):
+... 　　def __init__(self, text):
+... 　　　　self.text = text
+... 　　def __str__(self):
+... 　　　　return 'Word!!!'
+... 　　def __len__(self):
+... 　　　　return len(self.text)
+
+# クラスをインスタンス化
+>>> w = Word('test')
+
+# wを文字列として扱おうとすると、暗黙的に「__str__」が呼ばれる
+>>> print(w)
+Word!!!
+
+# wの長さを取得するために「len」を実行しようとすると、暗黙的に「__len__」が呼ばれる
+>>> print(len(w))
+4
+
+# 本来の記述方法（wというインスタンスのtextという属性にアクセスしlenの値を取得）
+>>> print(len(w.text))
+4
+\end{lstlisting}
+
+\begin{itemize}
+\item
+その他の特殊メソッドは以下ご参照
+
+Python特殊メソッド名\\
+\url{https://docs.python.org/ja/3/reference/datamodel.html\#special-method-names}
+\end{itemize}
+
+%\hypertarget{ux30d5ux30a1ux30a4ux30ebux64cdux4f5cux3068ux5165ux51faux529b}{%
+%\section[\protect\hyperlink{8-ux5cux25E3ux5cux2583ux5cux2595ux5cux25E3ux5cux2582ux5cux25A1ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259Cux5cux25E3ux5cux2581ux5cux25A8ux5cux25E5ux5cux2585ux5cux25A5ux5cux25E5ux5cux2587ux5cux25BAux5cux25E5ux5cux258Aux5cux259B}{\emph{}}8.
+%ファイル操作と入出力]{\texorpdfstring{\protect\hypertarget{8-ux30d5ux30a1ux30a4ux30ebux64cdux4f5cux3068ux5165ux51faux529b}{}{}\protect\hyperlink{8-ux5cux25E3ux5cux2583ux5cux2595ux5cux25E3ux5cux2582ux5cux25A1ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259Cux5cux25E3ux5cux2581ux5cux25A8ux5cux25E5ux5cux2585ux5cux25A5ux5cux25E5ux5cux2587ux5cux25BAux5cux25E5ux5cux258Aux5cux259B}{\emph{}}8.
+%ファイル操作と入出力}{8. ファイル操作と入出力}}\label{ux30d5ux30a1ux30a4ux30ebux64cdux4f5cux3068ux5165ux51faux529b}}
+
+\section{ファイル操作と入出力}
+
+%\hypertarget{openux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux66f8ux304dux8fbcux307f}{%
+%\subsubsection[\protect\hyperlink{openux5cux25E3ux5cux2582ux5cux2592ux5cux25E4ux5cux25BDux5cux25BFux5cux25E3ux5cux2581ux5cux25A3ux5cux25E3ux5cux2581ux5cux259Fux5cux25E3ux5cux2583ux5cux2595ux5cux25E3ux5cux2582ux5cux25A1ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux259Bux5cux25B8ux5cux25E3ux5cux2581ux5cux258Dux5cux25E8ux5cux25BEux5cux25BCux5cux25E3ux5cux2581ux5cux25BF}{\emph{}}open()を使ったファイルの書き込み]{\texorpdfstring{\protect\hypertarget{openux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux66f8ux304dux8fbcux307f}{}{}\protect\hyperlink{openux5cux25E3ux5cux2582ux5cux2592ux5cux25E4ux5cux25BDux5cux25BFux5cux25E3ux5cux2581ux5cux25A3ux5cux25E3ux5cux2581ux5cux259Fux5cux25E3ux5cux2583ux5cux2595ux5cux25E3ux5cux2582ux5cux25A1ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux259Bux5cux25B8ux5cux25E3ux5cux2581ux5cux258Dux5cux25E8ux5cux25BEux5cux25BCux5cux25E3ux5cux2581ux5cux25BF}{\emph{}}open()を使ったファイルの書き込み}{open()を使ったファイルの書き込み}}\label{openux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux66f8ux304dux8fbcux307f}}
+
+\subsection{open()を使ったファイルの書き込み}
+
+%{open()を使ったファイルの書き込み}
+
+\begin{lstlisting}[title=open()を使ったファイルの書き込み]
+# 第一引数はファイル名、第二引数はモード
+# モード（引数はオプションであり、省略すれば「r」となる）
+# 「r」：読み込み専用
+# 「w」：書き出し専用
+# 「a」：追記（ファイルの末尾への追記）
+# 「r+」：読み書き両方
+>>> f = open('test1.txt', 'w')
+>>> f.write('Test!')
+>>> f.close()
+
+# printでもファイルへの書き込みを実施することが可能
+>>> f = open('test2.txt', 'w')
+>>> print('Print!', file=f)
+>>> f.close()
+
+# printを使った場合のオプション
+>>> f = open('test3.txt', 'w')
+>>> print('My', 'name', 'is', 'Tom', sep='###', end='!!!', file=f)
+>>> f.close()
+>>>
+\end{lstlisting}
+
+\begin{lstlisting}[title=内容の表示]
+$ type test1.txt
+Test!
+$ type test2.txt
+Print!
+$ type test3.txt
+My###name###is###Tom!!!
+$
+\end{lstlisting}
+
+%\hypertarget{readux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux8aadux307fux8fbcux307f}{%
+%\subsubsection[\protect\hyperlink{readux5cux25E3ux5cux2582ux5cux2592ux5cux25E4ux5cux25BDux5cux25BFux5cux25E3ux5cux2581ux5cux25A3ux5cux25E3ux5cux2581ux5cux259Fux5cux25E3ux5cux2583ux5cux2595ux5cux25E3ux5cux2582ux5cux25A1ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2581ux5cux25AEux5cux25E8ux5cux25AAux5cux25ADux5cux25E3ux5cux2581ux5cux25BFux5cux25E8ux5cux25BEux5cux25BCux5cux25E3ux5cux2581ux5cux25BF}{\emph{}}read()を使ったファイルの読み込み]{\texorpdfstring{\protect\hypertarget{readux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux8aadux307fux8fbcux307f}{}{}\protect\hyperlink{readux5cux25E3ux5cux2582ux5cux2592ux5cux25E4ux5cux25BDux5cux25BFux5cux25E3ux5cux2581ux5cux25A3ux5cux25E3ux5cux2581ux5cux259Fux5cux25E3ux5cux2583ux5cux2595ux5cux25E3ux5cux2582ux5cux25A1ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2581ux5cux25AEux5cux25E8ux5cux25AAux5cux25ADux5cux25E3ux5cux2581ux5cux25BFux5cux25E8ux5cux25BEux5cux25BCux5cux25E3ux5cux2581ux5cux25BF}{\emph{}}read()を使ったファイルの読み込み}{read()を使ったファイルの読み込み}}\label{readux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux8aadux307fux8fbcux307f}}
+
+\subsection{read()を使ったファイルの読み込み}
+
+\begin{lstlisting}[title=read()を使ったファイルの読み込み]
+# 事前準備として「test.txt」を準備
+>>> f = open('test4.txt', 'w')
+>>> print('My', 'name', 'is', 'Tom', end='!\n', file=f)
+>>> print('My', 'name', 'is', 'Nancy', end='!\n', file=f)
+>>> print('My', 'name', 'is', 'Julia', end='!\n', file=f)
+>>> f.close()
+
+# read()を使ってファイルの内容を読み込む
+>>> f = open('test4.txt', 'r')
+>>> f.read()
+'My name is Tom!\nMy name is Nancy!\nMy name is Julia!\n'
+>>> f.close()
+
+# readline()を使って一行づつ読み込む
+>>> f = open('test4.txt', 'r')
+>>> f.readline()
+'My name is Tom!\n'
+>>> f.readline()
+'My name is Nancy!\n'
+>>> f.readline()
+'My name is Julia!\n'
+>>> f.close()
+\end{lstlisting}
+
+%\hypertarget{withux30b9ux30c6ux30fcux30c8ux30e1ux30f3ux30c8ux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux64cdux4f5c}{%
+%\subsubsection[\protect\hyperlink{withux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2583ux5cux2586ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2588ux5cux25E3ux5cux2583ux5cux25A1ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2583ux5cux2588ux5cux25E3ux5cux2582ux5cux2592ux5cux25E4ux5cux25BDux5cux25BFux5cux25E3ux5cux2581ux5cux25A3ux5cux25E3ux5cux2581ux5cux259Fux5cux25E3ux5cux2583ux5cux2595ux5cux25E3ux5cux2582ux5cux25A1ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}withステートメントを使ったファイルの操作]{\texorpdfstring{\protect\hypertarget{withux30b9ux30c6ux30fcux30c8ux30e1ux30f3ux30c8ux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux64cdux4f5c}{}{}\protect\hyperlink{withux5cux25E3ux5cux2582ux5cux25B9ux5cux25E3ux5cux2583ux5cux2586ux5cux25E3ux5cux2583ux5cux25BCux5cux25E3ux5cux2583ux5cux2588ux5cux25E3ux5cux2583ux5cux25A1ux5cux25E3ux5cux2583ux5cux25B3ux5cux25E3ux5cux2583ux5cux2588ux5cux25E3ux5cux2582ux5cux2592ux5cux25E4ux5cux25BDux5cux25BFux5cux25E3ux5cux2581ux5cux25A3ux5cux25E3ux5cux2581ux5cux259Fux5cux25E3ux5cux2583ux5cux2595ux5cux25E3ux5cux2582ux5cux25A1ux5cux25E3ux5cux2582ux5cux25A4ux5cux25E3ux5cux2583ux5cux25ABux5cux25E3ux5cux2581ux5cux25AEux5cux25E6ux5cux2593ux5cux258Dux5cux25E4ux5cux25BDux5cux259C}{\emph{}}withステートメントを使ったファイルの操作}{withステートメントを使ったファイルの操作}}\label{withux30b9ux30c6ux30fcux30c8ux30e1ux30f3ux30c8ux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux306eux64cdux4f5c}}
+
+\subsection{withステートメントを使ったファイルの操作}
+
+\begin{lstlisting}[title=withステートメントを使ったファイルの操作]
+# with open()を使ってファイルを操作するとclose()処理が不要となる。
+>>> with open('test4.txt', 'a') as f:
+... 　　print('with open statement!', file=f)
+... 
+>>> 
+\end{lstlisting}
+
+\begin{lstlisting}[title=内容の表示]
+$ type test4.txt
+My name is Tom!
+My name is Nancy!
+My name is Julia!
+with open statement!
+$
+\end{lstlisting}
+
+\begin{itemize}
+% \tightlist
+\item
+  open()によってファイル操作を行う場合、close()を実行するまでメモリを使っているため、必ず最後にclose()してメモリを開放する必要がある。
+\item
+  一方、with open()の場合、with
+  open()節のインデントの中の処理が終わると、勝手にclose()してくれる為、close()忘れがなくなる。
+\end{itemize}
+
+%\hypertarget{ux53c2ux8003ux6587ux732eux6559ux6750}{%
+%\section[\protect\hyperlink{ux5cux25E5ux5cux258Fux5cux2582ux5cux25E8ux5cux2580ux5cux2583ux5cux25E6ux5cux2596ux5cux2587ux5cux25E7ux5cux258Cux5cux25AEux5cux25E6ux5cux2595ux5cux2599ux5cux25E6ux5cux259Dux5cux2590}{\emph{}}参考文献/教材]{\texorpdfstring{\protect\hypertarget{ux53c2ux8003ux6587ux732eux6559ux6750}{}{}\protect\hyperlink{ux5cux25E5ux5cux258Fux5cux2582ux5cux25E8ux5cux2580ux5cux2583ux5cux25E6ux5cux2596ux5cux2587ux5cux25E7ux5cux258Cux5cux25AEux5cux25E6ux5cux2595ux5cux2599ux5cux25E6ux5cux259Dux5cux2590}{\emph{}}参考文献/教材}{参考文献/教材}}\label{ux53c2ux8003ux6587ux732eux6559ux6750}}
+
+\section*{参考文献/教材}
+
+\begin{itemize}
+% \tightlist
+\item
+  {[}O'REILY{]}『Pythonチュートリアル』【著者】Guido van Rossum
+\item
+  {[}技術評論社{]}『Python実践入門』【著者】陶山 嶺
+\item
+  {[}Udemy{]}『現役シリコンバレーエンジニアが教えるPython3入門+応用+アメリカのシリコンバレー流コードスタイル』【作者】酒井
+  潤
+\end{itemize}
+
+%\href{/1429takahiro/items/710a877b1afb1626334f/likers}{18}
+%
+%{24}
+%
+%{}
+%
+%{}
+%
+%\emph{}
+%
+%記事の改善
+%
+%\href{/drafts/710a877b1afb1626334f/edit}{{\emph{}}編集リクエストを送る}
+%
+%記事の情報
+%
+%\href{/1429takahiro/items/710a877b1afb1626334f/revisions}{{\emph{}}編集履歴}\href{/1429takahiro/items/710a877b1afb1626334f/patches}{{\emph{}}編集リクエスト一覧}
+%
+%LGTMしたユーザー一覧\href{/1429takahiro/items/710a877b1afb1626334f.md}{{\emph{}}Markdown
+%で本文を見る}
+%
+%{\emph{}}問題がある記事を報告する
+%
+%{この記事にどのような問題がありますか？}
+%
+%法律違反（著作権侵害、プライバシー侵害、名誉棄損等）
+%
+%社会的に不適切（公序良俗に反する）
+%
+%宣伝行為
+%
+%スパムの疑い
+%
+%上記以外だが、Qiitaのコミュニティにふさわしくない（ガイドライン違反）
+%
+%ユーザー登録して、Qiitaをもっと便利に使ってみませんか。
+%
+%\begin{enumerate}
+%% \tightlist
+%\item
+%  あなたにマッチした記事をお届けします
+%
+%  ユーザーやタグをフォローすることで、あなたが興味を持つ技術分野の情報をまとめてキャッチアップできます
+%\item
+%  便利な情報をあとで効率的に読み返せます
+%
+%  気に入った記事を「ストック」することで、あとからすぐに検索できます
+%\end{enumerate}
+%
+%\href{/signup?callback_action=login_or_signup\&redirect_to=\%2F1429takahiro\%2Fitems\%2F710a877b1afb1626334f\&realm=qiita}{登録する}\href{/login?callback_action=login_or_signup\&redirect_to=\%2F1429takahiro\%2Fitems\%2F710a877b1afb1626334f\&realm=qiita}{ログインする}
+%
+%% \href{/1429takahiro}{\includegraphics{https://staging-qiita-user-profile-images.imgix.net/https\%3A\%2F\%2Favatars.githubusercontent.com\%2Fu\%2F8001474\%3Fv\%3D3?ixlib=rb-4.0.0\&auto=compress\%2Cformat\&lossless=0\&w=75\&s=e49385c7c2b6ded4b59fb75bd3d695f1}}
+%
+%\href{/1429takahiro}{}
+%
+%\href{/1429takahiro}{@1429takahiro}
+%
+%フォロー
+%
+%\href{https://github.com/1429takahiro}{\emph{}}
+%
+%\leavevmode\hypertarget{comments}{}%
+%コメント
+%
+%この記事にコメントはありません。
+%
+%あなたもコメントしてみませんか :)
+%
+%\href{/signup?callback_action=login_or_signup\&redirect_to=https\%3A\%2F\%2Fqiita.com\%2F1429takahiro\%2Fitems\%2F710a877b1afb1626334f\&realm=qiita}{ユーザー登録}
+%
+%すでにアカウントを持っている方は\href{/login?callback_action=login_or_signup\&redirect_to=https\%3A\%2F\%2Fqiita.com\%2F1429takahiro\%2Fitems\%2F710a877b1afb1626334f\&realm=qiita}{ログイン}
+%
+%\href{/1429takahiro/items/710a877b1afb1626334f/likers}{18}
+%
+%{24}
+%
+%\emph{}
+%
+%記事の改善
+%
+%\href{/drafts/710a877b1afb1626334f/edit}{{\emph{}}編集リクエストを送る}
+%
+%記事の情報
+%
+%\href{/1429takahiro/items/710a877b1afb1626334f/revisions}{{\emph{}}編集履歴}\href{/1429takahiro/items/710a877b1afb1626334f/patches}{{\emph{}}編集リクエスト一覧}
+%
+%LGTMしたユーザー一覧\href{/1429takahiro/items/710a877b1afb1626334f.md}{{\emph{}}Markdown
+%で本文を見る}
+%
+%{\emph{}}問題がある記事を報告する
+%
+%{この記事にどのような問題がありますか？}
+%
+%法律違反（著作権侵害、プライバシー侵害、名誉棄損等）
+%
+%社会的に不適切（公序良俗に反する）
+%
+%宣伝行為
+%
+%スパムの疑い
+%
+%上記以外だが、Qiitaのコミュニティにふさわしくない（ガイドライン違反）
+%
+%% \includegraphics[width=0.01042in,height=0.01042in]{https://www.facebook.com/tr?id=1792588824374455\&ev=PageView\&noscript=1}
+%
+%How developers code is here.
+%
+%\href{https://twitter.com/qiita}{}\href{https://www.facebook.com/qiita/}{}
+%
+%Qiita
+%
+%\href{/about}{About}\href{/terms}{利用規約}\href{/privacy}{プライバシー}\href{http://help.qiita.com/ja/articles/qiita-community-guideline}{ガイドライン}\href{https://help.qiita.com/ja/articles/others-brand-guideline}{デザインガイドライン}
+%
+%\href{/release-notes}{リリース}\href{/api/v2/docs}{API}\href{/feedback/new}{ご意見}\href{https://help.qiita.com}{ヘルプ}\href{https://qiita.com/ads?utm_source=qiita\&utm_medium=referral\&utm_content=footer}{広告掲載}
+%
+%Increments
+%
+%\href{https://increments.co.jp/company/}{About}\href{https://increments.co.jp/jobs/}{採用情報}\href{https://blog.qiita.com}{ブログ}
+%
+%\href{https://teams.qiita.com/}{Qiita
+%Team}\href{https://jobs.qiita.com?utm_source=qiita\&utm_medium=referral\&utm_content=footer}{Qiita
+%Jobs}\href{https://zine.qiita.com?utm_source=qiita\&utm_medium=referral\&utm_content=footer}{Qiita
+%Zine}
+%
+%© 2011-2021 Increments Inc.
+%
+%\hypertarget{Snackbar-react-component-4989527a-fc6e-429b-9940-edebbd4ed337}{}
+%
+%\hypertarget{LoginModal-react-component-659e967c-ea34-486c-ae1d-57919018bbf7}{}
+%
+%\hypertarget{StockModal-react-component-51cd2602-0243-4593-babf-c185110200d2}{}
+%
+%\hypertarget{dataContainer}{}
+
+\end{document}
