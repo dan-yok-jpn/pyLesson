@@ -9,7 +9,7 @@ If exist c:\osgeo4w64 (
     if "%v%"=="" (
         echo.
         echo ^ not installed QGIS
-        goto :eof
+        exit 1
     )
     call :setenv %v%
 )
@@ -21,8 +21,9 @@ If exist c:\osgeo4w64 (
     if "%v%"=="" (
         echo.
         echo ^ QGIS is too old
-        exit /b
+        exit 1
     )
+    set PYTHONHOME=%v%
     set PATH=%v%;%v%\Scripts;%PATH%
     rem set PYTHONHOME=%v%
     set v=
