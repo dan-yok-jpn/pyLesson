@@ -1,9 +1,9 @@
 import os
 import sys
 
-def usage(path_to_prog):
+def usage():
 
-    prg = os.path.basename(path_to_prog)
+    prg = os.path.basename(__file__)
     msg = '\n Usage : python {} path_to_python'.format(prg)
     print(msg, file=sys.stderr)
     sys.exit()
@@ -25,4 +25,4 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         replace_all(sys.argv[1])
     else:
-        usage(sys.argv[0])
+        usage()
