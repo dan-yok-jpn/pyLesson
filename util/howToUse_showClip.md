@@ -7,6 +7,6 @@
 
 ## 使用例
 
-<img src="https://github.com/dan-yok-jpn/pyLesson/blob/main/util/img/xls_snap.png" width=50%>
+<img src="https://github.com/dan-yok-jpn/pyLesson/blob/main/util/img/xls_snap.png" width="50%">
 
-<img src="https://github.com/dan-yok-jpn/pyLesson/blob/main/util/img/showClip.png" width=50%>
+<img src="https://github.com/dan-yok-jpn/pyLesson/blob/main/util/img/showClip.png" width="50%">
