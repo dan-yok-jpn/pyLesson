@@ -37,6 +37,15 @@ foo.py の編集・実行ができる状況になる。
 
 ## その他
 
+## code.bat
+
+コマンドプロンプトから Visual Studio を起動する。
+
+```sh
+% code [foo.*] [dir]
+``` 
+<br>
+
 ### showClip.bat
 
 クリップボード内のテキストの出力。
