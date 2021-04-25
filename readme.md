@@ -1,9 +1,9 @@
 # Python 講習会のための素材集
 
-* cals.py - 電子納品のサマリを表示するモジュール
-* whyPython.pptx - スタート・ガイド
-* ./CALS - 電子納品の xml の例
-* ./cheatSheet - チートシート
-* ./vs_VBA - VBA との比較
-* ./util - ユーティリティー
-* ./useGdal - osgeo パッケージの利用例
+* useCase_1 - スタートアップ
+* useCase_2 - Excel のデータを使う
+* useCase_3 - デジカメのデータを使う
+* cheatSheet - チートシート
+* vs_VBA - VBA との比較
+* util - ユーティリティー
+* useGdal - osgeo パッケージの利用例
