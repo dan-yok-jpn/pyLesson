@@ -6,7 +6,7 @@ import glob
 import json
 import imghdr
 from PIL import Image
-import piexif
+from PIL.ExifTags import TAGS as ExifTags
 
 def usage():
 	s  = '\n Create a web content named clickMe.html '
@@ -17,11 +17,7 @@ def usage():
 	sys.exit(s.format(sys.argv[0]))
 
 def dms_2_deg(dms):
-	d = float(dms[0][0]) / dms[0][1]
-	m = float(dms[1][0]) / dms[1][1]
-	s = float(dms[2][0]) / dms[2][1]
-	deg = (s / 60. + m) / 60. + d
-	return int(deg * 1000000. + 0.5) / 1000000.
+	return (dms[2] / 60. + dms[1]) / 60 + dms[0] 
 
 # http://hackmylife.net/archives/7400448.html
 # https://qiita.com/Klein/items/a04cf1a6c94d6f03846e
@@ -41,33 +37,40 @@ def getExif(file):
 
 	im = Image.open(file)
 	try:
-		exif_dict = piexif.load(im.info['exif'])
+		exif = {
+			ExifTags[k]: v
+			for k, v in im._getexif().items()
+				if k in ExifTags # except non-standard
+		}
 	except AttributeError:
 		return False, {}
 
 	name = os.path.basename(file)
 	try:
-		DateTimeOriginal = exif_dict['Exif'][piexif.ExifIFD.DateTimeOriginal]
-		GPSLongitude     = exif_dict['GPS'][ piexif.GPSIFD.GPSLongitude]
-		GPSLatitude      = exif_dict['GPS'][ piexif.GPSIFD.GPSLatitude]
+		# Standard Exif Tags
+		# https://www.exiv2.org/tags.html
+		GPSInfo = exif['GPSInfo']
+		DateTimeOriginal = exif['DateTimeOriginal']
+		GPSLongitude     = GPSInfo[4]
+		GPSLatitude      = GPSInfo[2]
 		info = {
 			'name': name,
-			'time': DateTimeOriginal.decode(),
-			'lnglat': [dms_2_deg(GPSLongitude), dms_2_deg(GPSLatitude)]
+			'time': DateTimeOriginal,
+			'lnglat': (dms_2_deg(GPSLongitude), dms_2_deg(GPSLatitude))
 		}
 	except:
 		return False, {}
 
 	try:
-		Orientation = exif_dict['0th'][piexif.ImageIFD.Orientation]
+		Orientation = exif['Orientation']
 		if Orientation != 1:
 
 			new_img = convert_image[Orientation](im)
 
 			w, h = new_img.size
-			exif_dict['0th'][piexif.ImageIFD.XResolution] = (w, 1)
-			exif_dict['0th'][piexif.ImageIFD.YResolution] = (h, 1)
-			exif_dict['0th'][piexif.ImageIFD.Orientation] = 1
+			exif['XResolution'] = (w, 1)
+			exif['YResolution'] = (h, 1)
+			exif['Orientation'] = 1
 
 			Image.Image.close(im)
 
@@ -75,7 +78,7 @@ def getExif(file):
 			backup = file.replace(name_, name_ + '-original')
 			os.rename(file, backup)
 
-			exif_bytes = piexif.dump(exif_dict)
+			exif_bytes = piexif.dump(exif)
 			try:
 				new_img.save(file, quality=95, exif=exif_bytes)
 			except:
@@ -114,8 +117,7 @@ def main(dir = '.'):
 			features.append(feature)
 
 	if len(features) == 0:
-		sys.stderr.write('\n Failed to get GPS information.')
-		sys.exit(1)
+		sys.exit('\n Failed to get GPS information.')
 
 	geojson['bbox'] = boundBox(points)
 
