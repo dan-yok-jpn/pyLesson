@@ -26,7 +26,9 @@ convert_image = {
     2: lambda img: img.transpose(Image.FLIP_LEFT_RIGHT),
     3: lambda img: img.transpose(Image.ROTATE_180),
     4: lambda img: img.transpose(Image.FLIP_TOP_BOTTOM),
+    5: lambda img: img.transpose(Image.FLIP_LEFT_RIGHT).transpose(Pillow.ROTATE_90),
     6: lambda img: img.transpose(Image.ROTATE_270),
+    7: lambda img: img.transpose(Image.FLIP_LEFT_RIGHT).transpose(Pillow.ROTATE_270),
     8: lambda img: img.transpose(Image.ROTATE_90),
 }
 
