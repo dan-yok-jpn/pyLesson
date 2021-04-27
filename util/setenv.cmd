@@ -13,7 +13,8 @@ If exist c:\osgeo4w64 (
     )
     call :setenv %v%
 )
-                goto :eof
+goto :eof
+
 :setenv %1
     for /d %%d in (%1\apps\Python3*) do (
         set v=%%d

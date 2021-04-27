@@ -6,7 +6,7 @@ setlocal
 
 if "%PYTHONHOME%"=="" (call setenv)
 
-if %ERRORLEVEL% equ 1    (
+if %ERRORLEVEL%==1 (
     echo.
     echo ^ Cannot set up because there is no suitable Python
     exit
@@ -15,5 +15,3 @@ if %ERRORLEVEL% equ 1    (
 set dst=%APPDATA%\Code\User
 
 python mkSettings.py %PYTHONHOME% > %dst%\settings.json
-copy launch.json %dst%\ 1>nul 2>&1
-
