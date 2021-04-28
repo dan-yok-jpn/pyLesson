@@ -19,19 +19,6 @@ def usage():
 def dms_2_deg(dms):
 	return (dms[2] / 60. + dms[1]) / 60 + dms[0] 
 
-# http://hackmylife.net/archives/7400448.html
-# https://qiita.com/Klein/items/a04cf1a6c94d6f03846e
-convert_image = {
-    1: lambda img: img,
-    2: lambda img: img.transpose(Image.FLIP_LEFT_RIGHT),
-    3: lambda img: img.transpose(Image.ROTATE_180),
-    4: lambda img: img.transpose(Image.FLIP_TOP_BOTTOM),
-    5: lambda img: img.transpose(Image.FLIP_LEFT_RIGHT).transpose(Pillow.ROTATE_90),
-    6: lambda img: img.transpose(Image.ROTATE_270),
-    7: lambda img: img.transpose(Image.FLIP_LEFT_RIGHT).transpose(Pillow.ROTATE_270),
-    8: lambda img: img.transpose(Image.ROTATE_90),
-}
-
 def getExif(file):
 
 	if imghdr.what(file) != 'jpeg':
@@ -47,47 +34,17 @@ def getExif(file):
 	except AttributeError:
 		return False, {}
 
-	name = os.path.basename(file)
-	try:
-		# Standard Exif Tags
-		# https://www.exiv2.org/tags.html
-		GPSInfo = exif['GPSInfo']
-		DateTimeOriginal = exif['DateTimeOriginal']
-		GPSLongitude     = GPSInfo[4]
-		GPSLatitude      = GPSInfo[2]
-		info = {
-			'name': name,
-			'time': DateTimeOriginal,
-			'lnglat': (dms_2_deg(GPSLongitude), dms_2_deg(GPSLatitude))
-		}
-	except:
-		return False, {}
-
-	try:
-		Orientation = exif['Orientation']
-		if Orientation != 1:
-
-			new_img = convert_image[Orientation](im)
-
-			w, h = new_img.size
-			exif['XResolution'] = (w, 1)
-			exif['YResolution'] = (h, 1)
-			exif['Orientation'] = 1
-
-			Image.Image.close(im)
-
-			name_ = name[:-4]
-			backup = file.replace(name_, name_ + '-original')
-			os.rename(file, backup)
-
-			exif_bytes = piexif.dump(exif)
-			try:
-				new_img.save(file, quality=95, exif=exif_bytes)
-			except:
-				return False, {}
-	except:
-		pass
-
+	# Standard Exif Tags
+	# https://www.exiv2.org/tags.html
+	GPSInfo = exif['GPSInfo']
+	DateTimeOriginal = exif['DateTimeOriginal']
+	GPSLongitude     = GPSInfo[4]
+	GPSLatitude      = GPSInfo[2]
+	info = {
+		'name': os.path.basename(file),
+		'time': DateTimeOriginal,
+		'lnglat': (dms_2_deg(GPSLongitude), dms_2_deg(GPSLatitude))
+	}
 	return True, info
 
 def boundBox(points):
