@@ -7,3 +7,4 @@
 * vs_VBA - VBA との比較
 * util - ユーティリティー
 * useGdal - osgeo パッケージの利用例
+* VSCode - Visual Studio Code のインストール・環境設定
