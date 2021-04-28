@@ -1,0 +1,317 @@
+
+<!-- saved from url=(0326)https://ids.itmedia.jp/print/ait/articles/2104/23/news022.html?fp=6293c64713e1996eecfe77e2dd7e138ca514c9871109eda0455b180cd2fbbe3b&ac=e8cb9106baa7e37eb9feb877b9f0a27ddaf48b95ba02da49cbb3a8247ee7fec4&bpc=e41365780693060d5b7cbb985d0c1b93d13630bad0e9cb1094a4c63426b7310c#_ga=2.49286054.1220502356.1619576180-1739514461.1619576180 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta name="robots" content="noindex,nofollow">
+
+<title>Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう</title>
+<link href="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/print_html.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<!-- -->
+
+<h1><small>Visual Studio Codeで快適Pythonライフ：</small>Visual Studio Codeから「Hello Python」してみよう</h1>
+<div id="url"><p><a href="https://www.atmarkit.co.jp/ait/articles/2104/23/news022.html">https://www.atmarkit.co.jp/ait/articles/2104/23/news022.html</a>　　[この記事はPDF出力に対応していません]</p></div>
+<h2>快適なPythonライフを現実のものとする第一歩として、Visual Studio CodeにPython拡張機能をインストールして「Hello Python」してみよう。</h2>
+<h5>2021年04月23日 05時00分 更新</h5>
+<div id="byline"><b>[</b>かわさきしんじ，<b>Deep Insider編集部]</b></div>
+<br>
+
+<div id="col200l"><a name="backn2.gif"></a><a href="https://www.atmarkit.co.jp/ait/series/23363/" class="imgLink" target="_blank"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/backn2.gif" width="146" height="20" alt="「Visual Studio Codeで快適Pythonライフ」のインデックス"></a></div>
+<p><a href="https://www.atmarkit.co.jp/ait/series/23363/">連載目次</a></p>
+<h3>Visual Studio Codeとは</h3>
+<p>　<a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" target="_blank">Visual Studio Code</a>（以下、VS Code）は、マイクロソフトがコミュニティーと共に開発しているテキストエディタです。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0101.gif" width="590" height="486" alt="VS Code公式サイト">
+<br>
+<small><strong>VS Code公式サイト</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　その特徴としては軽快な動作、コード補完（IntelliSense）／構文チェック／デバッガーといったプログラマーの日々の作業を助けてくれる豊富な機能、WindowsやmacOSなどさまざまなプラットフォームで利用可能なこと、ソースコード管理システムとの統合、カスタマイズ性の高さ、豊富な拡張機能などが挙げられるでしょう。何より無償で利用できることから、2015年に発表された後、あっという間に開発者向けのテキストエディタとして大きな人気を獲得することになりました。</p>
+<p>　例えば、JetBrainsが行った「<a href="https://www.jetbrains.com/ja-jp/lp/python-developers-survey-2020/" target="_blank">Python Developers Survey 2020</a>」ではPython開発者ではVS CodeとPyCharmがテキストエディタとして人気を二分する状況となっていますし、「<a href="https://insights.stackoverflow.com/survey/2019" target="_blank">Stack Overflow Developer Survey 2019</a>」では開発者の約半数が使用しているエディタとなっています。</p>
+<p>　本連載では、このVS Codeを使ってPythonプログラミングを快適に行うためのいろいろなことを見ていく予定です。今回はインストールと画面構成、Python拡張機能など、その入口となる部分について見ていきましょう。</p>
+<h3>VS Codeのインストールと日本語化</h3>
+<p>　VS Codeは主にWindows、macOS、Linuxの3つのプラットフォームに向けて提供されています（それ以外にもRaspberry Piなどでも利用できますが、本連載ではその辺にはあまり触れない予定です）。さらにプラットフォームごとにさまざまなバージョンが用意されています（Windowsであればユーザーセットアップ版やシステムセットアップ版などがありますし、macOSであればIntel版／M1版／ユニバーサル版など）。</p>
+<p>　もう1つ、「<a href="https://code.visualstudio.com/insiders" target="_blank">Insiders Build</a>」と呼ばれる新機能をいち早く試せる（その代わりに、動作が安定しないかもしれない、また将来的にはサポートされない機能などが含まれる可能性もある）バージョンもあります（これに対して、通常のバージョンを安定版、ステーブル版などと呼びます）。</p>
+<p>　こうした中から何を選べばよいかはユーザーごとに異なるでしょうから、ここでは深くは触れません。VS Codeの<a href="https://code.visualstudio.com/Download" target="_blank">ダウンロードページ</a>から好きなものを選んでください。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0102.gif" width="590" height="486" alt="VS Codeのダウンロードページ">
+<br>
+<small><strong>VS Codeのダウンロードページ</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　強いていえば、Windowsであれば、自分が使っているWindowsに合ったもの（32／64ビット）でユーザーセットアップ版が推奨されているようです。macOSであれば、使用しているMacのCPUに適合したものか、ユニバーサルバイナリを選択します。Linuxでも、自分の環境に合ったものを選ぶことになるでしょう。新しモノ好きであれば、上で述べたInsiders Buildを選んでもよいかもしれません（筆者は新しモノ好きではありませんが、原稿書きにはInsiders Buildを使い、画面キャプチャーなどの目的で安定版を使っています）。</p>
+<p>　インストールの詳細については公式サイトの「<a href="https://code.visualstudio.com/docs/setup/setup-overview" target="_blank">Setting up Visual Studio Code</a>」などを参照してもらうとして、3つのプラットフォームでのインストール手順をざっくりとまとめておきましょう。</p>
+<div class="cmsList">
+<ul>
+<li>Windows：ダウンロードしたインストーラーを実行する</li>
+<li>macOS：ダウンロード後に展開されたVisual Studio Code.appファイルを［アプリケーション］フォルダにドラッグ＆ドロップする</li>
+<li>Linux：ダウンロードしたファイルを使ってインストールするか、パッケージ管理ユーティリティーを使ってインストールする</li>
+</ul>
+</div>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0103.gif" width="590" height="457" alt="Windows版のユーザーセットアップバージョンのインストーラーを実行しているところ">
+<br>
+<small><strong>Windows版のユーザーセットアップバージョンのインストーラーを実行しているところ</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　Windows用のインストーラーでは上に示したように、エクスプローラーでの作業が快適になるような設定や、コマンドプロンプトから「code」と入力することでVS Codeが起動できるようにする設定なども行えます（macOSではシェルからVS Codeを起動するにはインストール後に自分で設定を行う必要があります）。</p>
+<p>　インストールが完了した後、VS Codeを起動すると、次のような画面が表示されます。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0104.gif" width="590" height="442" alt="VS Codeの起動画面（Windows版）">
+<br>
+<small><strong>VS Codeの起動画面（Windows版）</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　画面右下には、使用データの収集についてのメッセージが表示されています（Windowsに<a href="https://www.atmarkit.co.jp/ait/articles/2005/15/news020.html" target="_blank">WSL</a>をインストールしている場合は、関連する拡張機能のインストールを勧めるメッセージが表示されるかもしれません。必要に応じてインストールしてください）。</p>
+<p>　気になるのは、画面に英語しか表示されていないことです。VS Codeはインストール直後にサポートしているのが英語のみであるため、このようになっています。そこで、まずは、日本語が表示されるようにしていきます。</p>
+<p>　これには「Japanese Language Pack for Visual Studio Code」と呼ばれる拡張機能（「拡張機能」とは名前の通り、VS Codeの機能を拡張するモノです）をインストールします。拡張機能をインストールするには、画面左端にある縦長の領域（これを「アクティビティーバー」と呼びます）の上から5つ目の［Extensions］アイコンをクリックします。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col500"><a name="di-vscp0105.gif"></a><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0105.gif" width="432" height="527" alt="アクティビティーバーで［Extensions］アイコンをクリック">
+<br>
+<small><strong>アクティビティーバーで［Extensions］アイコンをクリック</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　すると、アクティビティーバーの右側に［EXTENSIONS］という名前の領域が表示されます（これを「サイドバー」と呼びます）。そこで、上部にある検索ボックスに「japanese」などと入力してください。これにより、以下のように［Japanese Language Pack for VS Code］が表示されるので、右側にある［Install］ボタンをクリックします。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0106.gif" width="590" height="292" alt="［Japanese Language Pack for VS Code］拡張機能をインストール">
+<br>
+<small><strong>［Japanese Language Pack for VS Code］拡張機能をインストール</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　［Install］ボタンをクリックすると、ボタンのラベルが「Installing」に変わり、インストールが実行されます。その後、ボタンが歯車アイコンに変わって、拡張機能のインストールが完了します。ただし、そのままでは表示は英語のままです。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0107.gif" width="590" height="442" alt="右下にある［Restart］ボタンをクリックする">
+<br>
+<small><strong>右下にある［Restart］ボタンをクリックする</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　右下には「日本語でVS Codeを使うには、再起動が必要です」という意味のメッセージが表示されているので、それに従って、［Restart］ボタンをクリックして、VS Codeを再起動すれば、以下のようにVS Codeのウィンドウが日本語で表示されます。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0108.gif" width="590" height="442" alt="日本語化されたVS Code">
+<br>
+<small><strong>日本語化されたVS Code</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　日本語化ができたところで、VS Codeの画面構成について簡単に見ていきましょう。</p>
+<h3>VS Codeの画面構成</h3>
+<p>　VS Codeの画面は次のようなパーツで構成されています。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0109.gif" width="590" height="442" alt="VS Codeの画面構成">
+<br>
+<small><strong>VS Codeの画面構成</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　それぞれについて簡単にまとめます。</p>
+<div class="cmsList">
+<ul>
+<li>アクティビティーバー：サイドバーに表示される「ビュー」の切り替えに使用する。拡張機能をインストールすることで、ここに表示されるアイコン（と対応するビュー）が増えることもある。上の画像では［エクスプローラー］アイコンが強調表示されていて、サイドバーにも［エクスプローラー］ビューが表示されている。この状態で［エクスプローラー］アイコンをクリックすると、サイドバーが非表示となる（ソースコードの編集領域を増やしたいときに便利）</li>
+<li>サイドバー：アクティビティーバーでクリックされたアイコンに応じて、ファイル操作を行う［エクスプローラー］ビュー、検索を行う［検索］ビュー、ソースコード管理を行う［ソース管理］ビュー、デバッグ時に使用する［実行とデバッグ］ビュー、拡張機能の管理を行う［拡張機能］ビューなどが表示される。上の画像では、［エクスプローラー］ビューが表示されていて、sample_folderフォルダにあるファイルが一覧されている</li>
+<li>エディタ（エディタグループ）：プログラムコードやテキストファイルの編集に使用する領域。個々のファイルはタブ形式で表示される。この領域を分割して、複数のファイルを同時に表示することも可能。上の画像では、2つのエディタグループがあり、一方にはmylib.pyファイルの内容が、もう一方にはmain.pyファイルの内容が表示されている</li>
+<li>パネル：ソースコードにある問題点の表示、デバッグ情報の表示など、VS Codeからユーザーに何かを知らせたり、ターミナル（またはPowerShellやコマンドプロンプト）を開いて、対話的に何らかのコマンドを実行したりするのに使われる。上の画像では、pyコマンドでmain.pyファイルを実行した結果が表示されている</li>
+<li>ステータスバー：補助的な情報を表示するのに使われる。上の画像では、エディタグループでmain.pyファイルがアクティブなので、そのファイルの編集に関する情報が表示されている（カーソル位置など）</li>
+</ul>
+</div>
+<p>　ここでは表示されていませんが、VS Codeで頻繁に使用するパーツがあります。それが「コマンドパレット」と呼ばれるものです。コマンドパレットは、VS Codeが提供するさまざまなコマンドを実行するために使用します。</p>
+<p>　コマンドパレットを表示するには［表示］メニューから［コマンド パレット］を選択します。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><a name="di-vscp0110.gif"></a><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0110.gif" width="533" height="538" alt="［表示］メニューから［コマンド パレット］を選択"></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c">［表示］メニューから［コマンド パレット］を選択</small></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c"><span class="cmsColorBlue">▼</span></small></div>
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0111.gif" width="590" height="442" alt="コマンドパレットが表示された"></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c">コマンドパレットが表示された</small></div>
+<p><strong>［表示］メニューから［コマンド パレット］を選択</strong></p>
+<br clear="all"><span></span></div>
+<p>　しかし、コマンドパレットは頻繁にお世話になるので、ショートカットキーを覚えておくのがよいでしょう。Windows／Linuxでは［Ctrl］＋［Shift］＋［P］キーで、macOSでは［Shift］＋［Command］＋［P］キーでコマンドパレットを表示できます（［ESC］キーを押せば、コマンドパレットを消せます）。</p>
+<p>　コードを編集する際には、サイドバーに［エクスプローラー］ビューを表示して、そこからファイルをクリックしたりダブルクリックしたりして、エディタにそのファイルの内容を表示／編集した後に、コマンドパレットやターミナルからそのファイルを実行するといったことがよく行われます。</p>
+<p>　なお、［エクスプローラー］ビューでのファイル操作や、エディタ（エディタグループ）の詳細については次回以降に見ていく予定ですが、ほんの少しだけ見ておきましょう。</p>
+<h3>［エクスプローラー］ビューでのファイル操作</h3>
+<p>　Windowsなら［スタート］メニューやタスクバーから、macOSなら［アプリケーション］フォルダからVS Codeを初めて起動すると、多くの場合、次のように何のフォルダもファイルも開かれていない状態となります。以下の画像では［エクスプローラー］ビューがサイドバーに表示されていますが、これが表示されていない場合もあります。そのときには画面左端のアクティビティーバーで［エクスプローラー］アイコンをクリックすると表示されます（トグル式なので、もう一度クリックすると非表示になります）。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0112.gif" width="590" height="442" alt="何も開かれていない状態のVS Code">
+<br>
+<small><strong>何も開かれていない状態のVS Code</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　この状態で［フォルダーを開く］ボタンをクリックすれば、OSごとに固有のダイアログが表示されて、「VS Codeで作業を行うフォルダ」が開かれます（上の画像を見ればお分かりの通り、GitHubなどからリポジトリの内容をローカルに複製して、作業を始めることも可能です）。多くのエディタでは「ファイル」を開くのが一般的ですが、VS Codeではフォルダを作業の主体として考えることには注意してください（複数のフォルダをひとまとめにして「ワークスペース」として扱うことも可能ですが、これについてはここでは触れません）。</p>
+<p>　フォルダを開くと、［エクスプローラー］ビューにはそのフォルダにあるファイルが一覧表示されるので、そこでファイルを作成したり、ファイルを選択したりするのが、［エクスプローラー］ビューでの基本です。例えば、Windows版のVS Codeを例として、c:\tmpフォルダにあるtestフォルダを作業フォルダとしてオープンしたものとしましょう。すると、［エクスプローラー］ビューは次のようになります。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col300"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0113.gif" width="290" height="353" alt="VS Codeでc:\tmp\testフォルダを開いたところ">
+<br>
+<small><strong>VS Codeでc:\tmp\testフォルダを開いたところ</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　［エクスプローラー］ビューには［TEST］と表示されますが、ファイルが何もないので、その下には何も表示されていません。ファイルを新規に作成するには、［エクスプローラー］ビューにマウスカーソルを移動すると［TEST］の右側に表示される［新しいファイル］ボタンをクリックします（その右側にはフォルダを新規作成するボタン、表示を更新するボタン、エクスプローラーの階層表示を折りたたむボタンがあります）。すると、［エクスプローラー］ビューにファイル名を入力するテキストボックスが表示されるので、何かファイル名を入力します（ここでは「hello.py」としました）。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col300"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0114.gif" width="290" height="57" alt="［新しいファイル］ボタンをクリック"></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c">［新しいファイル］ボタンをクリック</small></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c"><span class="cmsColorBlue">▼</span></small></div>
+<div id="col300"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0115.gif" width="290" height="63" alt="ファイル名を入力"></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c">ファイル名を入力</small></div>
+<p><strong>VS Codeでファイルを新規に作成する</strong></p>
+<br clear="all"><span></span></div>
+<p>　新規にファイルを作成すると、エディタにそのファイル名（ここでは「hello.py」）でタブが新規に表示されます。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0116.gif" width="590" height="442" alt="新規に作成したファイルがエディタに表示されたところ">
+<br>
+<small><strong>新規に作成したファイルがエディタに表示されたところ</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　ファイルを閉じるには、タブの右端にある［×］をクリックします。なお、右下に表示されている［Pythonにお勧めの拡張機能をインストールしますか］というメッセージについては、この後で説明をします。</p>
+<p>　同様にしてgoodbye.pyファイルを作成し（てから閉じ）たものとしましょう。すると、［エクスプローラー］ビューの表示は次のようになります。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col300"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0117.gif" width="290" height="284" alt="hello.pyファイルとgoodbye.pyファイルが作られたところ">
+<br>
+<small><strong>hello.pyファイルとgoodbye.pyファイルが作られたところ</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　これらのファイルをエディタに開くには、もちろんファイルをクリックします。このとき、シングルクリックとダブルクリックでその振る舞いが異なる点は覚えておいてください。</p>
+<div class="cmsList">
+<ul>
+<li>シングルクリック：プレビューモードでファイルを開く</li>
+<li>ダブルクリック：編集用にファイルを開く</li>
+</ul>
+</div>
+<p>　プレビューモードというのは、ファイルが多数あるときに、その内容を確認する目的で開くことを意味します。プレビューモード用のタブは1つだけ、エディタに表示され、ファイルをシングルクリックするたびにプレビュー用のタブにそのファイルの内容が表示されます。目的のファイルが見つかったので編集を使用として、何かキー入力をすると、その瞬間にそれはプレビュー用のタブではなく、編集用のタブとなります（この辺については次回に見ていきましょう）。</p>
+<p>　プレビュー用のタブはファイル名がイタリック体で表示され、編集用のタブではファイル名が通常書体で表示されます。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col400"><a name="di-vscp0118.gif"></a><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0118.gif" width="388" height="142" alt="プレビュー用のタブと編集用のタブ">
+<br>
+<small><strong>プレビュー用のタブと編集用のタブ</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　何気なく使っている分には、あまり気が付かないかもしれませんが、タブにはこのような違いがあるので、「あのタブ、さっき開いたはずなのにないなー」というときにはプレビューモードで開いた可能性があることは覚えておいてください。</p>
+<p>　ファイル名やフォルダ名を変更したり、ファイルを削除したりといった操作は、［エクスプローラー］ビューでファイルを右クリックすると表示されるメニューから可能です。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><a name="di-vscp0119.gif"></a><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0119.gif" width="545" height="466" alt="ファイルの操作">
+<br>
+<small><strong>ファイルの操作</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　ここまで、［エクスプローラー］ビューでの基本的なファイル操作を見てきました。次に先ほどの「Pythonにお勧めの拡張機能をインストールしますか」というメッセージについて見てみましょう。</p>
+<h3>Python拡張機能</h3>
+<p>　VS CodeはデフォルトでもPythonをサポートしているといえます。例えば、プログラムコードを入力すると、キーワードや文字列などが色分けされて表示されます。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0120.gif" width="590" height="564" alt="Pythonコードの色分け表示">
+<br>
+<small><strong>Pythonコードの色分け表示</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　しかし、コード補完機能を使ったり、やPythonコードのデバッグをしたりするには、Python用の拡張機能をインストールする必要があります。これをインストールするには、上の画像で右下に表示されている「Pythonにお勧めの拡張機能をインストールしますか」というメッセージにある［インストール］ボタンをクリックします。すると、サイドバーに［拡張機能］ビューが表示され、以下のようにPython用の拡張機能がインストールされます。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0121.gif" width="590" height="442" alt="Python拡張機能のインストール">
+<br>
+<small><strong>Python拡張機能のインストール</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　あるいは、上でVS Codeを日本語化したときと同様、アクティビティーバーで［拡張機能］アイコンをクリックして、サイドバーに［拡張機能］ビューを表示し、「python」を検索して、インストールする方法もあります。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0122.gif" width="590" height="442" alt="［拡張機能］ビューでPython拡張機能を検索">
+<br>
+<small><strong>［拡張機能］ビューでPython拡張機能を検索</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　いずれの方法でも、VS CodeにはPython拡張機能とJupyter拡張機能の2つがインストールされます。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col300"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0123.gif" width="290" height="338" alt="Python拡張機能とJupyter拡張機能がインストールされる">
+<br>
+<small><strong>Python拡張機能とJupyter拡張機能がインストールされる</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　Python拡張機能は、Pythonコード入力時のコード補完やコード解析（リンティング）、Python実行環境の構築、デバッグなどの機能を提供するもので、VS CodeでPythonプログラミングを行う際には必須の拡張機能といえます（ただし、リンターやフォーマッタの機能を提供するモジュールをインストールする必要もあります）。</p>
+<p>　Jupyter拡張機能はPython拡張と連携して、VS Code内でJupyter Notebookを快適に使えるようにしてくれるものです。</p>
+<p>　これらの詳細については後続の回で詳しく見ていくことにしましょう。</p>
+<h3>VS CodeでHello Python</h3>
+<p>　Python拡張機能をインストールしたので、最後に「Hello World」ならぬ「Hello Python」プログラムを書いてみましょう。</p>
+<p>　先ほどはtestフォルダを開いて、そこにhello.pyファイルとgoodbye.pyファイルを作成しましたが、まだコードは書いていませんでした（サンプルの画像としてはコード入りのものをお目にかけましたが）。そこで、これらにコードを記述してみましょう。ただし、main.pyファイルを作成しておきます。要するに、main.pyファイルからhello.pyファイルとgoodbye.pyファイルに含まれている関数を使ってみようというわけです。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col300"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0124.gif" width="290" height="319" alt="main.pyファイルを追加">
+<br>
+<small><strong>main.pyファイルを追加</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　hello.pyファイルには以下のコードを記述します。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div class="cmsBodyBox cmsBodyBoxBlue">
+<div class="cmsBodyBoxInner">
+<p><span class="cmsColorBlue">def</span> hello(to):<br>&nbsp;&nbsp;&nbsp; <span class="cmsColorBlue">print</span>(f<span class="cmsColorRed">'hello {to}'</span>)</p>
+</div>
+<div class="cmsBodyBoxCaption"><strong>hello.pyファイルの内容</strong></div>
+</div>
+<br clear="all"><span></span></div>
+<p>　注目してほしいのは、コード入力時にはコード補完が効くようになっている点です。例えば、上のコードの最初にある「de」を入力したところを以下に示します。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><a name="di-vscp0125.gif"></a><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0125.gif" width="570" height="190" alt="IntelliSenseによるコード補完が行われている様子">
+<br>
+<small><strong>IntelliSenseによるコード補完が行われている様子</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　「d」→「de」と入力していくにつれて、候補が徐々に絞られます。候補はカーソルキーで選択して、［Tab］キーを押すことで確定できます。ここでは関数を定義しようとしていて、候補の先頭には「def」があるので、［Tab］キーを押せば、残りの「f」が自動的に入力されます。「def」のような短い語ではあまりその威力は感じられませんが、自分で定義した関数やクラスなども補完の対象となるので、長い名前の関数を定義した場合などには、大きな助けとなってくれるはずです。</p>
+<p>　以下は2行目のprint関数呼び出しを書こうとしたところです。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0126.gif" width="590" height="352" alt="print関数のパラメーターリストが表示されたところ">
+<br>
+<small><strong>print関数のパラメーターリストが表示されたところ</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　このようにprint関数のパラメーターリストとそのドキュメントが表示されています。これもPython拡張によるものです。これにより、「この関数のパラメーターって何だっけ？」となってドキュメントを探すためにWebブラウザに移動する必要もなくなります（常にそうなるとは限らないでしょうが、その頻度は減るはずです）。Python拡張機能を使えば、コードの記述に集中しやすくなることが、この2つの例からも分かるでしょう。</p>
+<p>　なお、タブのファイル名の隣に表示されている「●」はそのファイルが編集後、保存されていないことを表しています。編集が終わったら、Windows／Linuxでは［Ctrl］＋［S］キーで、macOSでは［Command］＋［S］キーを押して、ファイルを保存するのを忘れないようにしましょう（これらのキーバインドは、自分で好きなようにカスタマイズすることも可能です）。</p>
+<p>　同様にして、goodbye.pyには以下のコードを記述して、保存します。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div class="cmsBodyBox cmsBodyBoxBlue">
+<div class="cmsBodyBoxInner">
+<p><span class="cmsColorBlue">def</span> goodbye(to):<br>&nbsp;&nbsp;&nbsp; <span class="cmsColorBlue">print</span>(f<span class="cmsColorRed">'good bye {to}'</span>)</p>
+</div>
+<div class="cmsBodyBoxCaption"><strong>goodbye.pyファイルの内容</strong></div>
+</div>
+<br clear="all"><span></span></div>
+<p>　main.pyファイルの内容は次の通りです。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div class="cmsBodyBox cmsBodyBoxBlue">
+<div class="cmsBodyBoxInner">
+<p><span class="cmsColorBlue">from</span> hello <span class="cmsColorBlue">import</span> hello<br><span class="cmsColorBlue">from</span> goodbye <span class="cmsColorBlue">import</span> goodbye<br><br><span class="cmsColorBlue">def</span> main():<br>&nbsp;&nbsp;&nbsp; s = <span class="cmsColorRed">'deep insider'</span><br>&nbsp;&nbsp;&nbsp; hello(s)<br>&nbsp;&nbsp;&nbsp; goodbye(s)<br><br><span class="cmsColorBlue">if</span> __name__ == <span class="cmsColorRed">'__main__'</span>:<br>&nbsp;&nbsp;&nbsp; main()</p>
+</div>
+<div class="cmsBodyBoxCaption"><strong>main.pyファイルの内容</strong></div>
+</div>
+<br clear="all"><span></span></div>
+<p>　ここでもIntelliSenseの恩恵を確認してみましょう。以下は最初の行を入力しているところです。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0127.gif" width="590" height="98" alt="IntelliSenseによるコード補完">
+<br>
+<small><strong>IntelliSenseによるコード補完</strong></small></div>
+<br clear="all"><span></span></div>
+<p>　自分で定義した関数「hello」についても、コード補完の対象になっていることが確認できました。Pythonに組み込みのものだけではなく、自分が現在取り組んでいるコードをPython拡張機能が気にしてくれているので、コードを快適に書けるようになることでしょう。</p>
+<p>　最後にこのコードを実行する前に、Pythonインタープリターを選択しておきましょう。実はPythonファイルを作成した時点で、PCにインストールされているPython処理系をVS Codeが探して、どのPythonインタープリターでコードを実行するか、設定してくれているのですが、これを自分の好きなものに変更できます。これにはステータスバー左端にある［Python XXX］という部分をクリックします。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col500"><a name="di-vscp0128.gif"></a><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0128.gif" width="440" height="177" alt="ステータスバー左端の［Python XXX］をクリックする"></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c">ステータスバー左端の［Python XXX］をクリックする</small></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c"><span class="cmsColorBlue">▼</span></small></div>
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0129.gif" width="590" height="338" alt="マンドパレットに利用可能なPythonバージョンが表示されるので、適当に選択する"></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c">コマンドパレットに利用可能なPythonバージョンが表示されるので、適当に選択する</small></div>
+<p><strong>Pythonインタープリターの選択</strong></p>
+<br clear="all"><span></span></div>
+<p>　ここではPython 3.9.0（という中途半端に新しいバージョン）を選択しました。これにより、ステータスバー左端の表示も変更されます（画像は省略します）。</p>
+<p>　これでPythonコードを実行する準備ができました。最後に、エディタで［main.py］タブを選択して、その右端にある［ターミナルでPythonファイルを実行］ボタン（緑色の右向き三角形ボタン）をクリックします。</p>
+<div class="box cmsBoxNoborder cmsBox">
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0130.gif" width="590" height="78" alt="［ターミナルでPythonファイルを実行］ボタンをクリック"></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c">［ターミナルでPythonファイルを実行］ボタンをクリック</small></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c"><span class="cmsColorBlue">▼</span></small></div>
+<div id="col600"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/di-vscp0131.gif" width="590" height="442" alt="プログラムが実行された"></div>
+<div id="noalign" class="cmsCaption"><small id="cap-c">プログラムが実行された</small></div>
+<p><strong>main.pyファイルを実行</strong></p>
+<br clear="all"><span></span></div>
+<p>　ここまで出番がなかったパネルが開かれて、そこにプログラムを実行した結果が表示されました。これでVS CodeでPythonプログラミングを始める第一歩が踏み出せましたね。今回はこれまでとします。次回はVS Codeの［エクスプローラー］ビューとエディタの操作などについて見ていく予定です。</p>
+<div id="col200l"><a name="backn2.gif"></a><a href="https://www.atmarkit.co.jp/ait/series/23363/" class="imgLink" target="_blank"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/backn2.gif" width="146" height="20" alt="「Visual Studio Codeで快適Pythonライフ」のインデックス"></a></div>
+<p>「<a href="https://www.atmarkit.co.jp/ait/series/23363/">Visual Studio Codeで快適Pythonライフ</a>」</p>
+
+<div id="copyright"><p>Copyright&#169; Digital Advantage Corp. All Rights Reserved.</p>
+</div>
+<hr>
+<p><a href="https://corp.itmedia.co.jp/"><img src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/itmedia_ids.png" align="right" border="0" alt="ITmedia Inc."></a></p>
+<script type="text/javascript" async="" src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/analytics.js.ダウンロード"></script><script type="text/javascript" async="" src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/js"></script><script type="text/javascript" async="" src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/analytics.js.ダウンロード"></script><script async="" src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/gtm.js.ダウンロード"></script><script src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/fpcookie"></script>
+<script src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/v1.js.ダウンロード"></script>
+<script src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/v1.js(1).ダウンロード"></script>
+<!-- itmdp start -->
+<script src="./Visual Studio Codeで快適Pythonライフ：Visual Studio Codeから「Hello Python」してみよう_files/itmdp_code.js.ダウンロード"></script>
+<script>
+itmdp.id = '2075500724';
+itmdp.fp = 'root/id/print';
+itmdp.x_dp = 'root,id,print';
+itmdp.x_ch = 'print';
+itmdp.x_sch = 'print';
+itmdp.x_e = 'event3';
+var itm_pageview = itmdp.pageview();
+</script>
+<!-- itmdp end -->
+<!-- Google Tag Manager -->
+<script>
+if(location.pathname.match(/^\/print\/(news|mobile|pcuser|business|ait|mn|ee|edn|smartjapan|bt|tt|tf|kn|mm|enterprise)\//)){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W3CLTQN');
+}
+</script>
+<!-- End Google Tag Manager -->
+
+
+</body></html>
