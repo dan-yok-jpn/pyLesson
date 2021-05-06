@@ -45,8 +45,8 @@ https://cdnjs.com/libraries/marked
 ---
 
 #### Python の場所の確認
-- Python は「△\apps\Python37」にあります。
-- 「△」の部分は QGIS のインストール先により「C:\OSGeo4W64」か「C:\Program Files\QGIS ~」の何れかになります。
+- Python は「□\apps\Python37」にあります。
+- 「□」の部分は QGIS のインストール先により「C:\OSGeo4W64」か「C:\Program Files\QGIS ~」の何れかになります。
 - ご自分の PC でどちらにあるかを確認して、下頁に進んで下さい。
 - <span style="font-size:25px; color:red">
   エクスプローラーで実際に移動してフォルダーの部分をクリックして「Cntrl + C」とタイプすると
@@ -57,10 +57,10 @@ https://cdnjs.com/libraries/marked
 #### 環境変数 Path の追加
 - 「Windows + Pause/Break」、左上の「システムの詳細設定」をクリック、
 「Alt + N」→「Alt + S」→「P」→「Alt + I」→「Alt + N」で以下の 2 行を追加して下さい。
-1. 　△\apps\Python37
-2. 　△\apps\Python37\Scripts
+1. 　□\apps\Python37
+2. 　□\apps\Python37\Scripts
 - <span style="font-size:25px; color:red">
-「△」の部分は上頁で確認したフォルダーを指します。
+「□」の部分は上頁で確認したフォルダーを指します。
 上頁で「Cntrl + C」とした場合は「1.」の入力が「Cntrl + V」で済みます。<br>
 この動作を反復すれば「2.」も「\Scripts」の追加で済みます。
 </span>
@@ -68,9 +68,13 @@ https://cdnjs.com/libraries/marked
 
 ### ２．動作確認
 - 「Windows + R」で「cmd」と入力して下さい。
-- 開いた画面（「コマンドプロンプト」といいます）で「python --version」とタイプして下さい。
+- 開いた画面（「
+<span style="color:yellow">コマンドプロンプト</span>
+」といいます）で「python --version」とタイプして下さい。
 - 「Python 3.7.～」と表示されたら OK です。
-- エラーが出た場合はタイプ・ミスなどがないかをチェックしてリトライして下さい。
+単に、Python が実行できれば良い、という方は以上で完了です。
+- エラーが出た場合は[追加した環境変数Path](#/1/2)
+に入力ミスがないかをチェックしてリトライして下さい。
 >>>
 
 ### ３．VSCode のインストール
@@ -82,8 +86,8 @@ https://cdnjs.com/libraries/marked
 ---
 
 #### VSCode の設定
-- 「Cntrl + N」で開くタブに下頁のデータを貼り付けて下さい。
-- ただし、 QGIS が「C:\Program Files\QGIS ～」にインストールされている方は「osgeo4w64」となっている
+- VSCodeで「Cntrl + N」とタイプして開く新しいタブに下頁のデータを貼り付けて下さい。
+- もし QGIS が「C:\Program Files\QGIS ～」にインストールされている場合は「osgeo4w64」となっている
 3 箇所をそれに合わせて書換えてください。
 - 「Cntrl + S」とタイプして「%APPDATA%」→「Code」→「User」に移動して「settings.json」
 というファイル名で保存して下さい。
