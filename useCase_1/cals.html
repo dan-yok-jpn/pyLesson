@@ -1,0 +1,124 @@
+<!--
+  Create Stunning Presentations on the Web
+  https://revealjs.com/markdown/
+
+https://cdnjs.com/libraries/reveal.js/3.6.0
+https://cdnjs.com/libraries/marked
+-->
+
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/monokai.min.css">
+  </head>
+  <style type="text/css">
+    .reveal h1,
+    .reveal h2,
+    .reveal h3,
+    .reveal h4,
+    .reveal h5,
+    .reveal h6 {
+      text-transform: none;
+    }
+    .reveal section img { background:none; border:none; box-shadow:none; }
+  </style>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section data-markdown data-separator=">>>" data-separator-vertical="---$">
+            <script type="text/template">
+
+## 電子納品のサマリー
+
+2021/5/19
+>>>
+
+#### 何ができるか
+- 下図は電子納品のフォルダー構成
+- 実際に PDF を開かないと中身が分からない
+
+![alt](img/explorer_1.png)
+
+![alt](img/explorer_2.png)
+
+>>>
+
+- 「INDEX_D.XML」があるフォルダーで
+コマンドプロンプトを開いて<small><sup>※</sup></small>
+
+  ```sh
+  % cals
+  ```
+  とタイプすると<br><br>
+
+<small>※「%」はプロンプタ。タイプしてはいけない</small>
+---
+
+<span style="color:red;">これは是非、覚えて下さい</span>
+
+![](img/openCmd.png)
+
+>>>
+
+![alt](img/cmd_2.png)
+
+![alt](img/cmd_3.png)
+
+>>>
+
+- 業務名、工期、受注者および概要を表示
+- REPORT フォルダ<small><sup>※</sup></small>、ORIGINAL フォルダ内のファイルの和名を表示
+→ 直ぐ開くことができる
+- 測量業務にも対応<br><br>
+
+ファイルに出力して後から見る時は
+
+```sh
+% cals > cals.txt
+```
+<br><small>※この例では和名がちゃんと入力されていない</small>
+>>>
+#### 使うための準備
+
+- 自分専用のフォルダ<small><sup>※</sup></small>を作成して
+そのフォルダ名を[環境変数 PATH に加える](https://www.atmarkit.co.jp/ait/articles/1805/11/news035.html)
+（この作業が済んでいる方 ーPATH を通している方ー はスキップ）。
+- 同封の cals.bat と cals.py をこのフォルダに移動
+
+<br><small>※ 例えば、c:\User\nkmanager\scripts</small>
+
+</script>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.3/marked.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/notes/notes.js"></script>
+
+<script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        history: true,
+        plugins: [ RevealMarkdown, RevealNotes ],
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config:  'TeX-AMS_HTML-full'
+        },
+        dependencies: [
+          {src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/highlight/highlight.js',
+              async: true, callback: function() { hljs.initHighlightingOnLoad(); }},
+          {src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/math/math.min.js',
+              async: true}
+        ]
+      });
+    </script>
+  </body>
+</html>

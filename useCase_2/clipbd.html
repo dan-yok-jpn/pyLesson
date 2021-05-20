@@ -1,0 +1,382 @@
+<!--
+  Create Stunning Presentations on the Web
+  https://revealjs.com/markdown/
+
+https://cdnjs.com/libraries/reveal.js/3.6.0
+https://cdnjs.com/libraries/marked
+-->
+
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/monokai.min.css">
+  </head>
+  <style type="text/css">
+    .reveal h1,
+    .reveal h2,
+    .reveal h3,
+    .reveal h4,
+    .reveal h5,
+    .reveal h6 {
+      text-transform: none;
+    }
+  </style>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section data-markdown data-separator=">>>" data-separator-vertical="---$">
+            <script type="text/template">
+
+## クリップボードを操る
+<br>
+2021/5/18
+---
+
+- 細かい話はさておき「何が出来るようになる？」を知りたい方は[ここ](#/13)から見てください。
+- 先ず試してみたい方は以下を行って下さい。
+  1. 外部モジュールのインストール<br>
+  [pyperclip](#/4)
+  2. スクリプトのセーブ<br>
+  [clipbd.py](#/5) &nbsp; [clipbd.bat](#/10) &nbsp; [kpLine.py](#/16)
+  3. 手元の距離標データの編集<br>
+  断面名、左岸座標、右岸座標の並び
+- Alt + ← でこの頁に戻ることができます。
+>>>
+
+Windows の標準機能に clip コマンドがあります。
+```
+CLIP
+
+コマンド ライン ツールの出力を Windows クリップボードにリダイレクトします。
+その出力されたテキストをほかのプログラムに貼り付けることができます。
+
+ DIR | CLIP       現在のディレクトリ一覧のコピーを Windows クリップボード
+                  に貼り付けます。
+ CLIP < SOME.TXT  SOME.txt ファイルのテキストのコピーを Windows クリップ
+                  ボードに貼り付けます。
+```
+
+<small>「 | 」とか「 < 」の意味は[このサイト](https://www.k-cube.co.jp/wakaba/server/redirect_and_pipe.html)を参照　</small>
+>>>
+
+- この clip コマンドを使うと cntrl+V で excel にペーストすることが出来る<small><sup>※</sup></small>。
+
+- が、clip コマンドにはクリップボードに収納された excel のデータを出力する機能がない。
+
+<small>※タブ区切りのテキストファイル（～.tsv）ならセルに展開してコピーされる。</small>
+>>>
+
+なら、Python で作ってしまえば良い！
+---
+
+#### コマンドプロンプトの起動
+- <span style="color:red;">エクスプローラのウィンドーで Alt と d を同時に押し、
+次いで cmd とタイプ</span>してみて下さい。
+- そのファルダでコマンドプロンプトが起動します。
+Python ではコマンドプロンプトを良く使うことになるので、この操作はきっちり覚えてください。
+>>>
+
+まず外部モジュール pyperclip をインストール
+
+```
+% py -m pip install pyperclip
+```
+
+あ「[管理者で実行](https://www.javadrive.jp/command/ini/index12.html)」ね
+
+<br><br>
+<small>先頭の「 % 」はコマンドプロンプトで表示される「 C:\～> 」の略でタイプ不要 </small>
+>>>
+
+- 下のプログラムをコピー (全行選択して Cntrl + C) して
+clipbd.py というファイル名でセーブ<small><sup>※</sup></small>
+
+```Python
+import os
+import sys       # Ver.1
+import pyperclip # Ver.1
+
+def copy(tsv=None):
+    if tsv:
+        pyperclip.copy(sys.stdin.read().replace(",", "\t"))
+    else:
+        pyperclip.copy(sys.stdin.read())
+
+def paste(csv=None):
+    if "-unicode" in sys.argv:
+        import io
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    if csv:
+        sys.stdout.write(pyperclip.paste().replace("\r", "").replace("\t", ","))
+    else:
+        sys.stdout.write(pyperclip.paste().replace("\r", "")) # Ver.1
+
+if __name__ == "__main__":
+
+    if len(sys.argv) == 1 or "-c" in sys.argv:
+        copy()
+    elif "-tsv" in sys.argv:
+        copy(True)
+    elif "-p" in sys.argv:
+        paste()
+    elif "-csv" in sys.argv:
+        paste(True)
+    else:
+        exit("\n ERROR {} unknown option(s) {}".\
+        format(os.path.basename(sys.argv[0]), sys.argv[1:]))
+```
+
+<small>※ 今回作るプログラムがあればエディターを開く必要がなくなる</small>
+---
+
+- これを書いた動機は最後に紹介する事例で使いたかったから
+- 当初は clip コマンドで出来ないクリップボードの出力機能さえあれば良かった。
+- pyperclip が有ることを知っていた訳ではない。
+「<span style="color:brown;">有るに決まってる</span>」と探したら然して。
+- 初版は「# ver.1」の３行だけ
+- 「あれも出来る、これも出来る」でちょこちょこ機能を付け足して最終版
+（それでも 30 行足らず）
+>>>
+
+#### 使い方（コピー）
+
+- 先ず単純なコピーは clip コマンドと同様<br>（-c を付けても良い）
+  ```sh
+  % dir | py clipbd.py
+  % dir | py clipbd.py -c
+  ```
+- excel で利用し易いよう、区切り文字をカンマからタブに変換してコピーする場合は
+  ```sh
+  % py clipbd.py -tsv < some.csv
+  ```
+>>>
+
+#### 使い方（ペースト）
+
+- ぺーストはクリップボードに excel のデータが入っているものとして、
+  ```sh
+  % py clipbd.py -p > some.tsv
+  ```
+とすれば、タブ区切りのファイルに
+```sh
+% py clipbd.py -csv > some.csv
+```
+とすれば、カンマ区切りのファイルにセーブされる。
+>>>
+
+これは次の作業を行うよりはるかに効率的　　　　
+1. 新しいワークブックを開いて
+2. クリップボードの中身をワークシートにコピーして
+3. カンマ区切りのテキストファイルに出力するよう指定して
+4. some.csv に保存
+>>>
+
+でも
+
+- 毎回「 py clipbd.py 」とタイプするのは面倒。
+
+- 何処からでも使えるようにしたい。
+
+<br>そこで、もう一工夫。
+>>>
+
+- 自分専用のフォルダ<small><sup>※</sup></small>を作成して
+そのフォルダ名を[環境変数 PATH に加える](https://www.atmarkit.co.jp/ait/articles/1805/11/news035.html)。
+- 下の２行を clipbd.bat というファイル名で保存
+  ```sh
+  @echo off
+  py %~dp0clipbd.py %*
+  ```
+- これと clipbd.py を上で作った自分専用のフォルダに移動
+
+<small>※ 例えば、c:\User\nkmanager\scripts </small>
+>>>
+
+- これで何処からでも「 clipbd 」とタイプしてクリップボードを操ることが可能。
+まとめると、
+  - <span style="color:green;">クリップボードにコピーする時は</span>
+    - clipbd < file.txt　　　又は
+    - clipbd -c < file.txt　　又は
+    - clipbd -tsv < file.csv　<span style="color:orange;">からの excel にペースト</span>
+  - <span style="color:green;">クリップボードの内容をペーストする時は</span>
+    - clipbd -p > file.tsv　　又は
+    - clipbd -csv > file.csv　<span style="color:orange;">からの後処理</span>
+>>>
+
+後処理の事例
+
+>>>
+距離標の座標群（ JGD2000 第 9 系）
+
+![xlsx](img/xlsx.png)
+>>>
+
+GIS データ（kpLine.json）に変換
+
+```sh
+% clipbd -p | py kpLine.py - 2000/9 kpLine.json
+```
+<br>
+
+<div style="font-size: xx-large;">
+  <ul>
+    <li> 「ー」はクリップボードからの入力であることを指す
+    <li> 座標が緯度・経度の場合は「／」以下不要
+  </ul>
+</div>
+>>>
+kpLine.json の表示
+
+![qgis](img/qgis.png)
+
+<small>「EPSG:2451」は JGD2000 第 9 系</small>
+>>>
+kpLine.py
+
+```Python
+import sys
+import json
+import csv
+import io
+
+def usage():
+    msg  = '\n 横断測線の GIS データ (GeoJSON) を出力 \n'
+    msg += '\n  使用法 : python {} [-h|--help] 引数_1 引数_2 [引数_3] \n '
+    msg += '\n  引　数: @ 必須 \n'
+    msg += "\n   @ 引数_1 : 入力ファイル名* ('-' ハイフンの場合は標準入力）"
+    msg += '\n   @ 引数_2 : 測地成果/系番号** '
+    msg += '\n     引数_3 : 出力ファイル名 \n'
+    msg += '\n  注意点 : \n'
+    msg += '\n   *    タブ区切りのテキストファイルで以下の様式 \n'
+    msg += '\n          測線名    <tab> x座標 <tab> y座標 <tab> x座標 <tab> y座標 '
+    msg += '\n   または 測線名*** <tab> 経 度 <tab> 緯 度 <tab> 経 度 <tab> 緯 度 '
+    msg += "\n              緯度・経度は度数（実数）ないし 度-分-秒 \n"
+    msg += '\n   **   (2000|2011)/[0-19] 例えば 2000/0：jgd2000, 2011/9：jgd2011 CS-IX \n'
+    msg += '\n   ***  漢字も可。ただし、文字コードは shift-jis \n'
+    msg += '\n  使用法 : \n'
+    msg += '\n   python {} kp_someRiver.tsv 2011/9   kp_someRiver.json '
+    msg += '\n   python {} kp_someRiver.tsv 2011/9 > kp_someRiver.json '
+    msg += '\n   otherProg | python {}  -   2011/9 > kp_someRiver.json \n'
+    mod  = sys.argv[0]
+    sys.exit(msg.format(mod, mod, mod, mod))
+
+case = 0
+
+def Point(s):
+    global case
+    if case == 1:
+        d, m, s = s.split('-')
+        return (float(s) / 60 + float(m)) / 60 + float(d)
+    elif case == 2:
+        return float(s)
+    else: # judge only once at the beginning
+        case = 1 if '-' in s else 2
+        return Point(s)
+
+def makeDic(src_path, epsg, lonlat):
+    if src_path == '-':
+        fin = sys.stdin
+    else:
+        try:
+            fin = open(src_path, 'r')
+        except:
+            sys.exit('\n ERROR : {} no such file'.format(src_path))
+    crs  = {'type': 'EPSG', 'properties': {'code': epsg}}
+    dic  = {'type': 'FeatureCollection', 'crs': crs, 'features': []}
+    rows = csv.reader(fin, delimiter = '\t')
+    for columns in rows:
+        if len(columns) != 5: break
+        name = str(columns[0]).strip()
+        if lonlat:
+            p1 = [Point(columns[1]), Point(columns[2])]
+            p2 = [Point(columns[3]), Point(columns[4])]
+        else: # xy  x : n-s, y : w-e
+            p1 = [float(columns[2]), float(columns[1])]
+            p2 = [float(columns[4]), float(columns[3])]
+        p = {'name': name}
+        g = {'type': 'LineString', 'coordinates': [p1, p2]}
+        f = {'type': 'Feature', 'geometry': g, 'properties': p}
+        dic['features'].append(f)
+    fin.close()
+    return dic
+
+def cnv_2_epsg(arg):
+    if   arg == '2000/0' or arg == '2000':
+        return ('4612', True)
+    elif arg == '2011/0' or arg == '2011': 
+        return ('6668', True)
+    else:
+        try:
+            jgd, cs = arg.split('/')
+            num = int(cs)
+        except:
+            sys.exit('\n エラー：引数 ' + arg + ' は不適切')
+        test_1 = not jgd in ('2000', '2011')
+        test_2 = not (1 <= num and num <= 19)
+        if test_1 or test_2:
+            sys.exit('\n エラー：引数 ' + arg + ' は不適切')
+        if jgd == '2000':
+            return (str(num + 2442), False) 
+        else:
+            return (str(num + 6668), False) 
+
+if '-h' in sys.argv or '--help' in sys.argv:
+    usage()
+argc = len(sys.argv)
+if argc >= 3:
+    epsg, lonlat = cnv_2_epsg(sys.argv[2])
+    dic = makeDic(sys.argv[1], epsg, lonlat)
+    if argc == 3:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding = 'utf-8')
+        json.dump(dic, sys.stdout, ensure_ascii = False, indent = 2)
+    else:
+        with open(sys.argv[3], 'w', encoding = 'utf-8') as fot:
+            json.dump(dic, fot, ensure_ascii = False, indent = 2)
+else:
+    usage()
+
+```
+
+<div style="font-size: x-large;">
+  <ul>
+    <li> 早速「% clipbd -p -unicode > kpLine.py」でいけます
+    <li> 「 -unicode 」は文字コードに utf-8 を採用（文字化け対策）
+  </ul>
+</div>
+
+
+</script>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.3/marked.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/notes/notes.js"></script>
+
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        history: true,
+        plugins: [ RevealMarkdown, RevealNotes ],
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config:  'TeX-AMS_HTML-full'
+        },
+        dependencies: [
+          {src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/highlight/highlight.js',
+              async: true, callback: function() { hljs.initHighlightingOnLoad(); }},
+          {src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/math/math.min.js',
+              async: true}
+        ]
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!--
+  Create Stunning Presentations on the Web
+  https://revealjs.com/markdown/
+
+https://cdnjs.com/libraries/reveal.js/3.6.0
+https://cdnjs.com/libraries/marked
+-->
+
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/monokai.min.css">
+  </head>
+  <style type="text/css">
+    .reveal h1,
+    .reveal h2,
+    .reveal h3,
+    .reveal h4,
+    .reveal h5,
+    .reveal h6 {
+      text-transform: none;
+    }
+    .reveal section img { background:none; border:none; box-shadow:none; }
+  </style>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section data-markdown data-separator=">>>" data-separator-vertical="---$">
+            <script type="text/template">
+## 現場写真を地図上に表示
+
+2021/5/20
+>>>
+#### 何ができるか
+- 下図は現場写真<small><sup>※</sup></small>のフォルダのファイルリスト
+- アイコンで表示しても位置までは分からない
+
+![](img_/ls.png)
+
+<small>※ <span style="color:red;">GPS 情報付きの写真に限定<span></small>
+>>>
+- 写真があるフォルダーで
+コマンドプロンプトを開いて（下頁参照）
+
+  ```sh
+  % photoview
+  % clickme.html
+  ```
+  とタイプ<small><sup>※</sup></small>すると<br><br>
+
+<small>※「%」はタイプしてはいけない</small>
+---
+<span style="color:red;">これは是非、覚えて下さい</span>
+
+![](img_/openCmd.png)
+
+>>>
+- web ブラウザが開いて下図のような画面になる
+- アイコンの先端が撮影位置
+
+![](img_/photoView_1.PNG)
+>>>
+
+- アイコンをクリックするとポップアップに撮影時刻とサムネールが表示される
+
+![](img_/photoView_2.PNG)
+>>>
+- キャプションが入力できる。
+
+![](img_/photoView_3.PNG)
+<div style="font-size: large">
+<ul>
+  <li>「SaveChange」ボタンがクリッカブルになるので、ウィンドーを閉じる前にクリックし<br>
+    <span style="color:red;font-weight:bold;">表示中の写真フォルダーの「exif.js」に上書き保存</span>する。
+  </ul>
+</div>
+>>>
+
+- サムネールをクリックすると別のタグに実寸の写真が表示される。_Why Tokyo Skytree ?_
+
+![alt](img_/photoView_4.PNG)
+>>>
+#### 使うための準備（1）
+
+- 自分専用のフォルダ<small><sup>※</sup></small>を作成して
+そのフォルダ名を[環境変数 PATH に加える](https://www.atmarkit.co.jp/ait/articles/1805/11/news035.html)
+（この作業が済んでいる方 ーPATH を通している方ー はスキップ）。
+- 同封の sudo.bat、photoView.bat と photoView.py をそのフォルダに移動
+
+<br><small>※ 例えば、c:\User\nkmanager\scripts</small>
+>>>
+
+#### 使うための準備（2）
+
+- 管理者用のコマンドプロンプトを開く
+
+  ```sh
+  % sudo cmd
+  ```
+- 開いたウィンドーで以下をタイプ
+
+  ```sh
+  % py -m pip install Pillow
+  ```
+
+- ウィンドーを閉じる
+</script>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.3/marked.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/notes/notes.js"></script>
+
+<script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        history: true,
+        plugins: [ RevealMarkdown, RevealNotes ],
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config:  'TeX-AMS_HTML-full'
+        },
+        dependencies: [
+          {src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/highlight/highlight.js',
+              async: true, callback: function() { hljs.initHighlightingOnLoad(); }},
+          {src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/math/math.min.js',
+              async: true}
+        ]
+      });
+    </script>
+  </body>
+</html>
