@@ -5,3 +5,5 @@ util/img/
 *.pyproj
 *.tex
 exif.js
+useGdal/.venv/
+*.json

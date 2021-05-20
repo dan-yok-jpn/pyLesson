@@ -1,28 +1,22 @@
 
 # enable GDAL/OGR Python API
 
-import sys
 import os
+import sys
 
-OSGEO_ROOT  = r'C:\OSGeo4W64'
-#OSGEO_ROOT = r'C:\Progra~1\QGIS3~1.14' # C:\Program Files\QGIS 3.14
+OSGEO_ROOT  = 'C:/OSGeo4W64'
 
-parent_directory_of_osgeo = OSGEO_ROOT + r'\apps\Python37\lib\site-packages'
-parent_directory_of_gdal  = OSGEO_ROOT + r'\bin;' # gdal***.dll
-
-sys.path.append(     parent_directory_of_osgeo)
-os.environ['PATH'] = parent_directory_of_gdal + os.environ['PATH']
-
-os.environ['GDAL_DATA']        = OSGEO_ROOT + r'\share\gdal'
-os.environ['GDAL_DRIVER_PATH'] = OSGEO_ROOT + r'\bin\gdalplugins'
-os.environ['GEOTIFF_CSV']      = OSGEO_ROOT + r'\share\epsg_csv'
-os.environ['PROJ_LIB']         = OSGEO_ROOT + r'\share\proj'
+os.environ['PATH']             = OSGEO_ROOT + '/bin;' + os.environ['PATH']
+os.environ['GDAL_DATA']        = OSGEO_ROOT + '/share/gdal'
+os.environ['GDAL_DRIVER_PATH'] = OSGEO_ROOT + '/bin/gdalplugins'
+os.environ['GEOTIFF_CSV']      = OSGEO_ROOT + '/share/epsg_csv'
+os.environ['PROJ_LIB']         = OSGEO_ROOT + '/share/proj'
 
 try:
-    from osgeo import ogr, osr, gdal
+    from osgeo import ogr
 except:
-    msg  = ' ERROR: canno tfind GDAL/OGR mudule.\n'
-    msg += '        check Python version of pyd.'
+    msg  = '\n ERROR: can not find GDAL/OGR mudule.\n'
+    msg += '          check Python version of pyd.'
     sys.exit(msg)
 
 # reference
