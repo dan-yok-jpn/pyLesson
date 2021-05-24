@@ -4,7 +4,17 @@
 import os
 import sys
 
-OSGEO_ROOT  = 'C:/OSGeo4W64'
+OSGEO_ROOT = None
+for p in os.sys.path:
+    P = p.upper()
+    if 'OSGEO' in P or 'QGIS' in P:
+        i = p[4:].index('\\')
+        OSGEO_ROOT = p[: 4 + i]
+        break
+if OSGEO_ROOT is None:
+    msg  = '\n ERROR: can not set OSGEO_ROOT.'
+    msg +=          ' please edit this script.'
+    sys.exit(msg)
 
 os.environ['PATH']             = OSGEO_ROOT + '/bin;' + os.environ['PATH']
 os.environ['GDAL_DATA']        = OSGEO_ROOT + '/share/gdal'
@@ -15,9 +25,7 @@ os.environ['PROJ_LIB']         = OSGEO_ROOT + '/share/proj'
 try:
     from osgeo import ogr
 except:
-    msg  = '\n ERROR: can not find GDAL/OGR mudule.\n'
-    msg += '          check Python version of pyd.'
-    sys.exit(msg)
+    sys.exit('\n ERROR: can not import ogr mudule.\n')
 
 # reference
 #    https://pcjericks.github.io/py-gdalogr-cookbook/

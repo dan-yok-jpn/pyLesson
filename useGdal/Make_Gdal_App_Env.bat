@@ -5,7 +5,7 @@ set EXE=C:\OSGeo4W64\apps\Python37\python.exe
 mkdir .vscode
 call :genJSON_1 > .vscode\settings.json
 call :genJSON_2 > .vscode\launch.json
-call :genBat  > tmp.bat
+call :genBat    > tmp.bat
 powershell Start-Process tmp.bat -Verb runas
 goto :eof
 
@@ -19,7 +19,7 @@ goto :eof
     echo }
     exit /b
     
-	:genJSON_2:
+:genJSON_2:
     echo {
     echo     "version": "0.2.0",
     echo     "configurations": [
@@ -32,10 +32,10 @@ goto :eof
     echo         }
     echo     ]
     echo }
-	exit /b
+    exit /b
 
 :genBat
     echo cd "%~dp0"
-    echo %EXE% -m venv --system-site-packages --symlinks --without-pip --clear .\.venv
+    echo %EXE% -m venv --system-site-packages --symlinks --without-pip --clear .venv
     echo del tmp.bat
     exit /b

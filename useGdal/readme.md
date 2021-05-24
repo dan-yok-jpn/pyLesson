@@ -1,6 +1,6 @@
 # useGdal
 
-仮想環境を設けて OSGeo4W64 内の osgeo パッケージを利用する事例
+仮想環境を設けて OSGeo4W / QGIS バンドルの osgeo パッケージを利用する事例
 
 ## DEMO
 
@@ -15,7 +15,7 @@
 - osgeo の使用頻度は高くない
 - osgeo の内部で大量の dll （ [GDAL/OGR](https://gdal.org/index.html) の本体）
 をインポートしているので Python の版毎にこれをインストールするのは好ましくない。
-- OSGeo4W64 内のライブラリであれば動作の安定が保障されている。
+- OSGeo4W 内のライブラリであれば動作の安定が保障されている。
 
 ３点目に関しては、pip によるインストールが失敗するケースがある、との
 [報告](https://hacker.trickstorm.com/?p=988)もある。
@@ -59,7 +59,7 @@
 
 ## Requirement
 
-OSGeo4W64 内の外部モジュールを使用する限り新たに加える必要はない。
+既存のモジュールを使用する限り新たに加える必要はない。
 
 ## Installation
 
@@ -103,13 +103,22 @@ python ex2_useGdal.py poly4.json
 
 ## Note
 
-今回の例ではトップディレクトリが C:\OSGeo4W64 であることを想定している。
-
-C:\Progran Files 下の QGIS を利用している場合はそれに合わせて ```Make_Gdal_App_Env.bat``` と
-```enableGdal.py``` 内の関係箇所を書き換える必要がある。
-
+```Make_Gdal_App_Env.bat``` ではトップディレクトリが C:\OSGeo4W64 であることを想定している。
 ```
 set EXE=C:\OSGeo4W64\apps\Python37\python.exe
-
-OSGEO_ROOT  = 'C:/OSGeo4W64'
 ```
+これと異なる場合は書き換える必要がある。例えば
+```
+set EXE="C:\Program Files\QGIS 3.12\apps\Python37\python.exe"
+```
+
+また、```enableGdal.py``` では OSGeo と QGIS をキーワードとして dll のフォルダーを推測している。
+```osgeo``` をこれら以外の場所に配置している場合は自分の設定に合わせて
+```enableGdal.py``` を編集する必要がある
+
+## Reference
+
+- [Python GDAL/OGR Cookbook 1.0 documentation](https://pcjericks.github.io/py-gdalogr-cookbook/)
+- [GDAL/OGR Python API](https://gdal.org/python/index.html)
+- [Python3×地理空間データ　地理空間データプログラミングの流れ](https://ujicya.jp/blog-mapping/workflow-of-python-geospatial-development/)
+- [Python3×地理空間データ　GDAL Python API 【未完】](https://ujicya.jp/blog-mapping/python-gdal-api/)
