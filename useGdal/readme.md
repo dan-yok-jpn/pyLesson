@@ -6,7 +6,7 @@
 
 ```ex1_useGdal.py``` で作成される 2 つのポリゴン
 
-![](snap_qgis.png)
+![](img/snap_qgis.png)
 
 ## Features
 

@@ -1,0 +1,146 @@
+<!--
+  Create Stunning Presentations on the Web
+  https://revealjs.com/markdown/
+
+https://cdnjs.com/libraries/reveal.js/3.6.0
+https://cdnjs.com/libraries/marked
+-->
+
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/monokai.min.css">
+  </head>
+  <style type="text/css">
+    .reveal h1,
+    .reveal h2,
+    .reveal h3,
+    .reveal h4,
+    .reveal h5,
+    .reveal h6 {
+      text-transform: none;
+    }
+    .reveal section img { background:none; border:none; box-shadow:none; }
+  </style>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section data-markdown data-separator=">>>" data-separator-vertical="---$">
+            <script type="text/template">
+## 流域内人口を求める
+
+<br>2021/5/25
+>>>
+#### 概　要
+- QGIS 同梱の Python の地理分析パッケージを利用して
+流域界の GIS データ<small><sup>※</sup></small>から流域内の総人口を求める
+
+![](img/mesh.png)
+
+<small>※ <span style="color:red;">地理座標で作った GroJSON 限定<span></small>
+---
+- 図示の流域界の GIS データは旭一岳氏が試験的に公開している
+web アプリケーションの出力を加工したもの。
+___Thanks Dr.___
+>>>
+- そもそも QGIS をインストールした段階で Python がインストールされている
+（実は QGIS のユーザーは既に Python が使える状態にあった）
+- QGIS で使っているライブラリ（GDAL と言います）を呼び出す
+パッケージが含まれている
+- GDAL は容量が大きいので Python で使用するため（だけ）に複数インストールするのは NG。
+- こういう時こそ仮想環境
+>>>
+#### 準 備（1）
+- 必要であれば<small><sup>※</sup></small>、Make_Gdal_App_Env.bat の「set EXE=～」を変更。例えば
+```sh
+set EXE="C:\Program Files\QGIS 3.12\app\Python37\Python.exe"
+```
+- 作業フォルダで以下を実行して仮想環境を作る
+```sh
+Make_Gdal_App_Env
+```
+- 以後、仮想環境下で作業
+```sh
+.venv\Scripts\activate
+```
+<small>※ QGIS のインストーラにより Python.exe の在処が違う</small>
+>>>
+#### 準 備（2）
+- 流域界の GIS データ（hoge.json）を用意する
+- 同封の meshes.py を実行して第一次地域区画（80km 四方）のコードを列挙する
+```sh
+python meshes.py -1 hoge.json
+```
+- [このサイト](https://www.e-stat.go.jp/gis/statmap-search?page=1&type=1&toukeiCode=00200521&toukeiYear=2015&aggregateUnit=Q&serveyId=Q002005112015&statsId=T000876)
+から上記の区画のデータを全てダウンロードする
+- 再度、meshes.py を実行して第五次地域区画（250m 四方）のコードを列挙する
+```sh
+python meshes.py -5 -g hoge.json
+```
+>>>
+- 直前のコマンドの「－g」オプションは流域内の区画の GIS データを出力（必須ではない）
+- meshes.py の中で前記のパッケージを使った地理演算を行っている。
+具体的には流域界のエンベロープ（対角頂点が南西端・北東端の矩形）
+内の全ての地域区画について流域内か流域外かを判定している。
+- メッシュコードは sqlite3 のデータベース（temp.db<small><sup>※</sup></small>）
+の mesh5 テーブルに出力される。
+sqlite3 は Python に標準装備されている。<br><br>
+<small>※ 使用後は削除しても良い</small>
+>>>
+#### 仕上げ
+- 次のコマンドで流域内の総人口を求める
+```sh
+python census2015.py
+Population : 95,409
+```
+<br>
+- 国勢調査のデータ（csv を zip で圧縮）は pandas で読み込み
+temp.db の population テーブルに書き出している。
+pandas はインストール済み
+- 流域内人口を求める SQL は単純至極
+```SQL
+SELECT SUM(population) FROM mesh5 JOIN population
+ON mesh5.code = population.code
+```
+>>>
+#### 補　遺
+- census2015.py はその名の通り、2015 年の国勢調査に特化したものになっている
+- しかも使うのは区画内の人口のみとなっている
+- 国の統計データの多くは地域区画毎で提供されているので、
+使用するデータに合わせて書き換えれば他用途でも使える
+- meshes.py は「ー数字」オプションにより第一次地域区画から第五次地域区画のメッシュコードを発生する。
+</script>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.3/marked.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/notes/notes.js"></script>
+
+<script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        history: true,
+        plugins: [ RevealMarkdown, RevealNotes ],
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config:  'TeX-AMS_HTML-full'
+        },
+        dependencies: [
+          {src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/highlight/highlight.js',
+              async: true, callback: function() { hljs.initHighlightingOnLoad(); }},
+          {src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/math/math.min.js',
+              async: true}
+        ]
+      });
+    </script>
+  </body>
+</html>
