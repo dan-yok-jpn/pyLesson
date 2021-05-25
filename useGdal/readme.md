@@ -27,12 +27,12 @@
 
 ```
 \USEGDAL
-│  enableGdal.py
 │  ex1_useGdal.py
 │  ex2_useGdal.py
 │  Make_Gdal_App_Env.bat
 │  readme.md
 │  snap_qgis.png
+│  useGdal.py
 │  
 ├─.venv
 │  │  pyvenv.cfg
@@ -74,7 +74,7 @@ Make_Gdal_App_Env
 ## Usage
 
 ベクターデータ用のライブラリ ogr を利用する簡単な例として２つのモジュールを示した。
-両方とも ```enableGdal.py``` で ogr をインポートしている。
+両方とも ```useGdal.py``` で ogr で使用する環境変数をセットしている。
 
 - ex1_useGdal.py では簡単な図形の地理演算（Intersection、Union）の結果を geoJSON で出力している（前出の図）。
 - ex2_useGdal.py では上記の geoJSON を読み込んで座標を出力している。
@@ -112,9 +112,8 @@ set EXE=C:\OSGeo4W64\apps\Python37\python.exe
 set EXE="C:\Program Files\QGIS 3.12\apps\Python37\python.exe"
 ```
 
-また、```enableGdal.py``` では OSGeo と QGIS をキーワードとして dll のフォルダーを推測している。
-```osgeo``` をこれら以外の場所に配置している場合は自分の設定に合わせて
-```enableGdal.py``` を編集する必要がある
+また、```useGdal.py``` では OSGeo と QGIS をキーワードとして dll のフォルダーを推測している。
+ogr のインポートに失敗する場合は自分の設定に合わせてこれを編集する必要がある。
 
 ## Reference
 

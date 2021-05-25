@@ -1,6 +1,12 @@
 
-with open('enableGdal.py') as f:
-	exec(f.read()) # import ogr
+import sys
+import useGdal
+
+try:
+    useGdal.setenv()
+    from osgeo import ogr
+except:
+    sys.exit('\n ERROR: can not import ogr mudule.\n')
 
 wkt1 = "POLYGON ((135 36, 137 36, 137 38, 135 38, 135 36))"
 wkt2 = "POLYGON ((136 37, 138 37, 138 39, 136 39, 136 37)))"
