@@ -47,70 +47,78 @@ ___Thanks Dr.___
 >>>
 - そもそも QGIS をインストールした段階で Python がインストールされている
 （実は QGIS のユーザーは既に Python が使える状態にあった）
-- QGIS で使っているライブラリ（GDAL と言います）を呼び出す
+- この Python には QGIS が使用するダイナミック・リンク・ライブラリ（GDAL という）を呼び出す
 パッケージが含まれている
 - GDAL は容量が大きいので Python で使用するため（だけ）に複数インストールするのは NG。
 - こういう時こそ仮想環境
 >>>
 #### 準 備（1）
 - 必要であれば<small><sup>※</sup></small>、Make_Gdal_App_Env.bat の「set EXE=～」を変更。例えば
-```sh
-set EXE="C:\Program Files\QGIS 3.12\app\Python37\Python.exe"
-```
+  ```sh
+  set EXE="C:\Program Files\QGIS 3.12\app\Python37\Python.exe"
+  ```
 - 作業フォルダで以下を実行して仮想環境を作る
-```sh
-Make_Gdal_App_Env
-```
+  ```sh
+  Make_Gdal_App_Env
+  ```
 - 以後、仮想環境下で作業
-```sh
-.venv\Scripts\activate
-```
+  ```sh
+  .venv\Scripts\activate
+  ```
 <small>※ QGIS のインストーラにより Python.exe の在処が違う</small>
 >>>
 #### 準 備（2）
 - 流域界の GIS データ（hoge.json）を用意する
 - 同封の meshes.py を実行して第一次地域区画（80km 四方）のコードを列挙する
-```sh
-python meshes.py -1 hoge.json
-```
+  ```sh
+  python meshes.py -1 hoge.json
+  ```
 - [このサイト](https://www.e-stat.go.jp/gis/statmap-search?page=1&type=1&toukeiCode=00200521&toukeiYear=2015&aggregateUnit=Q&serveyId=Q002005112015&statsId=T000876)
-から上記の区画のデータを全てダウンロードする
+で都道府県の絞り込みをかけて上記の区画のデータを全てダウンロードする
 - 再度、meshes.py を実行して第五次地域区画（250m 四方）のコードを列挙する
-```sh
-python meshes.py -5 -g hoge.json
-```
+  ```sh
+  python meshes.py -5 -g hoge.json
+  ```
 >>>
 - 直前のコマンドの「－g」オプションは流域内の区画の GIS データを出力（必須ではない）
 - meshes.py の中で前記のパッケージを使った地理演算を行っている。
 具体的には流域界のエンベロープ（対角頂点が南西端・北東端の矩形）
-内の全ての地域区画について流域内か流域外かを判定している。
-- メッシュコードは sqlite3 のデータベース（temp.db<small><sup>※</sup></small>）
+内の全ての地域区画の内、流域内に含まれるものを抽出している。
+- 抽出された区画のメッシュコードは sqlite3 のデータベース（temp.db）
 の mesh5 テーブルに出力される。
-sqlite3 は Python に標準装備されている。<br><br>
-<small>※ 使用後は削除しても良い</small>
+sqlite3 は Python に標準装備されている。
 >>>
+
 #### 仕上げ
+
 - 次のコマンドで流域内の総人口を求める
-```sh
-python census2015.py
-Population : 95,409
-```
-<br>
-- 国勢調査のデータ（csv を zip で圧縮）は pandas で読み込み
+  ```sh
+  (.venv) % python census2015.py
+
+  Population : 95,409
+  ```
+- 仮想環境で作業を続ける必要がなければ次のコマンドで仮想環境から抜ける
+  ```sh
+  (.venv) % .venv\Scripts\deactivate
+  %
+  ```
+>>>
+- ダウンロードした[国勢調査のデータ](https://www.e-stat.go.jp/help/data-definition-information/shuroku/T000876.pdf)
+（zip ファイル）は pandas で読み込み
 temp.db の population テーブルに書き出している。
-pandas はインストール済み
-- 流域内人口を求める SQL は単純至極
-```SQL
-SELECT SUM(population) FROM mesh5 JOIN population
-ON mesh5.code = population.code
-```
+QGIS の Python には pandas もインストールされている
+- 流域内の総人口を求める SQL は以下で単純至極
+  ```SQL
+  SELECT SUM(population) FROM mesh5 JOIN population
+  ON mesh5.code = population.code
+  ```
+- 求めた人口を転記したならば temp.db を保存しておく必要はない
 >>>
 #### 補　遺
-- census2015.py はその名の通り、2015 年の国勢調査に特化したものになっている
-- しかも使うのは区画内の人口のみとなっている
-- 国の統計データの多くは地域区画毎で提供されているので、
-使用するデータに合わせて書き換えれば他用途でも使える
-- meshes.py は「ー数字」オプションにより第一次地域区画から第五次地域区画のメッシュコードを発生する。
+- census2015.py は 2015 年の国勢調査の第五次区画内の人口総数に特化したものとなっている
+- 国の統計データの多くは地域区画毎で提供されているので
+使用するデータに合わせてこのモジュールを書き換えれば他でも使用できる
+- この際、meshes.py の「ー数字」オプションにはデータに対応する地域区画のオーダーを与える
 </script>
         </section>
       </div>

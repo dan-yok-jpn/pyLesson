@@ -170,15 +170,15 @@ def main():
             wkt = fmt.format(xw, ys, xe, ys, xe, yn, xw, yn, xw, ys)
             cell = ogr.CreateGeometryFromWkt(wkt)
             if cell.Intersects(geometry):
-                mesh = lonlat_2_mesh(xw, ys, order)
+                code = lonlat_2_mesh(xw, ys, order)
                 if not hasTbl:
-                    insert = 'INSERT INTO {}(code) values({})'.format(tbname, mesh)
+                    insert = 'INSERT INTO {}(code) values({})'.format(tbname, code)
                     cur.execute(insert)
                 if not quiet:
-                    print(mesh)
+                    print(code)
                 if geom:
                     outFeature.SetGeometry(cell)
-                    outFeature.SetField("code", mesh)
+                    outFeature.SetField("code", code)
                     outLayer.CreateFeature(outFeature)
     if not hasTbl:
         conn.commit()

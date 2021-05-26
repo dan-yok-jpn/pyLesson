@@ -1,9 +1,10 @@
 __pycache__/
 .vs/
 .vscode/
+.venv/
 util/img/
 *.pyproj
 *.tex
 exif.js
-useGdal/.venv/
 *.json
+!useGdal/sample.json
