@@ -6,7 +6,7 @@
 
   ![](../img/mesh.png)
 
-  <small>※ <span style="color:red;">地理座標で作った GroJSON 限定<span></small>
+  <small>※ <span style="color:red;">地理座標で作った GeoJSON 限定<span></small>
 
 - そもそも QGIS をインストールした段階で Python がインストールされている
 （実は QGIS のユーザーは既に Python が使える状態にあった）
