@@ -23,8 +23,9 @@ def usage():
     f.write('''
  Options :
    -# : order of regional mesh (range : 1-5, default : 5)
-   -g, --geometry : output meshes by GeoJSON format (defalut : false)
-   -q, --quiet : show nothing to console (defalut : false)
+   -g, --geometry : output meshes by GeoJSON format (defalut : False)
+   -q, --quiet : show nothing to console (defalut : False)
+   -db_off : not create database (default : False)
    -h, --help : show this help
 
  file_input :
@@ -38,7 +39,9 @@ def parseArgs():
     argc = len(sys.argv)
     if argc == 1 or '-h' in sys.argv or '--help' in sys.argv:
         usage()
-    i, order, file_input, geom, quiet = 1, 5, '', False, False
+
+    i, order, file_input = 1, 5, ''
+    geom, quiet, db_on = False, False, True
     while i < argc:
         opt = sys.argv[i]
         if opt[:1] == '-':
@@ -46,6 +49,8 @@ def parseArgs():
                 geom = True
             elif opt == '-q' or opt == '--quiet':
                 quiet = True
+            elif opt == '-db_off':
+                db_on = False
             else:
                 try:
                     order = int(opt[1:])
@@ -62,7 +67,7 @@ def parseArgs():
     elif not os.path.exists(file_input):
         sys.exit('\n {0} no such file.'.format(file_input) + help)
 
-    return file_input, order, geom, quiet
+    return file_input, order, geom, quiet, db_on
 
 def Delta():
 
@@ -112,7 +117,7 @@ def mesh_2_lonlat(mesh):
 
 def main():
 
-    file_input, order, geom, quiet = parseArgs()
+    file_input, order, geom, quiet, db_on = parseArgs()
 
     global deltas
     deltas = Delta()
@@ -130,26 +135,27 @@ def main():
     latMin  = latStep * int(envelope[2] / latStep)
     latMax  = latStep * int(envelope[3] / latStep + 1)
 
-    dbname = 'temp.db'
-    tbname = 'mesh{}'.format(order)
-    conn = sqlite3.connect(dbname)
-    cur = conn.cursor()
-
-    cur.execute("select * from sqlite_master where type='table'")
-
     hasTbl = False
-    tables = [columns[1] for columns in cur.fetchall()]
-    for table in tables:
-        if table == tbname:
-            hasTbl = True
-            break
+    if db_on:
+        dbname = 'temp.db'
+        tbname = 'mesh{}'.format(order)
+        conn = sqlite3.connect(dbname)
+        cur = conn.cursor()
 
-    if not hasTbl:
-        cur.execute('drop table if exists {}'.format(tbname))
-        cur.execute('''
-            CREATE TABLE {} (
-                code TEXT PRIMARY KEY
-            )'''.format(tbname))
+        cur.execute("select * from sqlite_master where type='table'")
+
+        tables = [columns[1] for columns in cur.fetchall()]
+        for table in tables:
+            if table == tbname:
+                hasTbl = True
+                break
+
+        if not hasTbl:
+            cur.execute('drop table if exists {}'.format(tbname))
+            cur.execute('''
+                CREATE TABLE {} (
+                    code TEXT PRIMARY KEY
+                )'''.format(tbname))
 
     if geom:
         fName = tbname + '_' + file_input
@@ -171,18 +177,21 @@ def main():
             cell = ogr.CreateGeometryFromWkt(wkt)
             if cell.Intersects(geometry):
                 code = lonlat_2_mesh(xw, ys, order)
-                if not hasTbl:
-                    insert = 'INSERT INTO {}(code) values({})'.format(tbname, code)
-                    cur.execute(insert)
+                if db_on:
+                    if not hasTbl:
+                        insert = 'INSERT INTO {}(code) values({})'.format(
+                            tbname, code)
+                        cur.execute(insert)
                 if not quiet:
                     print(code)
                 if geom:
                     outFeature.SetGeometry(cell)
                     outFeature.SetField("code", code)
                     outLayer.CreateFeature(outFeature)
-    if not hasTbl:
-        conn.commit()
-        conn.close()
+    if db_on:
+        if not hasTbl:
+            conn.commit()
+            conn.close()
 
     if geom:
         outFeature = None

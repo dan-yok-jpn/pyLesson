@@ -38,14 +38,15 @@
 - ```meshes.py``` を実行して第一次地域区画（80km 四方）のコードを列挙する
 
   ```sh
-  python meshes.py -1 hoge.json
+  python ..\census2015\meshes.py -1 -db_off hoge.json
   ```
-- [このサイト](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-G04-d.html)で上記の区画の標高・傾斜度5次メッシュデータを全てダウンロードする
-- ```sample.json``` の場合、以下をダウンロードする必要がある
+
+- [このサイト](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-G04-d.html)で上記の区画の標高・傾斜度5次メッシュデータを全てダウンロードする。
+<br>例えば、```sample.json``` の場合、以下の２つのファイルをダウンロードする必要がある
 
   ```
-  G04-d-11_5239-jgd_GML
-  G04-d-11_5239-jgd_GML
+  G04-d-11_5239-jgd_GML.zip
+  G04-d-11_5239-jgd_GML.zip
   ```
 
 #### 仕上げ
