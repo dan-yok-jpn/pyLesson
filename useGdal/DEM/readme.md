@@ -50,7 +50,7 @@
 
 #### 仕上げ
 
-- 次のコマンドで流域内の総人口を求める
+- 次のコマンドで流域を内包する ```dem.tif``` を作成する
 
   ```sh
   (.venv) % python makeDem.py hoge.json
