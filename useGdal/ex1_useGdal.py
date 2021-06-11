@@ -1,9 +1,9 @@
 
 import sys
-import useGdal
 
 try:
-    useGdal.setenv()
+    from gdal_env import gdal_env
+    gdal_env()
     from osgeo import ogr
 except:
     sys.exit('\n ERROR: can not import ogr mudule.\n')

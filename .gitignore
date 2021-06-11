@@ -7,4 +7,5 @@ util/img/
 *.tex
 exif.js
 *.json
-!useGdal/sample.json
+!useGdal/DEM/sample.json
+!useGdal/census2015/sample.json

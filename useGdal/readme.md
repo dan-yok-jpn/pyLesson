@@ -24,6 +24,8 @@
 これを実行した後のファイル構成は以下の通りで、
 ```.venv\Scripts``` 下の ```activate*``` と ```deactivate.bat```
 以外はすべてシンボリックリンクとなっている。
+また、```.venv\Lib\site-packages``` には ```osgeo```
+で用いる環境変数を設定する ```gdal_env.py``` を配置している。
 
 ```
 \USEGDAL
@@ -40,6 +42,7 @@
 │  ├─Include
 │  ├─Lib
 │  │  └─site-packages
+│  |       gdal_env.py
 │  └─Scripts
 │          activate
 │          Activate.ps1
@@ -59,7 +62,7 @@
 
 ## Requirement
 
-既存のモジュールを使用する限り新たに加える必要はない。
+- OSGeo4W or QGIS
 
 ## Installation
 
@@ -74,10 +77,6 @@ Make_Gdal_App_Env
 ## Usage
 
 ベクターデータ用のライブラリ ogr を利用する簡単な例として２つのモジュールを示した。
-両方とも ```useGdal.py``` で ogr で使用する環境変数をセットしている。
-
-- ex1_useGdal.py では簡単な図形の地理演算（Intersection、Union）の結果を geoJSON で出力している（前出の図）。
-- ex2_useGdal.py では上記の geoJSON を読み込んで座標を出力している。
 
 ```bash
 .venv\Scripts\activate
@@ -86,20 +85,23 @@ python ex2_useGdal.py poly4.json
 .venv\Scripts\deactivate
 ```
 
-```
-(.venv) C:\・・・\useGdal>python ex2_useGdal.py poly4.json
- feature[0]
-        type : Polygon
-        codinates[0] :  137.0   37.0
-        codinates[1] :  137.0   36.0
-        codinates[2] :  135.0   36.0
-        codinates[3] :  135.0   38.0
-        codinates[4] :  136.0   38.0
-        codinates[5] :  136.0   39.0
-        codinates[6] :  138.0   39.0
-        codinates[7] :  138.0   37.0
-        codinates[8] :  137.0   37.0
-```
+- ex1_useGdal.py では簡単な図形の地理演算（Intersection、Union）の結果を geoJSON で出力している（前出の図）。
+- ex2_useGdal.py では上記の geoJSON を読み込んで座標を出力している。
+
+  ```
+  (.venv) C:\・・・\useGdal>python ex2_useGdal.py poly4.json
+  feature[0]
+          type : Polygon
+          codinates[0] :  137.0   37.0
+          codinates[1] :  137.0   36.0
+          codinates[2] :  135.0   36.0
+          codinates[3] :  135.0   38.0
+          codinates[4] :  136.0   38.0
+          codinates[5] :  136.0   39.0
+          codinates[6] :  138.0   39.0
+          codinates[7] :  138.0   37.0
+          codinates[8] :  137.0   37.0
+  ```
 
 ## Note
 
@@ -111,9 +113,6 @@ set EXE=C:\OSGeo4W64\apps\Python37\python.exe
 ```
 set EXE="C:\Program Files\QGIS 3.12\apps\Python37\python.exe"
 ```
-
-また、```useGdal.py``` では OSGeo と QGIS をキーワードとして dll のフォルダーを推測している。
-ogr のインポートに失敗する場合は自分の設定に合わせてこれを編集する必要がある。
 
 ## Reference
 
