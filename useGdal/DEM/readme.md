@@ -46,7 +46,7 @@
 
   ```
   G04-d-11_5239-jgd_GML.zip
-  G04-d-11_5239-jgd_GML.zip
+  G04-d-11_5339-jgd_GML.zip
   ```
 
 #### 仕上げ
