@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width,height=device-height, user-scalable=no" />
+  <title>bound-box</title>
+  <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.3.4/dist/leaflet.css" />
+  <script src="https://npmcdn.com/leaflet@1.3.4/dist/leaflet.js"></script>
+  <script src="https://npmcdn.com/leaflet.path.drag/src/Path.Drag.js"></script>
+  <script src="Leaflet.Editable.js"></script>
+
+  <style>
+      nav {
+          position: fixed;
+          height: 40px;
+          top: 0;
+          right: 0;
+          left: 0;
+        }
+      body > div.container {
+          position: fixed;
+          top: 40px;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          vertical-align: top;
+        }
+      #map {
+          height: 100%;
+          width: 100%;
+          float: left;
+        }
+  </style>
+
+</head>
+<!--
+    https://github.com/Leaflet/Leaflet.Editable#examples
+    http://jsfiddle.net/agorshkov23/5osbcpyc/
+-->
+<body>
+    <nab>
+        <input id="btn" type="button" value="get bound-box">
+    </nab>
+    <div class="container">
+        <div id="map"></div>
+    </div>
+
+<script type="text/javascript">
+var startPoint = [35.3622222, 138.7313889];
+var map = L.map('map', {editable: true}).setView(startPoint, 5),
+    tilelayer = L.tileLayer(
+        'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
+        }).addTo(map);
+
+    L.EditControl = L.Control.extend({
+
+        options: {
+            position: 'topleft',
+            callback: null,
+            kind: '',
+            html: ''
+        },
+
+        onAdd: function (map) {
+            var container = L.DomUtil.create('div', 'leaflet-control leaflet-bar'),
+                link = L.DomUtil.create('a', '', container);
+
+            link.href = '#';
+            link.title = 'Create a new ' + this.options.kind;
+            link.innerHTML = this.options.html;
+            L.DomEvent.on(link, 'click', L.DomEvent.stop)
+                      .on(link, 'click', function () {
+                        window.LAYER = this.options.callback.call(map.editTools);
+                      }, this);
+
+            return container;
+        }
+
+    });
+
+    var lat_c = startPoint[0];
+    var lon_c = startPoint[1];
+    var delta = 1;
+    var rec = L.rectangle([
+        [lat_c - delta, lon_c - delta],
+        [lat_c + delta, lon_c + delta]
+    ]).addTo(map);
+    rec.enableEdit();
+    rec.on('dblclick', L.DomEvent.stop).on('dblclick', rec.toggleEdit);
+
+    document.getElementById("btn").addEventListener("click", () => {
+        var msg  = (rec._latlngs[0][0].lat).toFixed(7) + " ";
+            msg += (rec._latlngs[0][0].lng).toFixed(7) + " ";
+            msg += (rec._latlngs[0][2].lat).toFixed(7) + " ";
+            msg += (rec._latlngs[0][2].lng).toFixed(7);
+        alert(msg);
+    });
+
+</script>
+</body>
+</html>
