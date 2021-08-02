@@ -7,8 +7,8 @@ mkdir .vscode
 call :genJSON_1 > .vscode\settings.json
 call :genJSON_2 > .vscode\launch.json
 call :genBat    > tmp.bat
-powershell Start-Process tmp.bat -Verb runas
-: del tmp.bat
+powershell Start-Process tmp.bat -Verb runas -Wait
+del tmp.bat
 goto :eof
 
 :genJSON_1
