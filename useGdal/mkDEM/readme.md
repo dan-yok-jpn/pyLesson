@@ -40,7 +40,7 @@ $ .venv\scripts\activate
 1. bbox.html を起動して DEM を作成する区画を設定する。
 右上のボタンをクリックすると南西端と北東端の緯度経度が表示される。
 
-    ![](img/bbox.png)
+    ![](img/bbox.PNG)
 
 2. 上記の緯度経度をクリップボードにコビーして下記のコマンドを実行する
 
@@ -58,7 +58,7 @@ $ .venv\scripts\activate
     ```
 3. 結果（colorrelief.png）を確認する
 
-    ![](img/mkDem.png)
+    ![](img/mkDem.PNG)
 
 ## Reference
 
