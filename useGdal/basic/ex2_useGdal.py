@@ -53,3 +53,6 @@ if __name__ == '__main__':
 
     if len(sys.argv) == 2:
         info(sys.argv[1])
+    else:
+        sys.exit('\n usage : python {} dataset-of-vector-feat.'.\
+            format(os.path.basename(sys.argv[0])))

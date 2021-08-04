@@ -138,7 +138,7 @@ from osgeo import ogr
   - ```--system-site-packages```：OSGE4W のサイトパッケージを使用
   - ```--symlinks```：.venv/Scripts/python.exe はシンボリックリンク
   - ```--clear```：.venv が既存の場合は初期化した後に仮想環境を構築
-  - ```--without-pip```：.venv/Lib/site-packages に pip を含めない
+  - ```--without-pip```：.veenv/Scripts に pip を含めない。.venv/Lib/site-packages は空
 
 - Python の仕様変更に対応
     - On Windows, with Python >= 3.8, DLLs are no longer imported from the PATH.

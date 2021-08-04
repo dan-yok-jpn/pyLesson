@@ -6,22 +6,33 @@
 
 * python3
 * osgeo パッケージ
-
-Make_Gdal_App_Env.bat は OSGeo4W のこれらを利用することを前提としている。
-QGIS インストーラの利用者は Make_Gdal_App_Env.bat の 3 行目を例えば下記のように変更する。
-
-```bash
-set OSGEO_ROOT="C:\Program Files\QGSI 3.20"
-```
+* tqdm パッケージ
 
 ## Installation
 
-仮想環境を作成したうえで pip を実行して必要なパッケージをインストールする。
+Make_Gdal_App_Env.bat で仮想環境を作成する。
 
 ```bash
 $ Make_Gdal_App_Env.bat
-$ .venv\scripts\activate
-(.venv) $ pip install -r requirements.txt
+```
+<span style="color:red;font-weight: bold;">注意事項</span>
+
+このリポジトリの Make_Gdal_App_Env.bat の 3 行目、4 行目は以下のようになっている。
+つまり、QGIS in OSGeo4W に含まれている python3 と
+osgeo パッケージを流用して仮想環境を作成するものとなっている。
+ちなみに、tqdm パッケージは仮想環境内の pip でインストールする。
+
+```bash
+set OSGEO_ROOT=C:\OSGeo4W
+set EXE=%OSGEO_ROOT%\apps\Python39\python.exe
+```
+
+PC の設定がこれと異なる場合は適宜修正する。
+この際、フォルダー名にスペースを含む時は下記のように文字列の前後に引用符を付する。
+
+```bash
+set OSGEO_ROOT="C:\Program Files\QGIS 3.20"
+set EXE=%OSGEO_ROOT%\apps\Python39\python.exe
 ```
 
 ## Usage
@@ -37,12 +48,18 @@ $ .venv\scripts\activate
 ```
 ## Sample
 
-1. bbox.html を起動して DEM を作成する区画を設定する。
+1. 仮想環境を有効化する。
+
+    ```bash
+    $ .venv\Scripts\activate.bat
+    ```
+
+2. bbox.html を起動して DEM を作成する区画を設定する。
 右上のボタンをクリックすると南西端と北東端の緯度経度が表示される。
 
     ![](img/bbox.PNG)
 
-2. 上記の緯度経度をクリップボードにコビーして下記のコマンドを実行する
+3. 上記の緯度経度をクリップボードにコビーして下記のコマンドを実行する
 
     ```bash
     (.venv) $ python mkDem.py 35.3538601 139.1604541 35.2705697 139.0023191
@@ -56,7 +73,7 @@ $ .venv\scripts\activate
     (.venv) $ deactivate
     $
     ```
-3. 結果（colorrelief.png）を確認する
+4. 結果（colorrelief.png）を確認する
 
     ![](img/mkDem.PNG)
 
@@ -70,5 +87,3 @@ https://maps.gsi.go.jp/development/demtile.html
 https://maps.gsi.go.jp/development/hyokochi.html
 * 座標の変換（世界座標、ピクセル座標、タイル座標、緯度・経度）
 https://www.trail-note.net/tech/coordinate/
-
-

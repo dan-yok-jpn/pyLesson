@@ -1,15 +1,14 @@
 @echo off
 
 set OSGEO_ROOT=C:\OSGeo4W
-set EXE=%OSGEO_ROOT%\apps\Python39\python.exe
+set PYTHON=%OSGEO_ROOT%\apps\Python39\python.exe
 
 mkdir .vscode
 call :genJSON_1 > .vscode\settings.json
 call :genJSON_2 > .vscode\launch.json
 call :genBat    > tmp.bat
 powershell Start-Process tmp.bat -Verb runas -Wait
-call .venv\Scripts\activate.bat
-pip install -r requirements.txt
+del tmp.bat
 goto :eof
 
 :genJSON_1
@@ -39,9 +38,8 @@ goto :eof
 :genBat
     echo @echo off
     echo cd "%~dp0"
-    echo %EXE% -m venv --system-site-packages --symlinks --clear --upgrade-deps .venv
+    echo %PYTHON% -m venv --system-site-packages --symlinks --without-pip --clear .venv
     echo call :genPython ^> .venv\Lib\site-packages\gdal_env.py
-    echo del tmp.bat
 	echo goto :eof
     echo :genPython
     echo     echo import os

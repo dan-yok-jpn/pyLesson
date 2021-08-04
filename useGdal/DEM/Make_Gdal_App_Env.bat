@@ -1,7 +1,7 @@
 @echo off
 
 set OSGEO_ROOT=C:\OSGeo4W
-set EXE=%OSGEO_ROOT%\apps\Python39\python.exe
+set PYTHON=%OSGEO_ROOT%\apps\Python39\python.exe
 
 mkdir .vscode
 call :genJSON_1 > .vscode\settings.json
@@ -15,7 +15,8 @@ goto :eof
     echo {
     echo     "terminal.integrated.automationShell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
     echo     "terminal.integrated.defaultProfile.windows": "Command Prompt",
-    echo     "python.venvPath": "~/.venv"
+    echo     "python.envFile": "${workspaceFolder}\\.venv",
+    echo     "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe"
     echo }
     exit /b
 
@@ -37,7 +38,7 @@ goto :eof
 :genBat
     echo @echo off
     echo cd "%~dp0"
-    echo %EXE% -m venv --system-site-packages --symlinks --without-pip --clear .venv
+    echo %PYTHON% -m venv --system-site-packages --symlinks --without-pip --clear .venv
     echo call :genPython ^> .venv\Lib\site-packages\gdal_env.py
 	echo goto :eof
     echo :genPython
