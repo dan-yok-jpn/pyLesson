@@ -15,37 +15,22 @@ Make_Gdal_App_Env.bat で仮想環境を作成する。
 ```bash
 $ Make_Gdal_App_Env.bat
 ```
-<span style="color:red;font-weight: bold;">注意事項</span>
-
-このリポジトリの Make_Gdal_App_Env.bat の 3 行目、4 行目は以下のようになっている。
-つまり、QGIS in OSGeo4W に含まれている python3 と
-osgeo パッケージを流用して仮想環境を作成するものとなっている。
-ちなみに、tqdm パッケージは仮想環境内の pip でインストールする。
-
-```bash
-set OSGEO_ROOT=C:\OSGeo4W
-set EXE=%OSGEO_ROOT%\apps\Python39\python.exe
-```
-
-PC の設定がこれと異なる場合は適宜修正する。
-この際、フォルダー名にスペースを含む時は下記のように文字列の前後に引用符を付する。
-
-```bash
-set OSGEO_ROOT="C:\Program Files\QGIS 3.20"
-set EXE=%OSGEO_ROOT%\apps\Python39\python.exe
-```
+- 何らかのエラーが発生する場合は
+```set_env.bat``` の内容を[チェック](../readme.md#%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%81%AE%E4%BD%9C%E6%88%90)する。
 
 ## Usage
 
 ```bash
- python mkDem.py [(-h|--help)] lat_sw lng_sw lat_ne lng_ne [output]
+ python mkDem.py [(-h|--help)] (lat_sw lng_sw lat_ne lng_ne | poly) [output]
 
    lat_sw : 南西端の緯度（度）
    lng_sw : 南西端の経度（度）
    lat_ne : 北東端の緯度（度）
    lng_ne : 北東端の経度（度）
+   poly   : バウンドボックスを取得する GIS データ（GeoJSON, WGS84）
    output : 出力ファイル名. 無指定の場合は 'dem.tif'
 ```
+
 ## Sample
 
 1. 仮想環境を有効化する。

@@ -3,7 +3,7 @@
 set OSGEO_ROOT=C:\OSGeo4W
 set EXE=%OSGEO_ROOT%\apps\Python39\python.exe
 
-mkdir .vscode
+if not exist .vscode (mkdir .vscode)
 call :genJSON_1 > .vscode\settings.json
 call :genJSON_2 > .vscode\launch.json
 call :genBat    > tmp.bat

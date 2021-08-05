@@ -8,7 +8,7 @@ import csv
 import requests
 import math
 import numpy as np
-from osgeo import gdal, osr
+from osgeo import gdal, ogr, osr
 from tqdm import tqdm
 
 nodata = -1
@@ -17,32 +17,48 @@ def usage():
   msg = '''
 Create DEM from elevation-tile
 
- python {} [(-h|--help)] lat_sw lng_sw lat_ne lng_ne [output]
+ python {} [(-h|--help)] (lat_sw lng_sw lat_ne lng_ne | poly) [output]
 
   options
    lat_sw : latitude of south-west corner in degree
    lng_sw : longitude of south-west corner in degree
    lat_ne : latitude of north-east corner in degree
    lng_ne : longitude of north-east corner in degree
+   poly   : GIS data for shape of watershed (format : GeoJSON, CS : WGS84)
    output : output file name. default 'dem.tif'
    -h     : show this help'''.\
   format(os.path.basename(sys.argv[0]))
   sys.exit(msg)
 
+def bbox(file_input):
+
+  dataSource = ogr.Open(file_input)
+  layer      = dataSource.GetLayer(0)
+  feature    = layer.GetFeature(0)
+  geometry   = feature.GetGeometryRef()
+  envelope   = geometry.GetEnvelope()
+
+  return envelope
+
 def tile(lat_deg, lon_deg, n):
+
   lat_rad = math.radians(lat_deg)
   xtile = int(n * (lon_deg + 180) / 360)
   ytile = int(n * (1 - math.log(math.tan(lat_rad) +
             (1 / math.cos(lat_rad))) / math.pi) / 2)
+
   return xtile, ytile
 
 def latlng(xtile, ytile, n):
+
   lon_deg = 360 * xtile / n - 180
   lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
   lat_deg = math.degrees(lat_rad)
+
   return lat_deg, lon_deg
 
 def Dem15(raster, i0, j0, url_pre, tx, ty):
+
   getAll = True
   r = requests.get(url_pre + '{}/{}.txt'.format(tx, ty))
   if not r.status_code == requests.codes.ok:
@@ -58,9 +74,11 @@ def Dem15(raster, i0, j0, url_pre, tx, ty):
         j = j0 + q
         if raster[i][j] == nodata:
           raster[i][j] = float(s)
+
   return getAll
 
 def Dem14(raster, i0, j0, url_pre, tx15, ty15):
+
   getAll = True
   tx, ty = tx15 // 2, ty15 // 2
   r = requests.get(url_pre + '{}/{}.txt'.format(tx, ty))
@@ -83,6 +101,7 @@ def Dem14(raster, i0, j0, url_pre, tx15, ty15):
         if raster[i][l] == nodata: raster[i][l] = v
         if raster[k][j] == nodata: raster[k][j] = v
         if raster[k][l] == nodata: raster[k][l] = v
+
   return getAll
 
 def main(lat_sw, lng_sw, lat_ne, lng_ne, dst):
@@ -139,9 +158,13 @@ if __name__ == '__main__':
     usage()
 
   try:
-    lat_sw, lng_sw = float(sys.argv[1]), float(sys.argv[2])
-    lat_ne, lng_ne = float(sys.argv[3]), float(sys.argv[4])
-    dst = sys.argv[5] if len(sys.argv) == 6 else 'dem.tif'
+    if type(sys.argv[1]) is str:
+      lng_sw, lng_ne, lat_sw, lat_ne = bbox(sys.argv[1])
+      dst = sys.argv[2] if len(sys.argv) == 6 else 'dem.tif'
+    else:
+      lat_sw, lng_sw = float(sys.argv[1]), float(sys.argv[2])
+      lat_ne, lng_ne = float(sys.argv[3]), float(sys.argv[4])
+      dst = sys.argv[5] if len(sys.argv) == 6 else 'dem.tif'
     main(lat_sw, lng_sw, lat_ne, lng_ne, dst)
   except:
     print('ERROR Invalid argument\n', file = sys.stderr)
