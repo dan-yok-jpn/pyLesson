@@ -49,7 +49,7 @@ set PYTHON=%OSGEO_ROOT%\apps\Python39\python.exe
 にある ```libssl-1_1-x64.dll``` と ```libcrypto-1_1-x64.dll``` を
 ```%OSGEO_ROOT%\apps\Python39\DLLs``` にコピーする。
 
-### osgeeo のインポート
+### osgeo のインポート
 
 ```.venv\Lib\site-packages``` には GDAL/OGR が用いる環境変数と DLL のサーチパスを設定する
 ```gdal_env.py``` が配置される。

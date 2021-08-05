@@ -24,8 +24,7 @@ $ set_venv.bat
 (.venv) $ python ex1_useGdal.py
 (.venv) $ python ex2_useGdal.py poly4.json
 ```
-
-- 
+ 
 - ex1_useGdal.py では簡単な図形の地理演算（Intersection、Union）の結果を geoJSON で出力している（前出の図）。
 - ex2_useGdal.py では上記の geoJSON を読み込んで座標を出力している。
 

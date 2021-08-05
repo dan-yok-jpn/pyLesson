@@ -1,4 +1,5 @@
-# mkDem
+
+# tile_2_DEM
 
 国土地理院が配信している[標高タイル](https://maps.gsi.go.jp/development/ichiran.html#dem)から空間解像度 5m の DEM を Geotiff 形式で作成する。
 
@@ -10,18 +11,19 @@
 
 ## Installation
 
-Make_Gdal_App_Env.bat で仮想環境を作成する。
+set_venv.bat で仮想環境を作成する。
 
 ```bash
-$ Make_Gdal_App_Env.bat
+$ set_venv.bat
 ```
+
 - 何らかのエラーが発生する場合は
 ```set_env.bat``` の内容を[チェック](../readme.md#%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%81%AE%E4%BD%9C%E6%88%90)する。
 
 ## Usage
 
 ```bash
- python mkDem.py [(-h|--help)] (lat_sw lng_sw lat_ne lng_ne | poly) [output]
+ python tile_2_DEM.py [(-h|--help)] (lat_sw lng_sw lat_ne lng_ne | poly) [output]
 
    lat_sw : 南西端の緯度（度）
    lng_sw : 南西端の経度（度）
@@ -47,7 +49,7 @@ $ Make_Gdal_App_Env.bat
 3. 上記の緯度経度をクリップボードにコビーして下記のコマンドを実行する
 
     ```bash
-    (.venv) $ python mkDem.py 35.3538601 139.1604541 35.2705697 139.0023191
+    (.venv) $ python tile_2_DEM.py 35.3538601 139.1604541 35.2705697 139.0023191
 
     100%|███████████████████████████████████████████████████████████████████████████████████████| 150/150 [00:31<00:00,  4.70it/s] 
 
@@ -61,6 +63,12 @@ $ Make_Gdal_App_Env.bat
 4. 結果（colorrelief.png）を確認する
 
     ![](img/mkDem.PNG)
+
+- 次のコマンドでも同様の結果が得られる。
+
+    ```bash
+    $ python sample.json
+    ```
 
 ## Reference
 
