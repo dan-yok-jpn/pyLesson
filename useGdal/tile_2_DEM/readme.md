@@ -3,6 +3,8 @@
 
 国土地理院が配信している[標高タイル](https://maps.gsi.go.jp/development/ichiran.html#dem)から空間解像度 5m の DEM を Geotiff 形式で作成する。
 
+![](img/mkDem.PNG)
+
 ## Requirement
 
 * python3
@@ -60,9 +62,7 @@ $ set_venv.bat
     (.venv) $ deactivate
     $
     ```
-4. 結果（colorrelief.png）を確認する
-
-    ![](img/mkDem.PNG)
+4. 結果（colorrelief.png）を確認する（冒頭の図）。
 
 - 次のコマンドでも同様の結果が得られる。
 
