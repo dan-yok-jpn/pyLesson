@@ -1,0 +1,9 @@
+# rasterio, fiona
+#  https://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+affine
+geojson
+scikit-image
+pysheds
+whl/rasterio-1.2.6-cp39-cp39-win_amd64.whl
+whl/Fiona-1.8.20-cp39-cp39-win_amd64.whl
