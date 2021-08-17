@@ -3,7 +3,7 @@
 テキサス大学の Matt Bartos 氏が公開している
 [pyshed](https://mattbartos.com/pysheds/)
 を使用して
-GeoTiff 形式の DEM から流域界のベクターデータを sqlite 形式で出力する。
+GeoTiff 形式の DEM から流域界のベクターデータを SQLite 形式で出力する。
 
 ![](img/watershed.png)
 

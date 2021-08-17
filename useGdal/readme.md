@@ -8,6 +8,7 @@
 - [basic](basic/readme.md) -- 基本的な地理データの操作
 - [census2015](census2015/readme.md) -- 流域内人口の計数
 - [tile_2_DEM](tile_2_DEM/readme.md) -- 標高タイルから水平解像度 5m の DEM を GeoTiff 形式で出力
+- [watershed](watershed/readme.md) -- GeoTiff 形式の DEM から流域界を SQLite 形式で出力
 
 これらでは、QGIS に含まれている Python を用いた仮想環境下で osgeo パッケージをインポートしている。
 osgeo は Python から [GDAL/OGR](https://gdal.org/index.html) 
