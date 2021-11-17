@@ -4,7 +4,7 @@ pushd %~dp0
 
 REM Command file for Sphinx documentation
 
-set SPHINXBUILD=C:\Users\nkmanager\Desktop\dev\sphinx\.venv\Lib\site-packages\bin\sphinx-build.exe
+set SPHINXBUILD=C:\Users\nkmanager\Desktop\pyLesson\sphinx\.venv\Lib\site-packages\bin\sphinx-build.exe
 
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build

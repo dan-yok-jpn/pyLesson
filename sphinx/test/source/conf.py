@@ -14,11 +14,11 @@ import os
 import sys
 # sys.path.insert(0, os.path.abspath('.'))
 # sys.path.append(r"C:\Users\nkmanager\Desktop\dev\sphinx\.venv\Lib\site-packages\sphinx")
-sys.path.append(r"C:\Users\nkmanager\Desktop\dev\sphinx\.venv\Lib\site-packages")
+sys.path.append(r"C:\Users\nkmanager\Desktop\pyLesson\sphinx\.venv\Lib\site-packages")
 
 # -- Project information -----------------------------------------------------
 
-project = 'MakdowwnSphinx'
+project = 'MakdownSphinx'
 copyright = '2021, T.Dan'
 author = 'T.Dan'
 

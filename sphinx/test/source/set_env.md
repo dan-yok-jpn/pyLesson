@@ -2,7 +2,7 @@
 
 ## 仮想環境の作成
 
-トップ・ディレクトリで下記のバッチファイルを実行して ```Sphinx``` 専用の仮想環境を作成した。 
+トップ・ディレクトリで下記のバッチファイルを実行して `Sphinx` 専用の仮想環境を作成した。 
 
 ```
 @echo off
@@ -23,8 +23,8 @@ goto :eof
     exit /b
 ```
 
-```requirements.txt``` は次の通りである。
-[myst-parser](https://myst-parser.readthedocs.io/en/latest/) が ```Markdown``` を使用するための拡張パッケージとなっている。1st. commit が 2 年前で v0.15.2。日本語のアンチョコなし。
+`requirements.txt` は次の通りである。
+[myst-parser](https://myst-parser.readthedocs.io/en/latest/) が `Markdown` を使用するための拡張パッケージとなっている。1st. commit が 2 年前で v0.15.2。日本語のアンチョコなし。
 
 ```
 sphinx
@@ -34,7 +34,7 @@ sphinx_rtd_theme
 
 ## 自動生成ファイルの編集
 
-最終的なフォルダーの構成は次のようになる。```document_root``` 以下は ```.venv\Lib\site-packages\bin\sphinx-quickstart.exe``` で自動的に生成される既定のファイルを編集して ```Markdown``` が適用できるようにした。
+最終的なフォルダーの構成は次のようになる。`document_root` 以下は `.venv\Lib\site-packages\bin\sphinx-quickstart.exe` で自動的に生成される既定のファイルを編集して `Markdown` が適用できるようにした。
 
 ```
 sphinx
@@ -62,7 +62,7 @@ sphinx
 
 ### make.bat
 
-冒頭で ```sphinx-build.exe``` の絶対パスを ```SPHINXBUILD``` 環境変数にセットした。
+冒頭で `sphinx-build.exe` の絶対パスを `SPHINXBUILD` 環境変数にセットした。
 
 ```
 set SPHINXBUILD=<path_to_sphinx>\.venv\Lib\site-packages\bin\sphinx-build.exe
@@ -70,26 +70,27 @@ set SPHINXBUILD=<path_to_sphinx>\.venv\Lib\site-packages\bin\sphinx-build.exe
 
 ### index.md
 
-```index.rst``` は ```index.md``` にリネームして ```set_env.md```、```markdown.md``` の目次を作成する命令を記述。
+`index.rst` は `index.md` にリネームして `set_env.md`、`markdown.md` の目次を作成するため次のように記述。
 
-```
+````
 ```{toctree}
 set_env.md
 markdown.md
 ```
+````
 
 ### source/conf.py
 
 変更点は次の 2 箇所である。
 
-* ```PYTHONPATH``` を追加
-* ```myst_parser``` を ```extensions``` に追加
+* `PYTHONPATH` を追加
+* `myst_parser` を `extensions` に追加
 
 ```Python
 import os
 import sys
 sys.path.append(r"<path_to_sphinx>\.venv\Lib\site-packages")
-project = 'test'
+project = 'MarkdownSphinx'
 copyright = '2021, T.Dan'
 author = 'T.Dan'
 extensions = ['myst_parser']
@@ -104,7 +105,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 ## ビルド
 
-```make html``` で ```build/html``` に 3 種の ```html``` ファイルが作成される。
+`make html` で `build/html` に 5 種の `html` ファイルが作成される。
 
 ```
 % .venv\Scripts\activate
@@ -112,19 +113,21 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 (.venv) % make html
 Sphinx v4.4.0+ を実行中
 翻訳カタログをロードしています [ja]... 完了
-保存された環境データを読み込み中... 完了
-myst v0.15.2: MdParserConfig(renderer='sphinx', commonmark_only=False, enable_extensions=['dollarmath'], dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', disable_syntax=[], url_schemes=['http', 'https', 'mailto', 'ftp'], heading_anchors=None, heading_slug_func=None, html_meta=[], footnote_transition=True, substitutions=[], sub_delimiters=['{', '}'], words_per_minute=200)
+出力先ディレクトリを作成しています... 完了
+myst v0.15.2: MdParserConfig(renderer='sphinx', commonmark_only=False, enable_extensions=['dollarmath'], dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', disable_syntax=[], url_schemes=['http', 'https', 'mailto', 'ftp'], heading_anchors=None, 
+heading_slug_func=None, html_meta=[], footnote_transition=True, substitutions=[], sub_delimiters=['{', '}'], words_per_minute=200)
 ビルド中 [mo]: 更新された 0 件のpoファイル
-ビルド中 [html]: 更新された 1 件のソースファイル
-環境データを更新中0 件追加, 1 件更新, 0 件削除
-ソースを読み込み中...[100%] index
+ビルド中 [html]: 更新された 3 件のソースファイル
+環境データを更新中[新しい設定] 3 件追加, 0 件更新, 0 件削除
+ソースを読み込み中...[100%] set_env
 更新されたファイルを探しています... 見つかりませんでした
 環境データを保存中... 完了
 整合性をチェック中... 完了
 ドキュメントの出力準備中... 完了
-出力中...[100%] index
+出力中...[100%] set_env
 索引を生成中... genindex 完了
 追加のページを出力中... search 完了
+画像をコピー中... [100%] img/logo-wide.svg
 静的ファイルをコピー中... 完了
 extraファイルをコピー中... 完了
 Japanese (code: ja) の検索インデックスを出力... 完了

@@ -2,11 +2,11 @@
 
 ## 文字修飾
 
-```**太字**、__太字__``` → **太字**、__太字__
+`**太字**、__太字__` → **太字**、__太字__
 
-```*斜体*、_斜体_、*italic*``` → *斜体*、_斜体_、*italic*  <span style="color:red">日本語はダメ</span>
+`*斜体*、_斜体_、*italic*` → *斜体*、_斜体_、*italic*  <span style="color:red">日本語はダメ</span>
 
-```~~訂正線~~、~~erase~~``` → ~~訂正線~~、~~erase~~ <span style="color:red">ダメ</span>
+`~~訂正線~~、~~erase~~` → ~~訂正線~~、~~erase~~ <span style="color:red">ダメ</span>
 
 ## 箇条書き
 
