@@ -83,7 +83,7 @@ set SPHINXBUILD=<path_to_sphinx>\.venv\Lib\site-packages\bin\sphinx-build.exe
 
 ### index.md
 
-`index.rst` を `index.md` にリネームして書き下ろしの文書ファイル `set_env.md`、`markdown.md` の目次を加えるため次のように記述。
+`index.rst` を `index.md` にリネームして書き下ろしの文書ファイル `set_env.md`、`markdown.md` を目次を加えるため次のように記述。
 
 ````
 ```{toctree}
