@@ -2,7 +2,7 @@
 
 ## 仮想環境の作成
 
-トップ・ディレクトリで下記のバッチファイルを実行して `Sphinx` 専用の仮想環境を作成した。 
+トップ・ディレクトリ（ここでは、「`sphinx`」とする）で下記のバッチファイル（`set_venv.bat`）を実行して `Sphinx` 専用の仮想環境を作成する。 
 
 ```
 @echo off
@@ -10,7 +10,7 @@ setlocal
 
 set PYTHONHOME=C:\Progra~2\micros~4\shared\Python37_64
 set PATH=%PYTHONHOME%;%PYTHONHOME%\DLLs;%PYTHONHOME%\Scripts;%PATH%
-call :genBat    > tmp.bat
+call :genBat > tmp.bat
 powershell Start-Process tmp.bat -Verb runas -Wait
 del tmp.bat
 pip install -r requirements.txt -t .venv\Lib\site-packages 1>nul 2>nul
@@ -25,6 +25,7 @@ goto :eof
 
 `requirements.txt` は次の通りである。
 [myst-parser](https://myst-parser.readthedocs.io/en/latest/) が `Markdown` を使用するための拡張パッケージとなっている。1st. commit が 2 年前で v0.15.2。日本語のアンチョコなし。
+`sphinx_rtd_theme` はサイトの外観。
 
 ```
 sphinx
@@ -34,14 +35,14 @@ sphinx_rtd_theme
 
 ## 自動生成ファイルの編集
 
-最終的なフォルダーの構成は次のようになる。`document_root` 以下は `.venv\Lib\site-packages\bin\sphinx-quickstart.exe` で自動的に生成される既定のファイルを編集して `Markdown` が適用できるようにした。
+トップ・ディレクトリ以下の最終的なフォルダーの構成は次のようになる。
 
 ```
 sphinx
 |  set_venv.bat
 |  requirements.txt
-│  .venv
-└─ document_root
+│  .venv  ............ Python と requirements.txt で指定したライブラリはここにある
+└─ markdownSpinx
     |
     │  make.bat
     │  Makefile
@@ -52,17 +53,28 @@ sphinx
     │                  
     └─source
         │  conf.py
-        │  index.md
-        │  set_env.md
-        │  markdown.md
+        │  index.md  ............ index..rst の代替
+        │  set_env.md  .......... 新規作成
+        │  markdown.md  ......... 新規作成
         │  
         ├─_static
         └─_templates
 ```
 
+先ず、`.venv\Lib\site-packages\bin\sphinx-quickstart.exe` を実行してワーク・ディレクトリ（ここでは「`markdownSpinx`」とする）以下にビルドに必要な既定のディレクトリとファイルを作成する。
+ここでの応答は `conf.py` に反映されるので必要であれば後で変更すれば良い。
+
+```
+% mkdir markdownSphinx
+% cd markdownSphinx
+% ..\.venv\Lib\site-packages\bin\sphinx-quickstart.exe
+```
+
+次に、生成された `make.bat`、`index.md`、および `conf.py` に以下の変更を加えて `Markdown` が適用できるようにした。
+
 ### make.bat
 
-冒頭で `sphinx-build.exe` の絶対パスを `SPHINXBUILD` 環境変数にセットした。
+冒頭で `sphinx-build.exe` の絶対パスを `SPHINXBUILD` 環境変数にセットする。
 
 ```
 set SPHINXBUILD=<path_to_sphinx>\.venv\Lib\site-packages\bin\sphinx-build.exe
@@ -70,7 +82,7 @@ set SPHINXBUILD=<path_to_sphinx>\.venv\Lib\site-packages\bin\sphinx-build.exe
 
 ### index.md
 
-`index.rst` は `index.md` にリネームして `set_env.md`、`markdown.md` の目次を作成するため次のように記述。
+`index.rst` を `index.md` にリネームして書き下ろしの文書ファイル `set_env.md`、`markdown.md` の目次を加えるため次のように記述。
 
 ````
 ```{toctree}
@@ -79,12 +91,13 @@ markdown.md
 ```
 ````
 
-### source/conf.py
+### conf.py
 
-変更点は次の 2 箇所である。
+変更点は次の 3 箇所である。
 
 * `PYTHONPATH` を追加
 * `myst_parser` を `extensions` に追加
+* テーマを今回インストールした `sphinx_rtd_theme` に変更
 
 ```Python
 import os
@@ -105,11 +118,11 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 ## ビルド
 
-`make html` で `build/html` に 5 種の `html` ファイルが作成される。
+仮想環境下で `make html` を実行すると `build/html` に 5 種の `html` ファイルが作成される。
 
 ```
 % .venv\Scripts\activate
-(.venv) % cd document_root
+(.venv) % cd markdownSphinx
 (.venv) % make html
 Sphinx v4.4.0+ を実行中
 翻訳カタログをロードしています [ja]... 完了
