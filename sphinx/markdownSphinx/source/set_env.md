@@ -39,9 +39,10 @@ sphinx_rtd_theme
 
 ```
 sphinx
+│  .venv  ............ Python と requirements.txt で指定したライブラリはここにある
+│  .vscode  .......... 本文では説明を省いているが VSCode 内で作業が完結するようにしてある
 |  set_venv.bat
 |  requirements.txt
-│  .venv  ............ Python と requirements.txt で指定したライブラリはここにある
 └─ markdownSpinx
     |
     │  make.bat

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>環境設定からビルドまで &mdash; MakdownSphinx  ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Markdown 諸々" href="markdown.html" />
+    <link rel="prev" title="Markdown で Sphinx" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MakdownSphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">環境設定からビルドまで</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">仮想環境の作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">自動生成ファイルの編集</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#make-bat">make.bat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#index-md">index.md</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conf-py">conf.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">ビルド</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown 諸々</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MakdownSphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>環境設定からビルドまで</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/set_env.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>環境設定からビルドまで<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<section id="id2">
+<h2>仮想環境の作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>トップ・ディレクトリ（ここでは、「<code class="docutils literal notranslate"><span class="pre">sphinx</span></code>」とする）で下記のバッチファイル（<code class="docutils literal notranslate"><span class="pre">set_venv.bat</span></code>）を実行して <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> 専用の仮想環境を作成する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@echo</span> <span class="n">off</span>
+<span class="n">setlocal</span>
+
+<span class="nb">set</span> <span class="n">PYTHONHOME</span><span class="o">=</span><span class="n">C</span><span class="p">:</span>\<span class="n">Progra</span><span class="o">~</span><span class="mi">2</span>\<span class="n">micros</span><span class="o">~</span><span class="mi">4</span>\<span class="n">shared</span>\<span class="n">Python37_64</span>
+<span class="nb">set</span> <span class="n">PATH</span><span class="o">=%</span><span class="n">PYTHONHOME</span><span class="o">%</span><span class="p">;</span><span class="o">%</span><span class="n">PYTHONHOME</span><span class="o">%</span>\<span class="n">DLLs</span><span class="p">;</span><span class="o">%</span><span class="n">PYTHONHOME</span><span class="o">%</span>\<span class="n">Scripts</span><span class="p">;</span><span class="o">%</span><span class="n">PATH</span><span class="o">%</span>
+<span class="n">call</span> <span class="p">:</span><span class="n">genBat</span> <span class="o">&gt;</span> <span class="n">tmp</span><span class="o">.</span><span class="n">bat</span>
+<span class="n">powershell</span> <span class="n">Start</span><span class="o">-</span><span class="n">Process</span> <span class="n">tmp</span><span class="o">.</span><span class="n">bat</span> <span class="o">-</span><span class="n">Verb</span> <span class="n">runas</span> <span class="o">-</span><span class="n">Wait</span>
+<span class="k">del</span> <span class="n">tmp</span><span class="o">.</span><span class="n">bat</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">t</span> <span class="o">.</span><span class="n">venv</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span> <span class="mi">1</span><span class="o">&gt;</span><span class="n">nul</span> <span class="mi">2</span><span class="o">&gt;</span><span class="n">nul</span>
+<span class="n">goto</span> <span class="p">:</span><span class="n">eof</span>
+
+<span class="p">:</span><span class="n">genBat</span>
+    <span class="n">echo</span> <span class="nd">@echo</span> <span class="n">off</span>
+    <span class="n">echo</span> <span class="n">cd</span> <span class="s2">&quot;%~dp0&quot;</span>
+    <span class="n">echo</span> <span class="s2">&quot;%PYTHONHOME%\python&quot;</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">--</span><span class="n">system</span><span class="o">-</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span> <span class="o">--</span><span class="n">symlinks</span> <span class="o">--</span><span class="n">without</span><span class="o">-</span><span class="n">pip</span> <span class="o">--</span><span class="n">clear</span> <span class="o">.</span><span class="n">venv</span>
+    <span class="n">exit</span> <span class="o">/</span><span class="n">b</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> は次の通りである。
+<a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">myst-parser</a> が <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> を使用するための拡張パッケージとなっている。1st. commit が 2 年前で v0.15.2。日本語のアンチョコなし。
+<code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme</span></code> はサイトの外観。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span>
+<span class="n">myst</span><span class="o">-</span><span class="n">parser</span>
+<span class="n">sphinx_rtd_theme</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>自動生成ファイルの編集<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>トップ・ディレクトリ以下の最終的なフォルダーの構成は次のようになる。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sphinx
+│  .venv  ............ Python と requirements.txt で指定したライブラリはここにある
+│  .vscode  .......... 本文では説明を省いているが VSCode 内で作業が完結するようにしてある
+|  set_venv.bat
+|  requirements.txt
+└─ markdownSpinx
+    |
+    │  make.bat
+    │  Makefile
+    │  
+    ├─build
+    │  ├─doctrees
+    │  └─html
+    │                  
+    └─source
+        │  conf.py
+        │  index.md  ............ index..rst の代替
+        │  set_env.md  .......... 新規作成
+        │  markdown.md  ......... 新規作成
+        │  
+        ├─_static
+        └─_templates
+</pre></div>
+</div>
+<p>先ず、<code class="docutils literal notranslate"><span class="pre">.venv\Lib\site-packages\bin\sphinx-quickstart.exe</span></code> を実行してワーク・ディレクトリ（ここでは「<code class="docutils literal notranslate"><span class="pre">markdownSpinx</span></code>」とする）以下にビルドに必要な既定のディレクトリとファイルを作成する。
+ここでの応答は <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> に反映されるので必要であれば後で変更すれば良い。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">mkdir</span> <span class="n">markdownSphinx</span>
+<span class="o">%</span> <span class="n">cd</span> <span class="n">markdownSphinx</span>
+<span class="o">%</span> <span class="o">..</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="nb">bin</span>\<span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+<p>次に、生成された <code class="docutils literal notranslate"><span class="pre">make.bat</span></code>、<code class="docutils literal notranslate"><span class="pre">index.md</span></code>、および <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> に以下の変更を加えて <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> が適用できるようにした。</p>
+<section id="make-bat">
+<h3>make.bat<a class="headerlink" href="#make-bat" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>冒頭で <code class="docutils literal notranslate"><span class="pre">sphinx-build.exe</span></code> の絶対パスを <code class="docutils literal notranslate"><span class="pre">SPHINXBUILD</span></code> 環境変数にセットする。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">SPHINXBUILD</span><span class="o">=&lt;</span><span class="n">path_to_sphinx</span><span class="o">&gt;</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="nb">bin</span>\<span class="n">sphinx</span><span class="o">-</span><span class="n">build</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+</section>
+<section id="index-md">
+<h3>index.md<a class="headerlink" href="#index-md" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">index.rst</span></code> を <code class="docutils literal notranslate"><span class="pre">index.md</span></code> にリネームして書き下ろしの文書ファイル <code class="docutils literal notranslate"><span class="pre">set_env.md</span></code>、<code class="docutils literal notranslate"><span class="pre">markdown.md</span></code> の目次を加えるため次のように記述。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{toctree}
+set_env.md
+markdown.md
+```
+</pre></div>
+</div>
+</section>
+<section id="conf-py">
+<h3>conf.py<a class="headerlink" href="#conf-py" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>変更点は次の 3 箇所である。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> を追加</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">myst_parser</span></code> を <code class="docutils literal notranslate"><span class="pre">extensions</span></code> に追加</p></li>
+<li><p>テーマを今回インストールした <code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme</span></code> に変更</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&lt;path_to_sphinx&gt;\.venv\Lib\site-packages&quot;</span><span class="p">)</span>
+<span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;MarkdownSphinx&#39;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s1">&#39;2021, T.Dan&#39;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s1">&#39;T.Dan&#39;</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;myst_parser&#39;</span><span class="p">]</span>
+<span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_templates&#39;</span><span class="p">]</span>
+<span class="n">language</span> <span class="o">=</span> <span class="s1">&#39;ja&#39;</span>
+<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_static&#39;</span><span class="p">]</span>
+<span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;sphinx_rtd_theme&quot;</span>
+<span class="n">html_theme_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">sphinx_rtd_theme</span><span class="o">.</span><span class="n">get_html_theme_path</span><span class="p">()]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>ビルド<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>仮想環境下で <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> を実行すると <code class="docutils literal notranslate"><span class="pre">build/html</span></code> に 5 種の <code class="docutils literal notranslate"><span class="pre">html</span></code> ファイルが作成される。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>% .venv\Scripts\activate
+(.venv) % cd markdownSphinx
+(.venv) % make html
+Sphinx v4.4.0+ を実行中
+翻訳カタログをロードしています [ja]... 完了
+出力先ディレクトリを作成しています... 完了
+myst v0.15.2: MdParserConfig(renderer=&#39;sphinx&#39;, commonmark_only=False, enable_extensions=[&#39;dollarmath&#39;], dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes=&#39;tex2jax_process|mathjax_process|math|output_area&#39;, disable_syntax=[], url_schemes=[&#39;http&#39;, &#39;https&#39;, &#39;mailto&#39;, &#39;ftp&#39;], heading_anchors=None, 
+heading_slug_func=None, html_meta=[], footnote_transition=True, substitutions=[], sub_delimiters=[&#39;{&#39;, &#39;}&#39;], words_per_minute=200)
+ビルド中 [mo]: 更新された 0 件のpoファイル
+ビルド中 [html]: 更新された 3 件のソースファイル
+環境データを更新中[新しい設定] 3 件追加, 0 件更新, 0 件削除
+ソースを読み込み中...[100%] set_env
+更新されたファイルを探しています... 見つかりませんでした
+環境データを保存中... 完了
+整合性をチェック中... 完了
+ドキュメントの出力準備中... 完了
+出力中...[100%] set_env
+索引を生成中... genindex 完了
+追加のページを出力中... search 完了
+画像をコピー中... [100%] img/logo-wide.svg
+静的ファイルをコピー中... 完了
+extraファイルをコピー中... 完了
+Japanese (code: ja) の検索インデックスを出力... 完了
+オブジェクト インベントリを出力... 完了
+ビルド 成功.
+
+HTMLページはbuild\htmlにあります。
+
+(.venv) %
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Markdown で Sphinx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="markdown.html" class="btn btn-neutral float-right" title="Markdown 諸々" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, T.Dan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

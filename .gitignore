@@ -9,5 +9,5 @@ exif.js
 *.json
 !useGdal/DEM/sample.json
 !useGdal/census2015/sample.json
-sphinx/test/build
-sphinx/test/source/_*/
+sphinx/markdownSphinx/source/_*/
+sphinx/markdownSphinx/build/
