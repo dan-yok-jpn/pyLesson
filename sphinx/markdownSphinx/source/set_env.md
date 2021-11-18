@@ -4,7 +4,7 @@
 
 トップ・ディレクトリ（ここでは、「`sphinx`」とする）で下記のバッチファイル（`set_venv.bat`）を実行して `Sphinx` 専用の仮想環境を作成する。 
 
-```
+```doscon
 @echo off
 setlocal
 
@@ -65,10 +65,10 @@ sphinx
 先ず、`.venv\Lib\site-packages\bin\sphinx-quickstart.exe` を実行してワーク・ディレクトリ（ここでは「`markdownSpinx`」とする）以下にビルドに必要な既定のディレクトリとファイルを作成する。
 ここでの応答は `conf.py` に反映されるので必要であれば後で変更すれば良い。
 
-```
-% mkdir markdownSphinx
-% cd markdownSphinx
-% ..\.venv\Lib\site-packages\bin\sphinx-quickstart.exe
+```doscon
+sphinx> mkdir markdownSphinx
+sphinx> cd markdownSphinx
+markdownSphinx> ..\.venv\Lib\site-packages\bin\sphinx-quickstart.exe
 ```
 
 次に、生成された `make.bat`、`index.md`、および `conf.py` に以下の変更を加えて `Markdown` が適用できるようにした。
@@ -77,7 +77,7 @@ sphinx
 
 冒頭で `sphinx-build.exe` の絶対パスを `SPHINXBUILD` 環境変数にセットする。
 
-```
+```doscon
 set SPHINXBUILD=<path_to_sphinx>\.venv\Lib\site-packages\bin\sphinx-build.exe
 ```
 
@@ -85,7 +85,7 @@ set SPHINXBUILD=<path_to_sphinx>\.venv\Lib\site-packages\bin\sphinx-build.exe
 
 `index.rst` を `index.md` にリネームして書き下ろしの文書ファイル `set_env.md`、`markdown.md` を目次を加えるため次のように記述。
 
-````
+````md
 ```{toctree}
 set_env.md
 markdown.md
@@ -121,10 +121,10 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 仮想環境下で `make html` を実行すると `build/html` に 5 種の `html` ファイルが作成される。
 
-```
-% .venv\Scripts\activate
-(.venv) % cd markdownSphinx
-(.venv) % make html
+```doscon
+sphinx> .venv\Scripts\activate
+(.venv) sphinx> cd markdownSphinx
+(.venv) markdownSphinx> make html
 Sphinx v4.4.0+ を実行中
 翻訳カタログをロードしています [ja]... 完了
 出力先ディレクトリを作成しています... 完了
@@ -150,5 +150,5 @@ Japanese (code: ja) の検索インデックスを出力... 完了
 
 HTMLページはbuild\htmlにあります。
 
-(.venv) %
+(.venv) markdownSphinx>
 ```
