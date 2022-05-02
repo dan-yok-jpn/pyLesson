@@ -1,32 +1,63 @@
 import os
 import sys
+import io
 import pyperclip
 
-def copy(tsv=None):
-    if tsv:
-        pyperclip.copy(sys.stdin.read().replace(",", "\t"))
-    else:
-        pyperclip.copy(sys.stdin.read())
+def copy():
+    pyperclip.copy(sys.stdin.read())
+    exit()
 
-def paste(csv=None):
-    if "-unicode" in sys.argv:
-        import io
+def paste():
+    buf = pyperclip.paste()
+    if utf:
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    if sjis:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='shift-jis')
+        buf = buf.replace("\x80", "")
     if csv:
-        sys.stdout.write(pyperclip.paste().replace("\r", "").replace("\t", ","))
+        sys.stdout.write(buf.replace("\r", "").replace("\t", ","))
+    elif tsv:
+        sys.stdout.write(buf.replace("\r", "").replace(",", "\t"))
     else:
-        sys.stdout.write(pyperclip.paste().replace("\r", ""))
+        sys.stdout.write(buf.replace("\r", ""))
 
 if __name__ == "__main__":
 
-    if len(sys.argv) == 1 or "-c" in sys.argv:
+    global csv, tsv, utf, sjis
+    csv = tsv = utf = sjis = False
+
+    if len(sys.argv) == 1:
         copy()
-    elif "-tsv" in sys.argv:
-        copy(True)
-    elif "-p" in sys.argv:
-        paste()
-    elif "-csv" in sys.argv:
-        paste(True)
     else:
-        exit("\n ERROR {} unknown option(s) {}".\
-        format(os.path.basename(sys.argv[0]), sys.argv[1:]))
+        for arg in sys.argv[1:]:
+            if arg == "-c":
+                copy()
+            elif arg == "-p":
+                pass
+            elif arg == "-tsv":
+                tsv = True
+            elif arg == "-csv":
+                csv = True
+            elif arg == "-utf":
+                utf = True
+            elif arg == "-sjis" and not utf:
+                sjis = True
+            elif arg == "-h" or arg == "--help":
+                msg = '''
+Usage:
+  py {} [Options]
+
+Options:
+ -c : copy to clipboad (default)
+ -p : print clipboad
+ -tsv : translate comma to tab, use with -p
+ -csv : translate tab to comma, use with -p
+ -utf : use code page utf-8, use with -p
+ -sjis : use code page shift-jis, use with -p
+ -h, --help : show this help '''.format(os.path.basename(__file__))
+                sys.exit(msg)
+            else:
+                sys.exit(f'''
+ {arg} no such option.''')
+
+        paste()
