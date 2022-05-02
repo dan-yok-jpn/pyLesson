@@ -128,7 +128,7 @@ if __name__ == '__main__':
 	if len(sys.argv) == 2:
 		root = sys.argv[1]
 		if not os.path.exists(root):
-			sys.exit('\n {0} no such directory.'.format(base))
+			sys.exit(f'\n {root} no such directory.')
 	else:
 		root = '.'
 
