@@ -8,57 +8,55 @@ PASTE = False
 
 def usage():
 
-    print('''
+    bat = os.path.basename(__file__).replace(".py", ".bat")
+    print(f'''
 Usage:
-    py {} [Options]
+    {bat} [Options]
 Options:
     -c    : copy to clipboad (default)
     -p    : print clipboad
     -tsv  : replace comma to tab
     -csv  : replace tab to comma
-    -utf  : encoding utf-8
-    -sjis : encoding shift-jis (default)
+    -utf  : convert charset to utf-8, use with -p
     -h    : show this help
-'''.format(os.path.basename(__file__)),
-    file = sys.stderr)
+Exsample:
+    {bat} -tsv < foo.csv ............ file to clipboad
+    {bat} -p -csv -utf > utf.csv .... clipboad to file
+''', file = sys.stderr)
 
-def copy(csv, tsv, encoding):
+def copy(csv, tsv):
 
-    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding = encoding)
-
-    buf = sys.stdin.read()
-    if sjis:
-        buf = buf.replace("\x80", "")
+    buf = sys.stdin.buffer.read()
+    try:
+        buf = buf.decode("shift-jis")
+    except:
+        buf = buf.decode("utf-8")
 
     if csv:
-        pyperclip.copy(buf.replace("\t", ","))
+        buf = buf.replace("\t", ",")
     elif tsv:
-        pyperclip.copy(buf.replace(",", "\t"))
-    else:
-        pyperclip.copy(buf)
+        buf = buf.replace(",", "\t")
 
-def paste(csv, tsv, utf, sjis):
+    pyperclip.copy(buf)
+
+def paste(csv, tsv, utf):
 
     buf = pyperclip.paste().replace("\r", "")
 
     if utf:
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-    elif sjis:
-        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="shift-jis")
-        buf = buf.replace("\x80", "")
 
     if csv:
-        sys.stdout.write(buf.replace("\t", ","))
+        print(buf.replace("\t", ","))
     elif tsv:
-        sys.stdout.write(buf.replace(",", "\t"))
+        print(buf.replace(",", "\t"))
     else:
-        sys.stdout.write(buf)
+        print(buf)
 
 if __name__ == "__main__":
 
     mode = COPY
-    csv, tsv  = False, False
-    sjis, utf = True,  False
+    csv, tsv, utf = False, False, False
 
     for arg in sys.argv[1:]:
         if arg == "-c":
@@ -70,9 +68,7 @@ if __name__ == "__main__":
         elif arg == "-csv":
             csv = True
         elif arg == "-utf":
-            sjis, utf = False, True
-        elif arg == "-sjis":
-            sjis, utf = True,  False
+            utf = True
         elif arg ==  "-h":
             usage()
             sys.exit()
@@ -81,6 +77,6 @@ if __name__ == "__main__":
             sys.exit(f'\n ERROR !!! {arg} no such option.')
 
     if mode == COPY:
-        copy(csv, tsv, "utf-8" if utf else "shift-jis")
+        copy(csv, tsv)
     else:
-        paste(csv, tsv, utf, sjis)
+        paste(csv, tsv, utf)
